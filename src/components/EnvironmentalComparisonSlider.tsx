@@ -81,8 +81,8 @@ export default function EnvironmentalComparisonSlider() {
         {/* Visual Comparison Split Box */}
         <Card className="rounded-3xl border border-border/80 bg-card overflow-hidden shadow-sm">
           <ImageCompare
-            beforeSrc="/images/gallery/trail-before-litter.jpg"
-            afterSrc="/images/gallery/trail-after-restored.jpg"
+            beforeSrc="/images/gallery/tumpukan-botol-plastik.png"
+            afterSrc="/images/gallery/kreasi-daur-ulang.png"
             beforeAlt="Kondisi awal jalur tercemar sampah plastik dan botol berserakan"
             afterAlt="Jalur konservasi bersih dan asri hasil restorasi sirkular CircuLife"
             beforeLabel="SEBELUM : TIMBUNAN SAMPAH LIAR"
