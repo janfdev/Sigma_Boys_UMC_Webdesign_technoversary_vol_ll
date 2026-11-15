@@ -43,19 +43,19 @@ export default function CampaignActionSection() {
                 alt="Proses pencetakan paving block dari lelehan plastik PET daur ulang"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute top-3 left-3">
-                <Badge variant="secondary" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm border-border/60">
+              <div className="absolute top-3 left-3 right-3">
+                <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-card text-muted-foreground border-border">
                   Dokumentasi Lapangan: Cetak Paving
                 </Badge>
               </div>
             </div>
 
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 group-hover:scale-105 transition-transform">
                   <Layers className="h-6 w-6" aria-hidden="true" />
                 </div>
-                <Badge variant="secondary" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-md">
+                <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-primary/10 text-primary border-primary/20">
                   Alur Plastik: Eco-Paving
                 </Badge>
               </div>
@@ -113,19 +113,19 @@ export default function CampaignActionSection() {
                 alt="Tungku biomassa hemat bahan bakar hasil upcycling kaleng gas bekas"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute top-3 left-3">
-                <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm text-amber-600 border-amber-500/30">
+              <div className="absolute top-3 left-3 right-3">
+                <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-card text-muted-foreground border-border">
                   Dokumentasi: Tungku Kaleng
                 </Badge>
               </div>
             </div>
 
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/20 group-hover:scale-105 transition-transform">
                   <Flame className="h-6 w-6" aria-hidden="true" />
                 </div>
-                <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-md text-amber-700 dark:text-amber-400 border-amber-500/30">
+                <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-amber-50 text-amber-800 dark:bg-amber-950 dark:text-amber-200 border-amber-200 dark:border-amber-900">
                   Alur Logam: Upcycling
                 </Badge>
               </div>
@@ -179,8 +179,8 @@ export default function CampaignActionSection() {
                   alt="Panen pupuk kasgot hasil biokonversi sampah organik oleh larva maggot BSF"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
-                <div className="absolute top-3 left-3">
-                  <Badge variant="secondary" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm border-border/60">
+                <div className="absolute top-3 left-3 right-3">
+                  <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-card text-muted-foreground border-border">
                     Dokumentasi: Panen Kasgot BSF
                   </Badge>
                 </div>
@@ -193,7 +193,7 @@ export default function CampaignActionSection() {
                     </div>
                     <div className="space-y-1.5">
                       <div className="flex flex-wrap items-center gap-2">
-                        <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider border-primary/30 text-primary">
+                        <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-primary/10 text-primary border-primary/20">
                           Alur Organik: Biokonversi
                         </Badge>
                         <span className="text-xs font-mono text-muted-foreground">Siklus <AnimatedNumber value={14} /> Hari</span>
