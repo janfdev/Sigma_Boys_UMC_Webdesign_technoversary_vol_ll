@@ -1,3 +1,4 @@
+import { visibleText } from "@/test/visibleText";
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
@@ -27,7 +28,7 @@ describe("TrailStatusBoard Component", () => {
   it("should display elevation range and length in kilometers", () => {
     render(<TrailStatusBoard trails={TRAIL_SEEDS} />);
 
-    expect(screen.getByText(/9\.8\s*km/i)).toBeInTheDocument();
-    expect(screen.getByText(/1\.100\s*-\s*3\.078\s*mdpl/i)).toBeInTheDocument();
+    expect(screen.getByText(visibleText(/9,8\s*km/i))).toBeInTheDocument();
+    expect(screen.getByText(visibleText(/1\.100\s*-\s*3\.078\s*mdpl/i))).toBeInTheDocument();
   });
 });

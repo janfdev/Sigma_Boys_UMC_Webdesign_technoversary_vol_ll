@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState, useEffect } from "react";
 import { CircularProduct, ProductCategory } from "@/types";
@@ -75,7 +77,7 @@ export default function CircularProductCatalog() {
             onClick={() => setSelectedCategory("ALL")}
             className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
-            Semua Produk ({CIRCULAR_PRODUCTS.length})
+            Semua Produk (<AnimatedNumber value={CIRCULAR_PRODUCTS.length} />)
           </Button>
           <Button
             type="button"
@@ -135,7 +137,7 @@ export default function CircularProductCatalog() {
                   />
                   <div className="absolute top-2.5 right-2.5 z-10">
                     <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase backdrop-blur-md bg-background/80 px-2 py-0.5">
-                      {p.pointsRequired} Poin
+                      <AnimatedNumber value={p.pointsRequired} /> Poin
                     </Badge>
                   </div>
                 </div>
@@ -150,7 +152,7 @@ export default function CircularProductCatalog() {
                   {!p.imageUrl && (
                     <div className="flex items-center gap-1.5">
                       <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase px-2 py-0.5">
-                        {p.pointsRequired} Poin
+                        <AnimatedNumber value={p.pointsRequired} /> Poin
                       </Badge>
                     </div>
                   )}
@@ -159,7 +161,7 @@ export default function CircularProductCatalog() {
                   {p.name}
                 </CardTitle>
                 <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
-                  {p.description}
+                  <NumericText text={p.description} />
                 </p>
               </CardHeader>
 
@@ -170,7 +172,7 @@ export default function CircularProductCatalog() {
                     Bahan Baku Utama:
                   </span>
                   <span className="font-bold text-foreground block text-[11px] leading-tight">
-                    {p.rawMaterial}
+                    <NumericText text={p.rawMaterial} />
                   </span>
                 </div>
 
@@ -180,7 +182,7 @@ export default function CircularProductCatalog() {
                     Dampak Nyata:
                   </span>
                   <span className="font-semibold block text-[11px] leading-tight">
-                    {p.impactMetric}
+                    <NumericText text={p.impactMetric} />
                   </span>
                 </div>
 
@@ -198,7 +200,7 @@ export default function CircularProductCatalog() {
                   Nilai Komunitas
                 </span>
                 <span className="text-xs font-black font-mono tabular-nums text-foreground">
-                  Rp {p.priceEstimateRp.toLocaleString("id-ID")}
+                  Rp <AnimatedNumber value={p.priceEstimateRp} />
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
@@ -246,7 +248,7 @@ export default function CircularProductCatalog() {
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
                   <Badge variant="outline" className="text-[10px] font-mono font-bold uppercase border-primary/40 text-primary">
-                    {activeProduct.labSpec.qualityGrade}
+                    <NumericText text={activeProduct.labSpec.qualityGrade} />
                   </Badge>
                   <span className="text-xs font-mono text-muted-foreground">
                     Verifikasi Mutu & Laboratorium
@@ -288,7 +290,7 @@ export default function CircularProductCatalog() {
                     <span>Karakteristik & Kekuatan</span>
                   </div>
                   <p className="text-xs font-bold text-foreground">
-                    {activeProduct.labSpec.compressiveStrength}
+                    <NumericText text={activeProduct.labSpec.compressiveStrength} />
                   </p>
                 </div>
               )}
@@ -300,7 +302,7 @@ export default function CircularProductCatalog() {
                     <span>Serapan / Retensi Air</span>
                   </div>
                   <p className="text-xs font-bold text-foreground">
-                    {activeProduct.labSpec.waterAbsorption}
+                    <NumericText text={activeProduct.labSpec.waterAbsorption} />
                   </p>
                 </div>
               )}
@@ -311,7 +313,7 @@ export default function CircularProductCatalog() {
                   <span>Rasio Komposisi Formulasi</span>
                 </div>
                 <p className="text-xs font-bold text-foreground">
-                  {activeProduct.labSpec.compositionRatio}
+                  <NumericText text={activeProduct.labSpec.compositionRatio} />
                 </p>
               </div>
 
@@ -321,7 +323,7 @@ export default function CircularProductCatalog() {
                   <span>Estimasi Umur Pakai</span>
                 </div>
                 <p className="text-xs font-bold text-foreground">
-                  {activeProduct.labSpec.expectedLifespan}
+                  <NumericText text={activeProduct.labSpec.expectedLifespan} />
                 </p>
               </div>
 
@@ -344,7 +346,7 @@ export default function CircularProductCatalog() {
                   Sertifikasi Keselamatan Lingkungan
                 </span>
                 <span className="text-xs font-semibold text-emerald-950 dark:text-emerald-200 block">
-                  {activeProduct.labSpec.safetyCert}
+                  <NumericText text={activeProduct.labSpec.safetyCert} />
                 </span>
               </div>
             </div>

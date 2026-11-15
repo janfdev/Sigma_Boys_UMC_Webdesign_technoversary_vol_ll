@@ -1,3 +1,5 @@
+
+import { AnimatedNumber } from "@/components/ui/animated-number";
 import React from "react";
 import Link from "next/link";
 import { CircuLifeMark } from "@/components/CircuLifeLogo";
@@ -14,7 +16,7 @@ export default function Footer() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
           <div className="flex items-center gap-2.5 font-semibold text-foreground">
             <Recycle className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-            <span>Hotline Kemitraan & Penyetoran CircuLife (24 Jam) : 0821-2345-6789</span>
+            <span>Hotline Kemitraan & Penyetoran CircuLife (<AnimatedNumber value={24} /> Jam) : 0821-2345-6789</span>
           </div>
           <Link
             href="/contact"
@@ -37,11 +39,10 @@ export default function Footer() {
               <span className="text-lg font-black tracking-tight">CIRCULIFE</span>
             </div>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Ekosistem Digital Zero Waste & Waste-to-Value Hub terintegrasi. Mengubah limbah plastik, kaleng logam, dan sisa organik menjadi eco-paving block K-250, tungku biomassa, dan pupuk kompos kasgot bernilai tinggi bagi masyarakat.
-            </p>
+              Ekosistem Digital Zero Waste & Waste-to-Value Hub terintegrasi. Mengubah limbah plastik, kaleng logam, dan sisa organik menjadi eco-paving block K-250, tungku biomassa, dan pupuk kompos kasgot bernilai tinggi bagi masyarakat.</p>
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground pt-1">
               <MapPin className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>Jaringan 24 Drop Point & 18 KSM Sentral Indonesia</span>
+              <span>Jaringan <AnimatedNumber value={24} /> Drop Point &amp; <AnimatedNumber value={18} /> KSM Sentral Indonesia</span>
             </div>
           </div>
 
@@ -58,8 +59,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/about" className="transition-colors hover:text-primary">
-                  Tentang Kami (Visi, Misi & 4 Pilar CircuLife)
-                </Link>
+                  Tentang Kami (Visi, Misi &amp; <AnimatedNumber value={4} /> Pilar CircuLife)</Link>
               </li>
               <li>
                 <Link href="/galeri" className="transition-colors hover:text-primary">
@@ -114,8 +114,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 text-xs text-muted-foreground sm:flex-row font-mono">
           <p className="tabular-nums">
-            &copy; 2026 CIRCULIFE : EcoDigital For Environment Web Design Competition.
-          </p>
+            &copy; 2026 CIRCULIFE : EcoDigital For Environment Web Design Competition.</p>
           <div className="flex items-center gap-1.5 font-medium text-foreground">
             <span>Mewujudkan Indonesia Zero Waste</span>
             <Heart className="h-3.5 w-3.5 fill-current text-primary" aria-hidden="true" />

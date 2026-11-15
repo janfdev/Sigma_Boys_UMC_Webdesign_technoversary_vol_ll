@@ -1,4 +1,5 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
 
 import React, { useState } from "react";
 import { Recycle, PackageCheck, Ban, Sparkles, ChevronDown, CheckCircle2, HelpCircle, Layers, Sprout } from "lucide-react";
@@ -118,7 +119,7 @@ export default function SopGuidelines() {
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-mono font-bold text-muted-foreground">
-                        PROSEDUR {item.number}
+                        PROSEDUR <NumericText text={item.number} />
                       </span>
                       <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">
                         {item.category}
@@ -126,7 +127,7 @@ export default function SopGuidelines() {
                     </div>
 
                     <h3 className="text-base sm:text-lg font-black text-foreground tracking-tight leading-snug">
-                      {item.title}
+                      <NumericText text={item.title} />
                     </h3>
                   </div>
                 </div>
@@ -150,7 +151,7 @@ export default function SopGuidelines() {
                 <div className="overflow-hidden">
                   <div className="px-6 pb-6 pt-0 border-t border-border/40 mt-2 space-y-5">
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-4">
-                      {item.description}
+                      <NumericText text={item.description} />
                     </p>
 
                     <div className="p-4 rounded-xl bg-muted/40 border border-border/60 space-y-3 font-mono">
@@ -161,7 +162,7 @@ export default function SopGuidelines() {
                         {item.keyRules.map((rule, rIdx) => (
                           <li key={rIdx} className="flex items-start gap-2">
                             <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                            <span className="leading-relaxed">{rule}</span>
+                            <span className="leading-relaxed"><NumericText text={rule} /></span>
                           </li>
                         ))}
                       </ul>
@@ -173,7 +174,7 @@ export default function SopGuidelines() {
                         <span>F.A.Q Lapangan :</span>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        {item.faqs}
+                        <NumericText text={item.faqs} />
                       </p>
                     </div>
                   </div>

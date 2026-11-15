@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { QuizQuestion } from "@/types";
@@ -86,7 +88,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
         <div className="inline-flex items-center gap-3 rounded-xl bg-muted/50 border border-border px-6 py-4">
           <span className="text-sm font-medium text-muted-foreground">Skor Akhir:</span>
           <span className="text-3xl font-black text-foreground tabular-nums">
-            {score} / {questions.length}
+            <AnimatedNumber value={score} /> / <AnimatedNumber value={questions.length} />
           </span>
         </div>
 
@@ -114,11 +116,11 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
           <div className="flex items-center gap-2">
             <HelpCircle className="h-4 w-4 text-primary" aria-hidden="true" />
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Pertanyaan {currentIndex + 1} dari {questions.length}
+              Pertanyaan <AnimatedNumber value={currentIndex + 1} /> dari <AnimatedNumber value={questions.length} />
             </span>
           </div>
           <Badge variant="secondary" className="text-xs font-bold text-primary tabular-nums">
-            Skor Sementara: {score}
+            Skor Sementara: <AnimatedNumber value={score} />
           </Badge>
         </div>
         <Progress value={progressPercent} className="h-1.5" />
@@ -127,7 +129,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
       {/* Question */}
       <CardContent className="p-0 mb-6 space-y-6">
         <h3 className="text-lg sm:text-xl font-bold text-foreground leading-snug">
-          {currentQ.question}
+          <NumericText text={currentQ.question} />
         </h3>
 
         {/* Options */}
@@ -157,7 +159,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
                 onClick={() => handleSelectOption(opt.id)}
                 className={`w-full min-h-[52px] p-4 rounded-xl border text-left text-xs sm:text-sm font-medium transition-all flex items-center justify-between gap-3 ${btnClass}`}
               >
-                <span>{opt.text}</span>
+                <span><NumericText text={opt.text} /></span>
                 {showFeedback && isCorrect && (
                   <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" aria-hidden="true" />
                 )}
@@ -174,7 +176,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
           <Alert className="border-border bg-muted/60 text-xs leading-relaxed space-y-1">
             <AlertDescription className="text-muted-foreground text-xs leading-relaxed">
               <strong className="font-bold text-foreground block mb-0.5">Penjelasan Ilmiah CircuLife :</strong>
-              {currentQ.explanation}
+              <NumericText text={currentQ.explanation} />
             </AlertDescription>
           </Alert>
         )}

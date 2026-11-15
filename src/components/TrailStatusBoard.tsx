@@ -1,3 +1,6 @@
+
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 import React from "react";
 import Link from "next/link";
 import { TrailCondition } from "@/types";
@@ -21,7 +24,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
             <div className="inline-flex items-center gap-2 mb-1">
               <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
                 <Recycle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                <span>Drop-Point & Bank Sampah 4 Jalur</span>
+                <span>Drop-Point &amp; Bank Sampah <AnimatedNumber value={4} /> Jalur</span>
               </Badge>
             </div>
             <h2 id="trail-status-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground">
@@ -98,11 +101,11 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                     <div className="grid grid-cols-2 gap-3 text-xs border border-border/60 p-3 bg-muted/40 rounded-xl font-mono">
                       <div>
                         <span className="text-muted-foreground block text-[10px] uppercase font-bold tracking-wider">Panjang Trek</span>
-                        <span className="font-bold text-foreground tabular-nums text-sm mt-0.5 block">{trail.lengthKm} km</span>
+                        <span className="font-bold text-foreground tabular-nums text-sm mt-0.5 block"><AnimatedNumber value={trail.lengthKm} /> km</span>
                       </div>
                       <div>
                         <span className="text-muted-foreground block text-[10px] uppercase font-bold tracking-wider">Elevasi</span>
-                        <span className="font-bold text-foreground tabular-nums text-sm mt-0.5 block">{trail.elevationRange}</span>
+                        <span className="font-bold text-foreground tabular-nums text-sm mt-0.5 block"><NumericText text={trail.elevationRange} /></span>
                       </div>
                     </div>
 
@@ -113,7 +116,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                           <Package className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                           <span>Kapasitas Drop-Point</span>
                         </span>
-                        <span className="font-bold text-foreground tabular-nums">{trail.wasteCollectedKg} / {trail.wasteCapacityKg} kg</span>
+                        <span className="font-bold text-foreground tabular-nums"><AnimatedNumber value={trail.wasteCollectedKg} /> / <AnimatedNumber value={trail.wasteCapacityKg} /> kg</span>
                       </div>
                       <Progress value={fillPct} className="h-1.5" />
                       <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
@@ -131,7 +134,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
 
                     {/* Notes */}
                     <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                      {trail.notes}
+                      <NumericText text={trail.notes} />
                     </p>
                   </CardContent>
                 </div>

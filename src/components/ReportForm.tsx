@@ -1,4 +1,5 @@
 "use client";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { WasteDropReport, TrailId, WasteCategory, CircularTargetProduct } from "@/types";
@@ -237,7 +238,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </div>
             <div>
               <span className="text-muted-foreground block">Kategori Sampah :</span>
-              <span className="font-semibold text-foreground">{submittedReport.wasteCategory} ({submittedReport.weightKg} kg)</span>
+              <span className="font-semibold text-foreground">{submittedReport.wasteCategory} (<AnimatedNumber value={submittedReport.weightKg} /> kg)</span>
             </div>
             <div>
               <span className="text-muted-foreground block">Reward Diterima :</span>
@@ -439,25 +440,25 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
                   <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Paving Block</span>
                   <span className="text-base font-black text-foreground font-mono tabular-nums">
-                    {liveImpact.pavingBlocks} <span className="text-[10px] font-normal text-muted-foreground">unit</span>
+                    <AnimatedNumber value={liveImpact.pavingBlocks} /> <span className="text-[10px] font-normal text-muted-foreground">unit</span>
                   </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
                   <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Pupuk Kompos</span>
                   <span className="text-base font-black text-foreground font-mono tabular-nums">
-                    {liveImpact.compostKg} <span className="text-[10px] font-normal text-muted-foreground">kg</span>
+                    <AnimatedNumber value={liveImpact.compostKg} /> <span className="text-[10px] font-normal text-muted-foreground">kg</span>
                   </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
                   <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Reduksi CO2e</span>
                   <span className="text-base font-black text-foreground font-mono tabular-nums">
-                    {liveImpact.co2SavedKg} <span className="text-[10px] font-normal text-muted-foreground">kg</span>
+                    <AnimatedNumber value={liveImpact.co2SavedKg} /> <span className="text-[10px] font-normal text-muted-foreground">kg</span>
                   </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
                   <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Poin Hijau</span>
                   <span className="text-base font-black text-emerald-800 dark:text-emerald-300 font-mono tabular-nums">
-                    +{liveImpact.seedlingPoints} <span className="text-[10px] font-normal text-muted-foreground">pts</span>
+                    +<AnimatedNumber value={liveImpact.seedlingPoints} /> <span className="text-[10px] font-normal text-muted-foreground">pts</span>
                   </span>
                 </div>
               </div>

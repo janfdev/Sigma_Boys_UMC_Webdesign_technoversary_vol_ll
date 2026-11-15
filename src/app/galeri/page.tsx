@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -65,7 +67,7 @@ export default function GaleriPage() {
               onClick={() => setActiveTab("semua")}
               className="rounded-full text-xs font-bold font-mono h-9 px-4 border-border/80"
             >
-              Semua Konten ({CIRCULIFE_ARTICLES.length + CIRCULIFE_GALLERY.length + CIRCULAR_PRODUCTS.length})
+              Semua Konten (<AnimatedNumber value={CIRCULIFE_ARTICLES.length + CIRCULIFE_GALLERY.length + CIRCULAR_PRODUCTS.length} />)
             </Button>
             <Button
               variant={activeTab === "galeri" ? "default" : "outline"}
@@ -74,7 +76,7 @@ export default function GaleriPage() {
               className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <ImageIcon className="h-3.5 w-3.5" />
-              <span>Galeri Transformasi ({CIRCULIFE_GALLERY.length})</span>
+              <span>Galeri Transformasi (<AnimatedNumber value={CIRCULIFE_GALLERY.length} />)</span>
             </Button>
             <Button
               variant={activeTab === "artikel" ? "default" : "outline"}
@@ -83,7 +85,7 @@ export default function GaleriPage() {
               className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <BookOpen className="h-3.5 w-3.5" />
-              <span>Artikel &amp; Panduan ({CIRCULIFE_ARTICLES.length})</span>
+              <span>Artikel &amp; Panduan (<AnimatedNumber value={CIRCULIFE_ARTICLES.length} />)</span>
             </Button>
             <Button
               variant={activeTab === "produk" ? "default" : "outline"}
@@ -92,7 +94,7 @@ export default function GaleriPage() {
               className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <Layers className="h-3.5 w-3.5" />
-              <span>Katalog Produk ({CIRCULAR_PRODUCTS.length})</span>
+              <span>Katalog Produk (<AnimatedNumber value={CIRCULAR_PRODUCTS.length} />)</span>
             </Button>
           </div>
         </div>
@@ -151,10 +153,10 @@ export default function GaleriPage() {
 
                     <CardHeader className="p-5 pb-3 space-y-2">
                       <CardTitle className="text-base font-bold text-foreground leading-snug">
-                        {item.title}
+                        <NumericText text={item.title} />
                       </CardTitle>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        {item.description}
+                        <NumericText text={item.description} />
                       </p>
                     </CardHeader>
                   </div>
@@ -164,7 +166,7 @@ export default function GaleriPage() {
                       Tervalidasi ISO
                     </span>
                     <span className="text-xs font-mono font-bold text-primary">
-                      {item.wasteTransformed}
+                      <NumericText text={item.wasteTransformed} />
                     </span>
                   </CardFooter>
                 </Card>
@@ -236,7 +238,7 @@ export default function GaleriPage() {
                     <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Clock className="h-3.5 w-3.5 text-primary" />
-                        <span>{article.readTime}</span>
+                        <span><NumericText text={article.readTime} /></span>
                       </span>
                       <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
                         Edukasi Sirkular
@@ -244,11 +246,11 @@ export default function GaleriPage() {
                     </div>
 
                     <h3 className="text-lg sm:text-xl font-black text-foreground tracking-tight leading-snug">
-                      {article.title}
+                      <NumericText text={article.title} />
                     </h3>
 
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      {article.summary}
+                      <NumericText text={article.summary} />
                     </p>
                   </div>
 

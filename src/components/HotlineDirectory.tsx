@@ -1,3 +1,7 @@
+
+import { AnimatedNumber } from "@/components/ui/animated-number";
+
+import { NumericText } from "@/components/NumericText";
 import React from "react";
 import { EMERGENCY_CONTACTS } from "@/lib/constants";
 import { Phone, MessageSquare, Clock, MapPin, ShieldAlert } from "lucide-react";
@@ -13,8 +17,7 @@ export default function HotlineDirectory() {
         <div className="flex items-center gap-2 mb-1">
           <ShieldAlert className="h-5 w-5 text-destructive" aria-hidden="true" />
           <Badge variant="destructive" className="text-xs font-mono font-bold uppercase tracking-wider">
-            Direktori Siaga 24 Jam
-          </Badge>
+            Direktori Siaga <AnimatedNumber value={24} /> Jam</Badge>
         </div>
         <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
           Hotline Kontak Drop-Point & Mitra Sirkular CircuLife
@@ -38,7 +41,7 @@ export default function HotlineDirectory() {
                   </Badge>
                   <span className="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
                     <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                    <span>{contact.availableHours}</span>
+                    <span><NumericText text={contact.availableHours} /></span>
                   </span>
                 </div>
 

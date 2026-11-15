@@ -1,4 +1,5 @@
 "use client";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React from "react";
 import Link from "next/link";
@@ -33,8 +34,7 @@ export default function HeroSection() {
             </div>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              CircuLife menghubungkan pemilahan sampah harian warga dengan sentra produksi komunitas. Botol plastik dicacah dan dicetak menjadi paving block K-250 untuk jalan desa, kaleng logam dirakit menjadi tungku hemat bahan bakar, dan sisa makanan diolah larva BSF menjadi kompos bernutrisi tinggi.
-            </p>
+              CircuLife menghubungkan pemilahan sampah harian warga dengan sentra produksi komunitas. Botol plastik dicacah dan dicetak menjadi paving block K-250 untuk jalan desa, kaleng logam dirakit menjadi tungku hemat bahan bakar, dan sisa makanan diolah larva BSF menjadi kompos bernutrisi tinggi.</p>
 
             {/* Direct Specific CTAs */}
             <div className="flex flex-col sm:flex-row gap-3.5 pt-2">
@@ -74,12 +74,12 @@ export default function HeroSection() {
             <div className="pt-4 border-t border-border/60 flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                <span>24 Drop Point Warga Aktif</span>
+                <span><AnimatedNumber value={24} /> Drop Point Warga Aktif</span>
               </span>
               <span className="text-border">|</span>
-              <span>18 Kelompok Swadaya Mitra</span>
+              <span><AnimatedNumber value={18} /> Kelompok Swadaya Mitra</span>
               <span className="text-border">|</span>
-              <span className="text-primary font-bold">100% Mengalir ke Lingkungan</span>
+              <span className="text-primary font-bold"><AnimatedNumber value={100} />% Mengalir ke Lingkungan</span>
             </div>
           </div>
 
@@ -105,8 +105,7 @@ export default function HeroSection() {
                   <span className="font-bold text-primary">K-250 Teruji</span>
                 </div>
                 <p className="text-sm text-foreground font-medium leading-snug">
-                  Jalan setapak 120 meter di RW 04 dibangun seutuhnya dari 1.200 kg botol plastik PET terpilah warga.
-                </p>
+                  Jalan setapak <AnimatedNumber value={120} /> meter di RW 04 dibangun seutuhnya dari <AnimatedNumber value={1200} /> kg botol plastik PET terpilah warga.</p>
                 <div className="pt-2 border-t border-border/50 flex items-center justify-between text-xs text-muted-foreground font-mono">
                   <span>Mitra: KSM Daur Ulang Mandiri</span>
                   <Link href="/galeri" className="text-primary hover:underline font-bold inline-flex items-center gap-1">

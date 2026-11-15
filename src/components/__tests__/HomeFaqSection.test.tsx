@@ -1,3 +1,4 @@
+import { visibleText } from "@/test/visibleText";
 import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
@@ -8,14 +9,14 @@ describe("HomeFaqSection Component", () => {
     render(<HomeFaqSection />);
 
     expect(
-      screen.getByText(/Transparansi Operasional & Informasi Sirkular CircuLife/i)
+      screen.getByText(visibleText(/Transparansi Operasional & Informasi Sirkular CircuLife/i))
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/Bagaimana cara mulai menyetorkan sampah ke CircuLife\?/i)
+      screen.getByText(visibleText(/Bagaimana cara mulai menyetorkan sampah ke CircuLife\?/i))
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Apakah botol plastik harus dicuci sebelum disetorkan\?/i)
+      screen.getByText(visibleText(/Apakah botol plastik harus dicuci sebelum disetorkan\?/i))
     ).toBeInTheDocument();
   });
 
@@ -24,15 +25,15 @@ describe("HomeFaqSection Component", () => {
 
     // First FAQ is open by default
     expect(
-      screen.getByText(/Anda cukup memilah sampah di rumah ke dalam 3 wadah/i)
+      screen.getByText(visibleText(/Anda cukup memilah sampah di rumah ke dalam 3 wadah/i))
     ).toBeInTheDocument();
 
     // Click second FAQ
-    const faq2Trigger = screen.getByText(/Apakah botol plastik harus dicuci sebelum disetorkan\?/i);
+    const faq2Trigger = screen.getByText(visibleText(/Apakah botol plastik harus dicuci sebelum disetorkan\?/i));
     fireEvent.click(faq2Trigger);
 
     expect(
-      screen.getByText(/Ya, botol plastik PET sebaiknya dikosongkan dari sisa cairan/i)
+      screen.getByText(visibleText(/Ya, botol plastik PET sebaiknya dikosongkan dari sisa cairan/i))
     ).toBeInTheDocument();
   });
 });

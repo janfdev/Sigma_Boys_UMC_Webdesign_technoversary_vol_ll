@@ -1,4 +1,7 @@
 "use client";
+import { AnimatedNumber } from "@/components/ui/animated-number";
+
+import { NumericText } from "@/components/NumericText";
 
 import React, { useState } from "react";
 import { CircuLifeMark } from "@/components/CircuLifeLogo";
@@ -96,8 +99,7 @@ export default function ContactPage() {
                     Kirimkan Pesan atau Ajukan Kerjasama
                   </CardTitle>
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    Tim respon CircuLife akan menghubungi kembali dalam waktu maksimal 1x24 jam kerja.
-                  </p>
+                    Tim respon CircuLife akan menghubungi kembali dalam waktu maksimal <AnimatedNumber value={1} />x<AnimatedNumber value={24} /> jam kerja.</p>
                 </div>
 
                 {formSubmitted ? (
@@ -310,8 +312,7 @@ export default function ContactPage() {
                 <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20 flex items-center gap-3">
                   <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
                   <span className="text-[11px] font-mono text-muted-foreground">
-                    Seluruh penimbangan sampah di drop-point CircuLife diverifikasi digital ISO 14001.
-                  </span>
+                    Seluruh penimbangan sampah di drop-point CircuLife diverifikasi digital ISO 14001.</span>
                 </div>
               </Card>
             </div>
@@ -344,11 +345,11 @@ export default function ContactPage() {
                 <AccordionTrigger className="text-left font-bold text-sm sm:text-base text-foreground hover:no-underline py-4">
                   <span className="flex items-center gap-2.5">
                     <HelpCircle className="h-4 w-4 text-primary shrink-0" />
-                    <span>{faq.question}</span>
+                    <span><NumericText text={faq.question} /></span>
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-1 pb-4">
-                  {faq.answer}
+                  <NumericText text={faq.answer} />
                 </AccordionContent>
               </AccordionItem>
             ))}

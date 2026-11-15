@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -41,7 +43,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-[11px] font-mono border-primary/30 text-primary gap-1">
             <Gauge className="h-3 w-3" />
-            <span className="tabular-nums">220°C Thermal Matrix · 200 Bar Max</span>
+            <span className="tabular-nums"><AnimatedNumber value={220} />°C Thermal Matrix · <AnimatedNumber value={200} /> Bar Max</span>
           </Badge>
         </div>
       </div>
@@ -378,22 +380,19 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 <line x1="120" y1="80" x2="160" y2="120" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="120" cy="80" r="3" fill="hsl(var(--primary))" />
                 <text x="75" y="62" fill="hsl(var(--foreground))" className="text-[11px]">
-                  1. Masukan Cacahan
-                </text>
+                  <AnimatedNumber value={1} as="tspan" />. Masukan Cacahan</text>
 
                 {/* Thermal Barrel Callout */}
                 <line x1="310" y1="170" x2="310" y2="215" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="310" cy="170" r="3" fill="hsl(var(--primary))" />
                 <text x="250" y="155" fill="hsl(var(--foreground))" className="text-[11px]">
-                  2. Pemanas Termal 220°C
-                </text>
+                  <AnimatedNumber value={2} as="tspan" />. Pemanas Termal <AnimatedNumber value={220} as="tspan" />°C</text>
 
                 {/* Mold Callout */}
                 <line x1="520" y1="330" x2="475" y2="295" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="520" cy="330" r="3" fill="hsl(var(--primary))" />
                 <text x="525" y="334" fill="hsl(var(--foreground))" className="text-[11px]">
-                  3. Balok Paving K-250
-                </text>
+                  <AnimatedNumber value={3} as="tspan" />. Balok Paving K-250</text>
               </g>
             </svg>
           </div>
@@ -427,8 +426,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       activeCycle === "FEED" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    1. Masuk
-                  </button>
+                    <AnimatedNumber value={1} />. Masuk</button>
                   <button
                     type="button"
                     onClick={() => {
@@ -441,8 +439,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       activeCycle === "MELT" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    2. Lebur
-                  </button>
+                    <AnimatedNumber value={2} />. Lebur</button>
                   <button
                     type="button"
                     onClick={() => {
@@ -455,8 +452,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       activeCycle === "PRESS" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    3. Kempa
-                  </button>
+                    <AnimatedNumber value={3} />. Kempa</button>
                 </div>
               </div>
 
@@ -465,7 +461,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 <div>
                   <div className="flex justify-between text-xs font-medium mb-1">
                     <span className="text-muted-foreground">Umpan Cacahan PET</span>
-                    <span className="font-mono font-bold tabular-nums">{shreddedFlakesKg} kg</span>
+                    <span className="font-mono font-bold tabular-nums"><AnimatedNumber value={shreddedFlakesKg} /> kg</span>
                   </div>
                   <input
                     type="range"
@@ -481,7 +477,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 <div>
                   <div className="flex justify-between text-xs font-medium mb-1">
                     <span className="text-muted-foreground">Tekanan Hidrolik</span>
-                    <span className="font-mono font-bold text-primary tabular-nums">{pressureBar} Bar</span>
+                    <span className="font-mono font-bold text-primary tabular-nums"><AnimatedNumber value={pressureBar} /> Bar</span>
                   </div>
                   <input
                     type="range"
@@ -504,13 +500,13 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   <div>
                     <span className="text-muted-foreground block text-[10px]">Balok Paving</span>
                     <span className="font-bold text-foreground text-sm font-mono tabular-nums">
-                      {estimatedPavingUnits} Buah
+                      <AnimatedNumber value={estimatedPavingUnits} /> Buah
                     </span>
                   </div>
                   <div>
                     <span className="text-muted-foreground block text-[10px]">Gaya Tekan</span>
                     <span className="font-bold text-foreground text-sm font-mono tabular-nums">
-                      {compressionRatio}x Std
+                      <NumericText text={compressionRatio} />x Std
                     </span>
                   </div>
                 </div>

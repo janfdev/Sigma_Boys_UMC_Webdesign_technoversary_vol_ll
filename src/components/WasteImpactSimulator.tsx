@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -172,7 +174,7 @@ export default function WasteImpactSimulator() {
     >
       {/* Background radial soft aura */}
       <div
-        className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10"
+        className="absolute top-1/3 left-1/4 w-3/4 max-w-[500px] h-[350px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
       />
 
@@ -267,7 +269,7 @@ export default function WasteImpactSimulator() {
                   </span>
                   <div className="flex items-baseline gap-1 font-mono">
                     <span className="text-4xl sm:text-5xl font-black text-foreground tabular-nums">
-                      {wasteAmountKg}
+                      <AnimatedNumber value={wasteAmountKg} />
                     </span>
                     <span className="text-base text-muted-foreground font-bold">kg</span>
                   </div>
@@ -286,8 +288,8 @@ export default function WasteImpactSimulator() {
                     aria-label={`Jumlah setoran ${currentMeta.label} dalam kilogram`}
                   />
                   <div className="flex justify-between text-[10px] font-mono text-muted-foreground">
-                    <span>5 kg</span>
-                    <span>Maksimal {currentMeta.maxKg} kg</span>
+                    <span><AnimatedNumber value={5} /> kg</span>
+                    <span>Maksimal <AnimatedNumber value={currentMeta.maxKg} /> kg</span>
                   </div>
                 </div>
 
@@ -309,7 +311,7 @@ export default function WasteImpactSimulator() {
                             : "border-border/80 hover:bg-muted text-muted-foreground"
                         )}
                       >
-                        {val} kg
+                        <AnimatedNumber value={val} /> kg
                       </button>
                     ))}
                   </div>
@@ -332,7 +334,7 @@ export default function WasteImpactSimulator() {
                     <Factory className="h-4 w-4" />
                   </div>
                   <div className="text-2xl sm:text-3xl font-black text-foreground font-mono tabular-nums">
-                    {output.productVal}
+                    <NumericText text={output.productVal} />
                   </div>
                   <p className="text-xs text-muted-foreground font-medium">
                     {output.productName}
@@ -346,7 +348,7 @@ export default function WasteImpactSimulator() {
                     <TrendingUp className="h-4 w-4" />
                   </div>
                   <div className="text-2xl sm:text-3xl font-black text-foreground font-mono tabular-nums">
-                    {output.co2eAvoidedKg}{" "}
+                    <NumericText text={output.co2eAvoidedKg} />{" "}
                     <span className="text-sm font-normal text-muted-foreground">kg CO₂e</span>
                   </div>
                   <p className="text-xs text-muted-foreground">
@@ -361,7 +363,7 @@ export default function WasteImpactSimulator() {
                     <Coins className="h-4 w-4" />
                   </div>
                   <div className="text-2xl sm:text-3xl font-black text-foreground font-mono tabular-nums">
-                    +{output.points.toLocaleString("id-ID")}{" "}
+                    +<AnimatedNumber value={output.points} />{" "}
                     <span className="text-sm font-normal text-muted-foreground">Poin</span>
                   </div>
                   <p className="text-xs text-muted-foreground">
@@ -376,7 +378,7 @@ export default function WasteImpactSimulator() {
                     <TreePine className="h-4 w-4" />
                   </div>
                   <p className="text-xs sm:text-sm text-foreground/90 font-medium leading-relaxed">
-                    {output.equivalentDescription}
+                    <NumericText text={output.equivalentDescription} />
                   </p>
                 </div>
               </div>

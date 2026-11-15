@@ -1,4 +1,5 @@
 "use client";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -63,7 +64,7 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-[11px] font-mono border-primary/30 text-primary gap-1">
             <Gauge className="h-3 w-3" />
-            <span className="tabular-nums">CH4 68% Max · 8.0 kPa Safety Relief</span>
+            <span className="tabular-nums">CH4 <AnimatedNumber value={68} />% Max · <AnimatedNumber value={8} fractionDigits={1} /> kPa Safety Relief</span>
           </Badge>
         </div>
       </div>
@@ -325,29 +326,25 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
                 <line x1="160" y1="120" x2="200" y2="135" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="160" cy="120" r="3" fill="hsl(var(--primary))" />
                 <text x="40" y="123" fill="hsl(var(--foreground))" className="text-[11px]">
-                  1. Inflow Limbah Organik
-                </text>
+                  <AnimatedNumber value={1} as="tspan" />. Inflow Limbah Organik</text>
 
                 {/* Reactor Callout */}
                 <line x1="230" y1="280" x2="265" y2="280" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="230" cy="280" r="3" fill="hsl(var(--primary))" />
                 <text x="25" y="275" fill="hsl(var(--foreground))" className="text-[11px]">
-                  2. Reaktor Anaerobik Fermentasi
-                </text>
+                  <AnimatedNumber value={2} as="tspan" />. Reaktor Anaerobik Fermentasi</text>
 
                 {/* Gas Extraction Callout */}
                 <line x1="535" y1="95" x2="475" y2="105" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="535" cy="95" r="3" fill="hsl(var(--primary))" />
                 <text x="540" y="99" fill="hsl(var(--foreground))" className="text-[11px]">
-                  3. Bio-Gas CH4 Extraction
-                </text>
+                  <AnimatedNumber value={3} as="tspan" />. Bio-Gas CH4 Extraction</text>
 
                 {/* Slurry Outlet Callout */}
                 <line x1="530" y1="365" x2="495" y2="340" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="530" cy="365" r="3" fill="hsl(var(--primary))" />
                 <text x="535" y="370" fill="hsl(var(--foreground))" className="text-[11px]">
-                  4. Keran Bio-Slurry Kasgot
-                </text>
+                  <AnimatedNumber value={4} as="tspan" />. Keran Bio-Slurry Kasgot</text>
               </g>
             </svg>
           </div>
@@ -396,25 +393,25 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
                 <div className="rounded-xl border border-border/60 bg-muted/30 p-2.5">
                   <span className="text-[10px] text-muted-foreground block font-sans">Produksi Biogas CH4</span>
                   <span className="text-sm font-bold text-foreground tabular-nums">
-                    {metrics.gasVolumeM3} m³/hari
+                    <AnimatedNumber value={metrics.gasVolumeM3} /> m³/hari
                   </span>
                 </div>
                 <div className="rounded-xl border border-border/60 bg-muted/30 p-2.5">
                   <span className="text-[10px] text-muted-foreground block font-sans">Tekanan Manometer</span>
                   <span className="text-sm font-bold text-foreground tabular-nums">
-                    {metrics.pressureKPa} kPa
+                    <AnimatedNumber value={metrics.pressureKPa} /> kPa
                   </span>
                 </div>
                 <div className="rounded-xl border border-border/60 bg-muted/30 p-2.5">
                   <span className="text-[10px] text-muted-foreground block font-sans">Pupuk Bio-Slurry</span>
                   <span className="text-sm font-bold text-foreground tabular-nums">
-                    {metrics.slurryFertilizerKg} L/siklus
+                    <AnimatedNumber value={metrics.slurryFertilizerKg} /> L/siklus
                   </span>
                 </div>
                 <div className="rounded-xl border border-border/60 bg-muted/30 p-2.5">
                   <span className="text-[10px] text-muted-foreground block font-sans">Suhu Inti Mesofilik</span>
                   <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400 tabular-nums">
-                    {metrics.temperatureC}°C
+                    <AnimatedNumber value={metrics.temperatureC} />°C
                   </span>
                 </div>
               </div>

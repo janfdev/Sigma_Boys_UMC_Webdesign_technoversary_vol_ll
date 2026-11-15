@@ -1,3 +1,6 @@
+
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 import React from "react";
 import { CheckCircle2, MapPin, HeartHandshake } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
@@ -76,7 +79,7 @@ export default function RestorationTracker() {
                     Kabupaten {z.regency}
                   </Badge>
                   <span className="text-xs font-mono font-bold text-primary tabular-nums">
-                    {z.progressPercent}% Pulih
+                    <AnimatedNumber value={z.progressPercent} />% Pulih
                   </span>
                 </div>
 
@@ -85,7 +88,7 @@ export default function RestorationTracker() {
                 </CardTitle>
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                   <MapPin className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                  <span className="tabular-nums">{z.elevation}</span>
+                  <span className="tabular-nums"><NumericText text={z.elevation} /></span>
                 </div>
               </CardHeader>
 
@@ -94,8 +97,8 @@ export default function RestorationTracker() {
                 <div className="space-y-2">
                   <Progress value={z.progressPercent} className="h-2.5 rounded-full" />
                   <div className="flex justify-between text-xs text-muted-foreground font-mono">
-                    <span className="tabular-nums">{z.plantedTrees.toLocaleString("id-ID")} pohon</span>
-                    <span className="tabular-nums">Target: {z.targetTrees.toLocaleString("id-ID")}</span>
+                    <span className="tabular-nums"><AnimatedNumber value={z.plantedTrees} /> pohon</span>
+                    <span className="tabular-nums">Target: <AnimatedNumber value={z.targetTrees} /></span>
                   </div>
                 </div>
 
@@ -118,7 +121,7 @@ export default function RestorationTracker() {
                 </div>
 
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {z.notes}
+                  <NumericText text={z.notes} />
                 </p>
               </CardContent>
             </div>
@@ -128,7 +131,7 @@ export default function RestorationTracker() {
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
                 <span>{z.status}</span>
               </span>
-              <span className="text-muted-foreground tabular-nums font-bold">{z.totalAreaHa} Ha</span>
+              <span className="text-muted-foreground tabular-nums font-bold"><AnimatedNumber value={z.totalAreaHa} /> Ha</span>
             </CardFooter>
           </Card>
         ))}

@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { Species } from "@/types";
@@ -88,7 +90,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
             onClick={() => setCategoryFilter("ALL")}
             className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
-            Semua Spesies ({speciesList.length})
+            Semua Spesies (<AnimatedNumber value={speciesList.length} />)
           </Button>
           <Button
             type="button"
@@ -185,12 +187,12 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                     <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 rounded-xl px-3 py-2 border border-border/60 font-mono">
                       <Mountain className="h-4 w-4 text-primary shrink-0" aria-hidden="true" />
                       <span>Zona Ketinggian:</span>
-                      <span className="font-bold text-foreground tabular-nums">{item.habitatElevation}</span>
+                      <span className="font-bold text-foreground tabular-nums"><NumericText text={item.habitatElevation} /></span>
                     </div>
 
                     {/* Description */}
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                      {item.description}
+                      <NumericText text={item.description} />
                     </p>
                   </CardContent>
                 </div>
@@ -201,7 +203,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                       Faktor Ancaman:
                     </span>
                     <p className="text-muted-foreground text-xs leading-relaxed">
-                      {item.threats}
+                      <NumericText text={item.threats} />
                     </p>
                   </div>
 
@@ -210,7 +212,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                       Peran Ekosistem:
                     </span>
                     <p className="text-muted-foreground text-xs leading-relaxed">
-                      {item.roleInEcosystem}
+                      <NumericText text={item.roleInEcosystem} />
                     </p>
                   </div>
                 </CardFooter>

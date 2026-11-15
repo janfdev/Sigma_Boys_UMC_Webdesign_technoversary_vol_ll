@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, Variants } from "motion/react";
 import { PackageCheck, ArrowRight, ShieldCheck, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { NumericText } from "@/components/NumericText";
 
 export default function CircularCtaSection() {
   const containerVariants: Variants = {
@@ -114,7 +115,7 @@ export default function CircularCtaSection() {
           >
             <span className="flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-primary" />
-              <span>24 Drop Point Warga Aktif</span>
+              <span><NumericText text="24" /> Drop Point Warga Aktif</span>
             </span>
             <span className="text-border">|</span>
             <span>Penimbangan Digital Akurat</span>

@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { WASTE_FLOW_STAGES } from "@/lib/constants";
@@ -110,13 +112,13 @@ export default function WasteUtilizationFlow() {
                       {isCompleted ? (
                         <CheckCircle2 className="h-4 w-4" />
                       ) : (
-                        `0${stage.step}`
+                        <NumericText text={`0${stage.step}`} />
                       )}
                     </span>
 
                     <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground flex items-center gap-1.5">
                       {isActive && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
-                      <span>Langkah {stage.step}/4</span>
+                      <span>Langkah <AnimatedNumber value={stage.step} />/<AnimatedNumber value={4} /></span>
                     </span>
                   </div>
 
@@ -130,7 +132,7 @@ export default function WasteUtilizationFlow() {
                       {stage.title}
                     </h3>
                     <p className="text-[11px] text-muted-foreground line-clamp-1 mt-0.5">
-                      {stage.subtitle}
+                      <NumericText text={stage.subtitle} />
                     </p>
                   </div>
                 </div>
@@ -138,7 +140,7 @@ export default function WasteUtilizationFlow() {
                 <div className="pt-3 border-t border-border/50 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
                   <span className="flex items-center gap-1.5">
                     {getStageIcon(stage.step)}
-                    <span className="font-mono">{stage.badgeText}</span>
+                    <span className="font-mono"><NumericText text={stage.badgeText} /></span>
                   </span>
                   <ChevronRight
                     className={cn(
@@ -164,14 +166,13 @@ export default function WasteUtilizationFlow() {
                 <div>
                   <div className="flex items-center gap-2">
                     <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary">
-                      {currentStage.badgeText}
+                      <NumericText text={currentStage.badgeText} />
                     </Badge>
                     <span className="text-xs font-mono text-muted-foreground">
-                      Tahap {currentStage.step} dari 4
-                    </span>
+                      Tahap <AnimatedNumber value={currentStage.step} />  dari <AnimatedNumber value={4} /></span>
                   </div>
                   <CardTitle className="text-xl sm:text-2xl font-black text-foreground mt-1">
-                    {currentStage.title} : {currentStage.subtitle}
+                    {currentStage.title} : <NumericText text={currentStage.subtitle} />
                   </CardTitle>
                 </div>
               </div>
@@ -203,7 +204,7 @@ export default function WasteUtilizationFlow() {
           <CardContent className="p-6 sm:p-8 space-y-8">
             {/* Description Paragraph */}
             <p className="text-sm sm:text-base text-foreground leading-relaxed">
-              {currentStage.description}
+              <NumericText text={currentStage.description} />
             </p>
 
             {/* Embedded Anatomy Isometric Technical Rig (Stage 3 Highlight) */}
@@ -219,13 +220,13 @@ export default function WasteUtilizationFlow() {
               <div className="p-5 rounded-2xl border border-border/80 bg-muted/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-muted-foreground">
                   <Filter className="h-4 w-4 text-primary" />
-                  <span>1. Material Input Masuk</span>
+                  <span><AnimatedNumber value={1} />. Material Input Masuk</span>
                 </div>
                 <ul className="space-y-2">
                   {currentStage.inputMaterials.map((mat, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs text-foreground leading-snug">
                       <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
-                      <span>{mat}</span>
+                      <span><NumericText text={mat} /></span>
                     </li>
                   ))}
                 </ul>
@@ -235,10 +236,10 @@ export default function WasteUtilizationFlow() {
               <div className="p-5 rounded-2xl border border-border/80 bg-muted/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-muted-foreground">
                   <RefreshCw className="h-4 w-4 text-primary" />
-                  <span>2. Proses Transformasi</span>
+                  <span><AnimatedNumber value={2} />. Proses Transformasi</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {currentStage.transformationProcess}
+                  <NumericText text={currentStage.transformationProcess} />
                 </p>
                 <div className="p-2.5 rounded-xl bg-card border border-border/60 text-[11px] font-mono text-foreground flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
@@ -250,13 +251,13 @@ export default function WasteUtilizationFlow() {
               <div className="p-5 rounded-2xl border border-border/80 bg-muted/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-muted-foreground">
                   <Layers className="h-4 w-4 text-primary" />
-                  <span>3. Produk Output Bernilai</span>
+                  <span><AnimatedNumber value={3} />. Produk Output Bernilai</span>
                 </div>
                 <ul className="space-y-2">
                   {currentStage.outputProducts.map((prod, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs font-bold text-foreground leading-snug">
                       <div className="h-1.5 w-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                      <span>{prod}</span>
+                      <span><NumericText text={prod} /></span>
                     </li>
                   ))}
                 </ul>
@@ -272,7 +273,7 @@ export default function WasteUtilizationFlow() {
                     Dampak Nyata Lingkungan :
                   </span>
                   <p className="text-xs sm:text-sm font-bold text-emerald-950 dark:text-emerald-100">
-                    {currentStage.impactMetric}
+                    <NumericText text={currentStage.impactMetric} />
                   </p>
                 </div>
               </div>
@@ -284,7 +285,7 @@ export default function WasteUtilizationFlow() {
                     Manfaat Sosial Komunitas :
                   </span>
                   <p className="text-xs sm:text-sm font-bold text-foreground">
-                    {currentStage.communityBenefit}
+                    <NumericText text={currentStage.communityBenefit} />
                   </p>
                 </div>
               </div>

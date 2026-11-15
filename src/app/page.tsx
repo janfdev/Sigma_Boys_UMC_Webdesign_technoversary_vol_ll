@@ -1,3 +1,4 @@
+
 import React from "react";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
@@ -32,8 +33,7 @@ export default function HomePage() {
               Anatomi Alat Pencetak Paving &amp; Kompos Mandiri
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground">
-              Mesin pres hidrolik dan tungku peleleh dirancang dengan komponen lokal yang mudah dirawat oleh kelompok warga, menghasilkan paving block standar K-250 tanpa polusi asap pekat.
-            </p>
+              Mesin pres hidrolik dan tungku peleleh dirancang dengan komponen lokal yang mudah dirawat oleh kelompok warga, menghasilkan paving block standar K-250 tanpa polusi asap pekat.</p>
           </div>
           <WasteMachineAnatomy />
         </div>

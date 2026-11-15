@@ -1,3 +1,6 @@
+
+import { AnimatedNumber } from "@/components/ui/animated-number";
+
 import React from "react";
 import Link from "next/link";
 import { Flame, Sprout, ArrowUpRight, ArrowRight, CheckCircle2, Layers, ShieldCheck, Sparkles } from "lucide-react";
@@ -61,19 +64,18 @@ export default function CampaignActionSection() {
                 Cacahan Botol PET & Sachet Menjadi Eco-Paving Block
               </CardTitle>
               <p className="text-xs sm:text-sm text-muted-foreground mt-2 leading-relaxed">
-                Botol air mineral dan kemasan sachet plastik dicacah halus, dilelehkan bersama agregat pasir, dan dicetak menjadi material perkerasan ramah lingkungan berkekuatan K-250.
-              </p>
+                Botol air mineral dan kemasan sachet plastik dicacah halus, dilelehkan bersama agregat pasir, dan dicetak menjadi material perkerasan ramah lingkungan berkekuatan K-250.</p>
             </CardHeader>
 
             <CardContent className="p-6 sm:p-8 pt-6 space-y-6">
               {/* Telemetry Impact Stat Bar */}
               <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-muted/30 border border-border/60 text-center font-mono">
                 <div>
-                  <span className="block text-lg sm:text-2xl font-black text-foreground tabular-nums">42.800+</span>
+                  <span className="block text-lg sm:text-2xl font-black text-foreground tabular-nums"><AnimatedNumber value={42800} />+</span>
                   <span className="text-[10px] sm:text-xs text-muted-foreground uppercase font-bold tracking-wider">Paving Terproduksi</span>
                 </div>
                 <div className="border-x border-border/60">
-                  <span className="block text-lg sm:text-2xl font-black text-primary tabular-nums">1.2 kg</span>
+                  <span className="block text-lg sm:text-2xl font-black text-primary tabular-nums"><AnimatedNumber value={1.2} fractionDigits={1} /> kg</span>
                   <span className="text-[10px] sm:text-xs text-muted-foreground uppercase font-bold tracking-wider">Plastik per Buah</span>
                 </div>
                 <div>
@@ -144,11 +146,11 @@ export default function CampaignActionSection() {
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                  <span>Fabrikasi perforated ventilation untuk efisiensi biomassa 300%</span>
+                  <span>Fabrikasi perforated ventilation untuk efisiensi biomassa <AnimatedNumber value={300} />%</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                  <span>1.920 unit tungku ultralight didistribusikan ke penggiat alam</span>
+                  <span><AnimatedNumber value={1920} /> unit tungku ultralight didistribusikan ke penggiat alam</span>
                 </li>
               </ul>
             </CardContent>
@@ -164,7 +166,7 @@ export default function CampaignActionSection() {
                 <span>Kalkulasi Kaleng Logam</span>
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
               </Link>
-              <span className="text-xs font-mono text-muted-foreground">Efisiensi 88%</span>
+              <span className="text-xs font-mono text-muted-foreground">Efisiensi <AnimatedNumber value={88} />%</span>
             </CardFooter>
           </Card>
 
@@ -194,14 +196,13 @@ export default function CampaignActionSection() {
                         <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider border-primary/30 text-primary">
                           Alur Organik: Biokonversi
                         </Badge>
-                        <span className="text-xs font-mono text-muted-foreground">Siklus 14 Hari</span>
+                        <span className="text-xs font-mono text-muted-foreground">Siklus <AnimatedNumber value={14} /> Hari</span>
                       </div>
                       <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
                         Kompos Bio-Kasgot &amp; Penukaran Sampah dengan Bibit Tanaman
                       </h3>
                       <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-3xl">
-                        Setiap 5 kg sampah terpilah yang disetorkan ke drop-point dapat langsung ditukarkan dengan 1 bibit tanaman siap tanam atau produk daur ulang. Sampah organik diurai larva maggot BSF untuk nutrisi tanah tanpa bau menyengat.
-                      </p>
+                        Setiap <AnimatedNumber value={5} /> kg sampah terpilah yang disetorkan ke drop-point dapat langsung ditukarkan dengan <AnimatedNumber value={1} /> bibit tanaman siap tanam atau produk daur ulang. Sampah organik diurai larva maggot BSF untuk nutrisi tanah tanpa bau menyengat.</p>
                     </div>
                   </div>
 

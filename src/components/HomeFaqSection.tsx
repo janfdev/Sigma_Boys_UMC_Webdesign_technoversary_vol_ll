@@ -1,4 +1,5 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -39,8 +40,7 @@ export default function HomeFaqSection() {
               Transparansi Operasional & Informasi Sirkular CircuLife
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Jawaban terbuka mengenai standar teknis paving block K-250, prosedur penimbangan digital di drop-point, serta mekanisme penukaran reward.
-            </p>
+              Jawaban terbuka mengenai standar teknis paving block K-250, prosedur penimbangan digital di drop-point, serta mekanisme penukaran reward.</p>
           </div>
 
           <Link
@@ -82,10 +82,10 @@ export default function HomeFaqSection() {
                   >
                     <div className="flex items-start gap-3 sm:gap-4">
                       <span className="font-mono text-xs font-bold text-primary mt-1 shrink-0">
-                        {itemNumber}.
+                        <NumericText text={itemNumber} />.
                       </span>
                       <span className="text-base sm:text-lg font-black text-foreground tracking-tight leading-snug">
-                        {faq.question}
+                        <NumericText text={faq.question} />
                       </span>
                     </div>
 
@@ -109,7 +109,7 @@ export default function HomeFaqSection() {
                     >
                       <div className="pt-3 flex items-start gap-2.5">
                         <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" aria-hidden="true" />
-                        <p>{faq.answer}</p>
+                        <p><NumericText text={faq.answer} /></p>
                       </div>
                     </div>
                   )}

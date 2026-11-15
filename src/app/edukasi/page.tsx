@@ -20,7 +20,7 @@ export default function EdukasiPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
         <div className="border-b border-border/70 pb-8 space-y-4">
-          <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
+          <Badge variant="outline" className="max-w-full h-auto whitespace-normal gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
             <BookOpen className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
             <span>Pusat Edukasi &amp; Akselerator Pengetahuan Zero Waste</span>
           </Badge>

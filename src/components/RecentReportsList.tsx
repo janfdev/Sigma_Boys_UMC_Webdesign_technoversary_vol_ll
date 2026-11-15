@@ -1,4 +1,6 @@
 "use client";
+import { NumericText } from "@/components/NumericText";
+import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { WasteDropReport } from "@/types";
@@ -99,7 +101,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
             onClick={() => setFilterType("ALL")}
             className="h-8 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
-            Semua Setoran ({reports.length})
+            Semua Setoran (<AnimatedNumber value={reports.length} />)
           </Button>
           <Button
             type="button"
@@ -193,7 +195,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                     </span>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    {report.description}
+                    <NumericText text={report.description} />
                   </p>
                 </div>
 
@@ -203,7 +205,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                       <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                       <span>Verifikasi Posko Registrasi :</span>
                     </span>
-                    <p className="text-muted-foreground leading-normal">{report.adminNote}</p>
+                    <p className="text-muted-foreground leading-normal"><NumericText text={report.adminNote} /></p>
                   </div>
                 )}
               </Card>
