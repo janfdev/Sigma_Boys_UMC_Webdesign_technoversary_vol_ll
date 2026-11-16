@@ -73,6 +73,8 @@ export interface CarouselCardsProps {
   autoplay?: boolean;
   /** Delay between auto-advances, in ms. Default 4500. */
   autoplayInterval?: number;
+  /** Card index active on arrival. Default 0. */
+  initialIndex?: number;
   /** Show the eyebrow/title/counter row. Default true. */
   showHeader?: boolean;
   className?: string;
@@ -834,12 +836,13 @@ export default function CarouselCards({
   onSelect,
   autoplay = false,
   autoplayInterval = 4500,
+  initialIndex = 0,
   showHeader = true,
   className,
 }: CarouselCardsProps) {
   const scrollerRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(initialIndex);
   const [saved, setSaved] = useState<ReadonlySet<string>>(
     () => new Set(defaultFavorites)
   );
@@ -878,13 +881,13 @@ export default function CarouselCards({
   );
 
 
-  // The first card is centered on arrival, not only after the first advance.
+  // The initial card is centered on arrival, not only after the first advance.
   useEffect(() => {
-    move(0, false);
+    move(initialIndex, false);
     const onResize = () => move(activeRef.current, false);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, [move]);
+  }, [initialIndex, move]);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");

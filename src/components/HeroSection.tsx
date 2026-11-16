@@ -12,12 +12,12 @@ const slides: RailItem[] = [
   { id: "organizer", alt: "Organizer alat tulis dari botol plastik", file: "Organizer Alat Tulis Botol Daur Ulang.png" },
   { id: "lentera", alt: "Lentera bunga dari botol PET", file: "Lentera Bunga PET di Senja Hari.png" },
 ].map(({ id, alt, file }) => ({
-    id,
-    image: `/image-lomba/${encodeURIComponent(file)}`,
-    imageAlt: alt,
-    href: "/galeri",
-    play: true,
-  }));
+  id,
+  image: `/image-lomba/${encodeURIComponent(file)}`,
+  imageAlt: alt,
+  href: "/galeri",
+  play: true,
+}));
 
 export default function HeroSection() {
   return (
@@ -52,6 +52,7 @@ export default function HeroSection() {
         <div className="dark mt-10 sm:mt-12">
           <CarouselCards
             autoplay
+            initialIndex={2}
             items={slides}
             showHeader={false}
             title="Pemanfaatan sampah menjadi produk bernilai"
