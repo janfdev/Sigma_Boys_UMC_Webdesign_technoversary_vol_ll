@@ -1,20 +1,20 @@
 
 import React from "react";
-import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import WasteMachineAnatomy from "@/components/WasteMachineAnatomy";
 import WasteImpactSimulator from "@/components/WasteImpactSimulator";
 import WasteUtilizationFlow from "@/components/WasteUtilizationFlow";
 import EnvironmentalComparisonSlider from "@/components/EnvironmentalComparisonSlider";
 import CampaignActionSection from "@/components/CampaignActionSection";
-import TrailStatusBoard from "@/components/TrailStatusBoard";
+// import TrailStatusBoard from "@/components/TrailStatusBoard";
 import HomeFaqSection from "@/components/HomeFaqSection";
 import CircularCtaSection from "@/components/blocks/cta-ex-2";
-import { TRAIL_SEEDS, CIRCULIFE_INFO } from "@/lib/constants";
-import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout, Sparkles } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import MotionGrafisVideo from "@/components/MotionGrafisVideo";
+// import { TRAIL_SEEDS, CIRCULIFE_INFO } from "@/lib/constants";
+// import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout, Sparkles } from "lucide-react";
+// import { Badge } from "@/components/ui/badge";
+// import { buttonVariants } from "@/components/ui/button";
+// import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
@@ -22,8 +22,13 @@ export default function HomePage() {
       {/* 1. Hero Section with Biosphere Console & Mini Telemetry */}
       <HeroSection />
 
+      {/*Motion Grafis*/}
+      <div className="max-w-7xl pt-5 mx-auto px-4 sm:px-6 lg:px-8">
+        <MotionGrafisVideo/>
+      </div>
+
       {/* 1.5 Standalone Anatomy Rig Section: Direct Physical Machine Explainer */}
-      <section className="py-14 sm:py-20 border-b border-border/80 bg-background" id="mesin-ekstrusi">
+      <section className="py-10 sm:py-20 border-b border-border/80 bg-background" id="mesin-ekstrusi">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 max-w-3xl space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
@@ -52,9 +57,9 @@ export default function HomePage() {
       <CampaignActionSection />
 
       {/* 6. Drop-Point & Bank Sampah Status Board (Anchor: #jalur-status) */}
-      <div id="jalur-status">
+      {/*<div id="jalur-status">
         <TrailStatusBoard trails={TRAIL_SEEDS} />
-      </div>
+      </div>*/}
 
       {/* 7. Interactive Accordion FAQ & Operational Transparency */}
       <HomeFaqSection />
