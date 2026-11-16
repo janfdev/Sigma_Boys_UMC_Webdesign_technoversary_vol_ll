@@ -249,3 +249,33 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+/* Hydrology simulator: rainfall and infiltration motion stays decorative. */
+@keyframes hydro-rain-fall {
+  to {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+
+@keyframes hydro-seep {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.hydro-rain {
+  animation: hydro-rain-fall 1.4s linear infinite;
+}
+
+.hydro-seep {
+  stroke-dasharray: 6 10;
+  animation: hydro-seep 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hydro-rain,
+  .hydro-seep {
+    animation: none;
+  }
+}
