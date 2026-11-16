@@ -15,6 +15,7 @@ import { Pause, Play, Star } from "lucide-react";
 import {
   type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
   type ReactNode,
   type RefObject,
   useCallback,
@@ -889,6 +890,76 @@ export default function CarouselCards({
     return () => window.removeEventListener("resize", onResize);
   }, [initialIndex, move]);
 
+  // A swipe or a drag lands between cards: follow the scroll and lock to the
+  // card nearest the centre so the depth scale never disagrees with the rail.
+  const nearestIndex = useCallback(() => {
+    const scroller = scrollerRef.current;
+    const track = trackRef.current;
+    if (!(scroller && track)) {
+      return null;
+    }
+    const center = scroller.scrollLeft + scroller.clientWidth / 2;
+    let nearest = 0;
+    let best = Number.POSITIVE_INFINITY;
+    Array.from(track.children).forEach((child, index) => {
+      const card = child as HTMLElement;
+      const distance = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+      if (distance < best) {
+        best = distance;
+        nearest = index;
+      }
+    });
+    return nearest;
+  }, []);
+
+  const syncFromScroll = useCallback(() => {
+    const nearest = nearestIndex();
+    if (nearest !== null) {
+      setActive(nearest);
+    }
+  }, [nearestIndex]);
+
+  const dragRef = useRef<{ startX: number; startLeft: number; moved: boolean } | null>(
+    null
+  );
+  // Survives the pointerup so the click that follows a drag never opens a card.
+  const draggedRef = useRef(false);
+
+  const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
+    const scroller = scrollerRef.current;
+    if (!(scroller && event.pointerType === "mouse")) {
+      return;
+    }
+    dragRef.current = {
+      startX: event.clientX,
+      startLeft: scroller.scrollLeft,
+      moved: false,
+    };
+  };
+
+  const onPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    const drag = dragRef.current;
+    const scroller = scrollerRef.current;
+    if (!(drag && scroller)) {
+      return;
+    }
+    const delta = event.clientX - drag.startX;
+    if (Math.abs(delta) > 3) {
+      drag.moved = true;
+    }
+    scroller.scrollLeft = drag.startLeft - delta;
+  };
+
+  const endDrag = () => {
+    const drag = dragRef.current;
+    dragRef.current = null;
+    draggedRef.current = drag?.moved ?? false;
+    const nearest = nearestIndex();
+    if (drag?.moved && nearest !== null) {
+      move(nearest);
+    }
+  };
+
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => setReducedMotion(media.matches);
@@ -1016,11 +1087,22 @@ export default function CarouselCards({
       )}
 
       <section
-        aria-label={`${title}, gunakan tombol panah untuk berpindah`}
-        className="relative overflow-x-hidden overscroll-x-contain py-6 outline-none [container-type:inline-size] focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-inset dark:focus-visible:ring-zinc-100"
+        aria-label={`${title}, geser atau gunakan tombol panah untuk berpindah`}
+        className="relative overflow-x-hidden overscroll-x-contain py-6 outline-none [container-type:inline-size] focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-inset lg:cursor-grab lg:active:cursor-grabbing dark:focus-visible:ring-zinc-100"
+        onClickCapture={(event) => {
+          if (draggedRef.current) {
+            draggedRef.current = false;
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }}
         onKeyDown={onKeyDown}
+        onPointerDown={onPointerDown}
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onScroll={syncFromScroll}
         ref={scrollerRef}
         // biome-ignore lint/a11y/noNoninteractiveTabindex: a focusable rail is how keyboard users reach the arrow keys
         tabIndex={0}

@@ -80,7 +80,7 @@ export default function AboutPage() {
                 Mitra KSM Komunitas
               </span>
               <span className="text-2xl font-black text-primary font-mono block mt-1 tabular-nums">
-                <AnimatedNumber value={18} /> Kelompok</span>
+                <AnimatedNumber value={18} />Kelompok</span>
               <span className="text-xs text-muted-foreground mt-0.5 block">Pemberdayaan warga</span>
             </div>
 

@@ -90,7 +90,9 @@ describe("hero carousel", () => {
 
   it("moves with the arrow keys from the focusable rail", () => {
     render(<CarouselCards autoplay={false} items={items} title="Galeri" />);
-    const rail = screen.getByRole("region", { name: "Galeri, gunakan tombol panah untuk berpindah" });
+    const rail = screen.getByRole("region", {
+      name: /Galeri, geser atau gunakan tombol panah untuk berpindah/,
+    });
     expect(rail).toHaveAttribute("tabindex", "0");
     const sections = screen.getAllByRole("region");
     fireEvent.keyDown(sections[1], { key: "ArrowRight" });

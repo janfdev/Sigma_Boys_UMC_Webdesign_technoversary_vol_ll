@@ -51,7 +51,6 @@ export default function HeroSection() {
         </div>
         <div className="dark mt-10 sm:mt-12">
           <CarouselCards
-            autoplay
             initialIndex={2}
             items={slides}
             showHeader={false}

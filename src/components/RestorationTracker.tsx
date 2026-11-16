@@ -79,7 +79,7 @@ export default function RestorationTracker() {
                     Kabupaten {z.regency}
                   </Badge>
                   <span className="text-xs font-mono font-bold text-primary tabular-nums">
-                    <AnimatedNumber value={z.progressPercent} />% Pulih
+                    {z.progressPercent}% Pulih
                   </span>
                 </div>
 
@@ -131,14 +131,14 @@ export default function RestorationTracker() {
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
                 <span>{z.status}</span>
               </span>
-              <span className="text-muted-foreground tabular-nums font-bold"><AnimatedNumber value={z.totalAreaHa} /> Ha</span>
+              <span className="text-muted-foreground tabular-nums font-bold">{z.totalAreaHa} Ha</span>
             </CardFooter>
           </Card>
         ))}
       </div>
 
       {/* Adoption Callout with generous padding and margins */}
-      <Card className="border-primary/30 bg-primary/5 p-8 shadow-sm rounded-2xl">
+      {/*<Card className="border-primary/30 bg-primary/5 p-8 shadow-sm rounded-2xl">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
@@ -163,7 +163,7 @@ export default function RestorationTracker() {
             Kunjungi Portal Resmi KLHK
           </a>
         </div>
-      </Card>
+      </Card>*/}
     </div>
   );
 }
