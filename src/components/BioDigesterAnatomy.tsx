@@ -1,7 +1,7 @@
 "use client";
 import { AnimatedNumber } from "@/components/ui/animated-number";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Gauge, Flame, Sparkles, RefreshCw, Droplets, Sprout } from "lucide-react";
@@ -15,6 +15,29 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
   // Feed stage: INITIAL (Pengisian Baru), PEAK (Fermentasi Aktif), MATURE (Ekstraksi Pupuk)
   const [stage, setStage] = useState<"INITIAL" | "PEAK" | "MATURE">("PEAK");
   const [agitatorRot, setAgitatorRot] = useState<number>(45);
+
+  // Auto-cycle the reactor so the digester always looks in operation; manual input holds it.
+  const lastManualAt = React.useRef(0);
+  const touch = () => {
+    lastManualAt.current = Date.now();
+  };
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const stages = ["INITIAL", "PEAK", "MATURE"] as const;
+    let i = 1;
+    const stageId = setInterval(() => {
+      if (Date.now() - lastManualAt.current < 8000) return;
+      i = (i + 1) % stages.length;
+      setStage(stages[i]);
+    }, 4200);
+    // Slow continuous agitator sweep, independent of stage cycling.
+    const agitatorId = setInterval(() => setAgitatorRot((prev) => (prev + 12) % 360), 400);
+    return () => {
+      clearInterval(stageId);
+      clearInterval(agitatorId);
+    };
+  }, []);
 
   // Calibration metrics based on stage
   const metrics = {
@@ -373,7 +396,7 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
                       <button
                         key={s}
                         type="button"
-                        onClick={() => setStage(s)}
+                        onClick={() => { touch(); setStage(s); }}
                         className={cn(
                           "px-2 py-1.5 text-[11px] font-bold rounded-lg border transition-all cursor-pointer text-center",
                           isSelected
@@ -420,7 +443,7 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={handleAgitatorTurn}
+                onClick={() => { touch(); handleAgitatorTurn(); }}
                 className="w-full text-xs font-bold gap-2 cursor-pointer border-dashed"
               >
                 <RefreshCw className="h-3.5 w-3.5 text-primary" />

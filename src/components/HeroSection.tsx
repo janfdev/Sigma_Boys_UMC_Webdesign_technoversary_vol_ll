@@ -1,15 +1,22 @@
 import Link from "next/link";
 import { Layers, PackageCheck } from "lucide-react";
+import CarouselCards, { type RailItem } from "@/components/kokonutui/carousel-cards";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const photos = [
-  { file: "Menanam Bibit dengan Pupuk Kasgot.png", alt: "Bibit tanaman diberi pupuk kasgot", position: "-rotate-6 translate-y-7", crop: "object-[65%_center]" },
-  { file: "Kolase Daur Ulang Plastik Menjadi Paving.png", alt: "Proses pengolahan plastik menjadi paving", position: "-rotate-3 translate-y-3", crop: "object-center" },
-  { file: "Pemasangan Paving Daur Ulang di Tepi Sungai.png", alt: "Pemasangan paving daur ulang di tepi sungai", position: "z-20", crop: "object-[45%_center]" },
-  { file: "Organizer Alat Tulis Botol Daur Ulang.png", alt: "Organizer alat tulis dari botol plastik", position: "rotate-3 translate-y-3", crop: "object-[40%_center]" },
-  { file: "Lentera Bunga PET di Senja Hari.png", alt: "Lentera bunga dari botol PET", position: "rotate-6 translate-y-7", crop: "object-center" },
-];
+// Photos double as the gallery preview: the rail links every card to /galeri.
+const slides: RailItem[] = [
+  { id: "kasgot", alt: "Bibit tanaman diberi pupuk kasgot", file: "bibit-pupuk-kasgot.png" },
+  { id: "kolase", alt: "Proses pengolahan plastik menjadi paving", file: "Kolase Daur Ulang Plastik Menjadi Paving.png" },
+  { id: "paving", alt: "Pemasangan paving daur ulang di tepi sungai", file: "pemasangan-paving.png" },
+  { id: "organizer", alt: "Organizer alat tulis dari botol plastik", file: "Organizer Alat Tulis Botol Daur Ulang.png" },
+  { id: "lentera", alt: "Lentera bunga dari botol PET", file: "Lentera Bunga PET di Senja Hari.png" },
+].map(({ id, alt, file }) => ({
+  id,
+  image: `/image-lomba/${encodeURIComponent(file)}`,
+  imageAlt: alt,
+  href: "/galeri",
+}));
 
 export default function HeroSection() {
   return (
@@ -41,12 +48,13 @@ export default function HeroSection() {
             Lihat Alur Daur Ulang
           </a>
         </div>
-        <div className="mx-auto mt-14 flex max-w-5xl items-end justify-center pb-8 sm:mt-16" aria-label="Pemanfaatan sampah menjadi produk bernilai">
-          {photos.map((photo, index) => (
-            <div key={photo.file} className={cn("relative -mx-2 shrink-0 overflow-hidden rounded-xl border-2 border-white/80 bg-emerald-950 shadow-xl shadow-black/25 sm:-mx-3 sm:rounded-2xl", index === 2 ? "h-52 w-[37%] sm:h-80 sm:w-[26%]" : index === 1 || index === 3 ? "z-10 h-44 w-[29%] sm:h-72 sm:w-[23%]" : "hidden h-60 w-[21%] sm:block", photo.position)}>
-              <img src={`/image-lomba/${encodeURIComponent(photo.file)}`} alt={photo.alt} width={520} height={720} className={cn("h-full w-full object-cover", photo.crop)} />
-            </div>
-          ))}
+        <div className="dark mt-10 sm:mt-12">
+          <CarouselCards
+            autoplay
+            items={slides}
+            showHeader={false}
+            title="Pemanfaatan sampah menjadi produk bernilai"
+          />
         </div>
       </div>
     </section>

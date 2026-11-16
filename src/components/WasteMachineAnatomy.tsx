@@ -2,7 +2,7 @@
 import { NumericText } from "@/components/NumericText";
 import { AnimatedNumber } from "@/components/ui/animated-number";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Layers, RefreshCw, Gauge, Zap, Flame, ShieldCheck } from "lucide-react";
@@ -17,6 +17,30 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
   const [tempCelsius, setTempCelsius] = useState<number>(215);
   const [shreddedFlakesKg, setShreddedFlakesKg] = useState<number>(35);
   const [activeCycle, setActiveCycle] = useState<"FEED" | "MELT" | "PRESS">("PRESS");
+
+  // Auto-run the rig so the machine always looks alive; manual input holds it for a while.
+  const lastManualAt = React.useRef(0);
+  const touch = () => {
+    lastManualAt.current = Date.now();
+  };
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const steps = [
+      { cycle: "FEED" as const, pressure: 40, temp: 180 },
+      { cycle: "MELT" as const, pressure: 110, temp: 225 },
+      { cycle: "PRESS" as const, pressure: 195, temp: 215 },
+    ];
+    let i = 2;
+    const id = setInterval(() => {
+      if (Date.now() - lastManualAt.current < 8000) return;
+      i = (i + 1) % steps.length;
+      setActiveCycle(steps[i].cycle);
+      setPressureBar(steps[i].pressure);
+      setTempCelsius(steps[i].temp);
+    }, 3400);
+    return () => clearInterval(id);
+  }, []);
 
   // Calculations for K-250 Paving Block output
   const estimatedPavingUnits = Math.max(1, Math.round(shreddedFlakesKg * 0.8));
@@ -171,10 +195,10 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   strokeWidth="1.5"
                 />
                 {/* Shredded Flakes Inflow Marker */}
-                <circle cx="250" cy="85" r="4" fill="#22A06B" />
-                <circle cx="265" cy="78" r="3.5" fill="#37E598" />
-                <circle cx="235" cy="92" r="3" fill="#144837" />
-                <circle cx="245" cy="110" r="3.5" fill="#22A06B" />
+                                <circle cx="250" cy="85" r="4" fill="#22A06B" className="animate-flake-drop" />
+                                <circle cx="265" cy="78" r="3.5" fill="#37E598" className="animate-flake-drop" style={{ animationDelay: "0.6s" }} />
+                                <circle cx="235" cy="92" r="3" fill="#144837" className="animate-flake-drop" style={{ animationDelay: "1.2s" }} />
+                                <circle cx="245" cy="110" r="3.5" fill="#22A06B" className="animate-flake-drop" style={{ animationDelay: "1.8s" }} />
               </g>
 
               {/* 3. Heated Extrusion Barrel (Thermal Transformation Chamber) */}
@@ -187,10 +211,10 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   strokeWidth="1.5"
                 />
                 {/* Thermal Heating Elements & Ring Bands */}
-                <path d="M 260 186 L 260 211" stroke="url(#iso-thermal-glow)" strokeWidth="4" />
-                <path d="M 290 202 L 290 227" stroke="url(#iso-thermal-glow)" strokeWidth="4" />
-                <path d="M 320 218 L 320 243" stroke="url(#iso-thermal-glow)" strokeWidth="4" />
-                <path d="M 350 234 L 350 259" stroke="url(#iso-thermal-glow)" strokeWidth="4" />
+                <path d="M 260 186 L 260 211" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" />
+                <path d="M 290 202 L 290 227" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.3s" }} />
+                <path d="M 320 218 L 320 243" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.6s" }} />
+                <path d="M 350 234 L 350 259" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.9s" }} />
 
                 {/* Heat Jacket Top Face */}
                 <path
@@ -264,7 +288,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 <line x1="440" y1="102" x2="462" y2="102" stroke="#22A06B" strokeWidth="2" />
 
                 {/* Hydraulic Ram & Platen Assembly (Moving with calibrated stroke offset) */}
-                <g style={{ transform: `translateY(${platenOffsetY}px)`, transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)" }}>
+                <g className="animate-piston-idle"><g style={{ transform: `translateY(${platenOffsetY}px)`, transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)" }}>
                   {/* Chrome Cylinder Ram Shaft */}
                   <rect x="448" y="140" width="6" height={70 - platenOffsetY} fill="#E2E8F0" stroke="#94A3B8" strokeWidth="1" />
 
@@ -290,7 +314,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   {/* Bushing sleeve corners */}
                   <circle cx="425" cy="223" r="2.2" fill="#0F172A" />
                   <circle cx="475" cy="216" r="2.2" fill="#0F172A" />
-                </g>
+                </g></g>
               </g>
 
               {/* 5. Hexagonal Mold Bed & Finished Eco-Paving Block K-250 */}
@@ -362,9 +386,11 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 })}
 
                 {/* Dynamic Dial Needle with Calm Transition */}
-                <g style={{ transform: `rotate(${needleAngle}deg)`, transformOrigin: "28px 28px", transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
-                  <line x1="28" y1="28" x2="28" y2="12" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="28" y1="28" x2="28" y2="33" stroke="#DC2626" strokeWidth="1.2" strokeLinecap="round" />
+                <g className="animate-needle-sway" style={{ transformOrigin: "28px 28px" }}>
+                  <g style={{ transform: `rotate(${needleAngle}deg)`, transformOrigin: "28px 28px", transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+                    <line x1="28" y1="28" x2="28" y2="12" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="28" y1="28" x2="28" y2="33" stroke="#DC2626" strokeWidth="1.2" strokeLinecap="round" />
+                  </g>
                 </g>
 
                 {/* Hub Cap */}
@@ -417,6 +443,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   <button
                     type="button"
                     onClick={() => {
+                      touch();
                       setActiveCycle("FEED");
                       setPressureBar(40);
                       setTempCelsius(180);
@@ -430,6 +457,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   <button
                     type="button"
                     onClick={() => {
+                      touch();
                       setActiveCycle("MELT");
                       setPressureBar(110);
                       setTempCelsius(225);
@@ -443,6 +471,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   <button
                     type="button"
                     onClick={() => {
+                      touch();
                       setActiveCycle("PRESS");
                       setPressureBar(195);
                       setTempCelsius(215);
@@ -469,7 +498,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                     max={100}
                     aria-label="Umpan Cacahan PET dalam kilogram"
                     value={shreddedFlakesKg}
-                    onChange={(e) => setShreddedFlakesKg(Number(e.target.value))}
+                    onChange={(e) => { touch(); setShreddedFlakesKg(Number(e.target.value)); }}
                     className="w-full accent-primary h-1.5 bg-muted rounded-lg cursor-pointer"
                   />
                 </div>
@@ -485,7 +514,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                     max={220}
                     aria-label="Tekanan Hidrolik dalam Bar"
                     value={pressureBar}
-                    onChange={(e) => setPressureBar(Number(e.target.value))}
+                    onChange={(e) => { touch(); setPressureBar(Number(e.target.value)); }}
                     className="w-full accent-primary h-1.5 bg-muted rounded-lg cursor-pointer"
                   />
                 </div>

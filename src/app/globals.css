@@ -176,6 +176,53 @@
   animation: flowDash 2s linear infinite;
 }
 
+/* Anatomy rigs: continuous idle motion so machines never look frozen */
+@keyframes anatomyThermalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes anatomyFlakeDrop {
+  0% { transform: translateY(-16px); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+@keyframes anatomyPistonIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+@keyframes anatomyNeedleSway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+
+.animate-thermal-pulse {
+  animation: anatomyThermalPulse 1.8s ease-in-out infinite;
+}
+
+.animate-flake-drop {
+  animation: anatomyFlakeDrop 2.4s linear infinite;
+}
+
+.animate-piston-idle {
+  animation: anatomyPistonIdle 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.animate-needle-sway {
+  animation: anatomyNeedleSway 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-thermal-pulse,
+  .animate-flake-drop,
+  .animate-piston-idle,
+  .animate-needle-sway {
+    animation: none;
+  }
+}
+
 /* Base UI Accordion Smooth Expand & Collapse (BagUI / Lenis Easing) */
 [data-slot="accordion-content"] {
   box-sizing: border-box;

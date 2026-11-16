@@ -13,7 +13,7 @@
  * @github: https://github.com/kokonut-labs/kokonutui
  */
 
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Star } from "lucide-react";
 import {
   type CSSProperties,
   type ReactNode,
@@ -37,8 +37,9 @@ export type RailScene =
 
 export interface RailItem {
   id: string;
-  title: string;
-  location: string;
+  /** Caption. Omit for a media-only card: no caption, no heart. */
+  title?: string;
+  location?: string;
   /** Photo URL, rendered with a plain <img>. Falls back to `scene`. */
   image?: string;
   /** Alt text for `image`. Empty by default: the title already names it. */
@@ -47,12 +48,14 @@ export interface RailItem {
   scene?: RailScene;
   badge?: string;
   dates?: string;
-  price: number;
+  price?: number;
   currency?: string;
   priceLabel?: string;
   rating?: number;
   reviewCount?: number;
   href?: string;
+  /** Show a play glyph on the media (video affordance). */
+  play?: boolean;
 }
 
 export type ToggleFavorite = (id: string, favorite: boolean) => void;
@@ -67,6 +70,12 @@ export interface CarouselCardsProps {
   onToggleFavorite?: ToggleFavorite;
   /** Called when a card without an `href` is clicked or activated. */
   onSelect?: (item: RailItem) => void;
+  /** Auto-advance the rail, looping back to the first card. */
+  autoplay?: boolean;
+  /** Delay between auto-advances, in ms. Default 4500. */
+  autoplayInterval?: number;
+  /** Show the eyebrow/title/counter/arrows row. Default true. */
+  showHeader?: boolean;
   className?: string;
 }
 
@@ -646,14 +655,16 @@ const CardDetails = ({ item }: { item: RailItem }) => (
         · {item.dates}
       </span>
     )}
-    <span className="ml-auto shrink-0 font-medium text-zinc-900 tabular-nums dark:text-zinc-100">
-      {item.currency ?? "€"}
-      {item.price}
-      <span className="font-normal text-zinc-500 dark:text-zinc-400">
-        {" "}
-        {item.priceLabel ?? "total"}
+    {item.price !== undefined && (
+      <span className="ml-auto shrink-0 font-medium text-zinc-900 tabular-nums dark:text-zinc-100">
+        {item.currency ?? "€"}
+        {item.price}
+        <span className="font-normal text-zinc-500 dark:text-zinc-400">
+          {" "}
+          {item.priceLabel ?? "total"}
+        </span>
       </span>
-    </span>
+    )}
   </div>
 );
 
@@ -670,10 +681,40 @@ const RailCard = ({
   saved: boolean;
   onToggleSaved: (id: string) => void;
   onSelect?: (item: RailItem) => void;
-}) => (
-  <li className="kokonutui-rail-card w-(--rail-card) flex-none snap-center">
+}) => {
+  // A card with no caption is media-only: the whole photo becomes the target.
+  const caption =
+    item.title ||
+    item.location ||
+    item.price !== undefined ||
+    item.rating !== undefined ||
+    item.dates;
+  const control = item.href ? (
+    <a
+      aria-label={item.title ?? item.imageAlt}
+      className={STRETCHED}
+      data-rail-link=""
+      draggable={false}
+      href={item.href}
+    >
+      {item.title}
+    </a>
+  ) : (
+    <button
+      aria-label={item.title ?? item.imageAlt}
+      className={cn(STRETCHED, "cursor-pointer text-left")}
+      data-rail-link=""
+      onClick={() => onSelect?.(item)}
+      type="button"
+    >
+      {item.title}
+    </button>
+  );
+
+  return (
+  <li className="kokonutui-rail-card w-[var(--rail-card)] flex-none snap-center">
     <div className="kokonutui-rail-tilt group/rail-card relative">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-200 ring-zinc-900 ring-offset-2 ring-offset-white group-has-[[data-rail-link]:focus-visible]/rail-card:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-200 ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
         {item.image ? (
           <div className={cn(LAYER_CLASS, "[--rail-depth:8%]")}>
             {/* biome-ignore lint/performance/noImgElement: a plain img keeps the component free of next/image config */}
@@ -696,45 +737,43 @@ const RailCard = ({
             {item.badge}
           </span>
         )}
-        <FavoriteButton
-          label={item.title}
-          onToggle={() => onToggleSaved(item.id)}
-          saved={saved}
-        />
+        {item.play && (
+          <span
+            aria-hidden="true"
+            className="absolute right-2.5 bottom-2.5 grid size-8 place-items-center rounded-full bg-black/45 text-white backdrop-blur-sm"
+          >
+            <Play className="size-3.5 fill-current" />
+          </span>
+        )}
+        {item.title && (
+          <FavoriteButton
+            label={item.title}
+            onToggle={() => onToggleSaved(item.id)}
+            saved={saved}
+          />
+        )}
+        {!caption && control}
       </div>
 
-      <div className="px-0.5 pt-3">
-        <h3 className="truncate font-medium text-sm text-zinc-900 tracking-tight dark:text-zinc-100">
-          {/* The link is stretched over the card; the heart sits above it. */}
-          {/* Without an href this is a button: a bare "#" link would navigate. */}
-          {item.href ? (
-            <a
-              className={STRETCHED}
-              data-rail-link=""
-              draggable={false}
-              href={item.href}
-            >
-              {item.title}
-            </a>
-          ) : (
-            <button
-              className={cn(STRETCHED, "cursor-pointer text-left")}
-              data-rail-link=""
-              onClick={() => onSelect?.(item)}
-              type="button"
-            >
-              {item.title}
-            </button>
+      {caption && (
+        <div className="px-0.5 pt-3">
+          <h3 className="truncate font-medium text-sm text-zinc-900 tracking-tight dark:text-zinc-100">
+            {/* The link is stretched over the card; the heart sits above it. */}
+            {/* Without an href this is a button: a bare "#" link would navigate. */}
+            {control}
+          </h3>
+          {item.location && (
+            <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+              {item.location}
+            </p>
           )}
-        </h3>
-        <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
-          {item.location}
-        </p>
-        <CardDetails item={item} />
-      </div>
+          <CardDetails item={item} />
+        </div>
+      )}
     </div>
   </li>
-);
+  );
+};
 
 /* ------------------------------------------------------------------ */
 /* Momentum: drag, project, spring to a card, rubber-band at the ends. */
@@ -1126,6 +1165,9 @@ export default function CarouselCards({
   defaultFavorites = [],
   onToggleFavorite,
   onSelect,
+  autoplay = false,
+  autoplayInterval = 4500,
+  showHeader = true,
   className,
 }: CarouselCardsProps) {
   const scrollerRef = useRef<HTMLElement>(null);
@@ -1139,6 +1181,41 @@ export default function CarouselCards({
     trackRef,
     setActive
   );
+
+  // Autoplay: pause while hovered, focused or touched, and never fight a drag.
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (!(autoplay && items.length > 1) || paused) {
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    // A touch has no hover, so it holds playback for a few seconds after.
+    let resumeTimer: ReturnType<typeof setTimeout> | undefined;
+    const hold = () => {
+      setPaused(true);
+      resumeTimer = setTimeout(() => setPaused(false), 6000);
+    };
+    const scroller = scrollerRef.current;
+    scroller?.addEventListener("pointerdown", hold);
+    const onVisibility = () => setPaused(document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+
+    const id = setInterval(() => {
+      if (document.hidden) {
+        return;
+      }
+      goTo((currentIndex() + 1) % items.length);
+    }, autoplayInterval);
+
+    return () => {
+      clearInterval(id);
+      clearTimeout(resumeTimer);
+      scroller?.removeEventListener("pointerdown", hold);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [autoplay, autoplayInterval, currentIndex, goTo, items.length, paused]);
 
   const toggleSaved = (id: string) => {
     const next = !saved.has(id);
@@ -1160,11 +1237,16 @@ export default function CarouselCards({
     <section
       aria-label={title}
       aria-roledescription="carousel"
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
       className={cn(
-        "@container/rail w-full py-4 @3xl/rail:[--rail-card:16rem] @md/rail:[--rail-card:15rem] [--rail-card:13.5rem]",
+        "w-full py-4 [--rail-card:13.5rem] sm:[--rail-card:15rem] lg:[--rail-card:16rem]",
         className
       )}
     >
+      {showHeader && (
       <div className="mb-2 flex items-end justify-between gap-4 px-4">
         <div className="min-w-0">
           <p className="text-xs text-zinc-500 dark:text-zinc-400">{eyebrow}</p>
@@ -1203,6 +1285,7 @@ export default function CarouselCards({
           </button>
         </div>
       </div>
+      )}
 
       <section
         aria-label={`${title}, use arrow keys to move`}
