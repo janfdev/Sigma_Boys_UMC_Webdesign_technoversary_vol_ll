@@ -290,16 +290,15 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
             {/* SDG 12 */}
-            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
+            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex h-full flex-col gap-4 relative overflow-hidden">
+              <div className="flex items-center justify-between">
                   <div className="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-black font-mono text-lg">
                     12</div>
                   <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-amber-500/30 text-amber-600 dark:text-amber-400">
                     Target 12.5
                   </Badge>
                 </div>
-                <div className="space-y-1.5">
+                <div className="flex-1 space-y-1.5">
                   <h3 className="text-base sm:text-lg font-black text-foreground leading-snug">
                     SDG 12: Konsumsi & Produksi Bertanggung Jawab
                   </h3>
@@ -316,28 +315,26 @@ export default function AboutPage() {
                   <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-amber-500 h-full rounded-full" style={{ width: "78.4%" }} />
                   </div>
-                  <span className="text-[11px] text-muted-foreground block">
+                  <span className="min-h-[2.25rem] text-[11px] text-muted-foreground block">
                     142.5 Ton sampah dialihkan menjadi 18400 paving block K-250 dan pupuk organik.</span>
                 </div>
-              </div>
 
-              <div className="pt-4 border-t border-border/70 flex items-center gap-2 text-xs font-semibold text-foreground">
+              <div className="pt-4 border-t border-border/70 flex min-h-[50px] items-center gap-2 text-xs font-semibold text-foreground">
                 <CheckCircle2 className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
                 <span>Pencatatan hulu transparan via bank sampah digital</span>
               </div>
             </Card>
 
             {/* SDG 13 */}
-            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
+            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex h-full flex-col gap-4 relative overflow-hidden">
+              <div className="flex items-center justify-between">
                   <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black font-mono text-lg">
                     13</div>
                   <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
                     Target 13.3
                   </Badge>
                 </div>
-                <div className="space-y-1.5">
+                <div className="flex-1 space-y-1.5">
                   <h3 className="text-base sm:text-lg font-black text-foreground leading-snug">
                     SDG 13: Penanganan Perubahan Iklim
                   </h3>
@@ -354,29 +351,27 @@ export default function AboutPage() {
                   <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-emerald-500 h-full rounded-full" style={{ width: "85%" }} />
                   </div>
-                  <span className="text-[11px] text-muted-foreground block">
+                  <span className="min-h-[2.25rem] text-[11px] text-muted-foreground block">
                     Penangkapan gas metana bio-digester dan penghentian pembakaran sampah terbuka liar.
                   </span>
                 </div>
-              </div>
 
-              <div className="pt-4 border-t border-border/70 flex items-center gap-2 text-xs font-semibold text-foreground">
+              <div className="pt-4 border-t border-border/70 flex min-h-[50px] items-center gap-2 text-xs font-semibold text-foreground">
                 <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>Kalkulasi otomatis metodologi IPCC emisi karbon</span>
               </div>
             </Card>
 
             {/* SDG 15 */}
-            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
+            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex h-full flex-col gap-4 relative overflow-hidden">
+              <div className="flex items-center justify-between">
                   <div className="h-12 w-12 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black font-mono text-lg">
                     15</div>
                   <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-blue-500/30 text-blue-600 dark:text-blue-400">
                     Target 15.2
                   </Badge>
                 </div>
-                <div className="space-y-1.5">
+                <div className="flex-1 space-y-1.5">
                   <h3 className="text-base sm:text-lg font-black text-foreground leading-snug">
                     SDG 15: Ekosistem Daratan & Konservasi
                   </h3>
@@ -393,13 +388,12 @@ export default function AboutPage() {
                   <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-blue-500 h-full rounded-full" style={{ width: "92%" }} />
                   </div>
-                  <span className="text-[11px] text-muted-foreground block">
+                  <span className="min-h-[2.25rem] text-[11px] text-muted-foreground block">
                     Penghijauan koridor tangkapan air memakai pupuk bio-kasgot bernutrisi makro tinggi.
                   </span>
                 </div>
-              </div>
 
-              <div className="pt-4 border-t border-border/70 flex items-center gap-2 text-xs font-semibold text-foreground">
+              <div className="pt-4 border-t border-border/70 flex min-h-[50px] items-center gap-2 text-xs font-semibold text-foreground">
                 <CheckCircle2 className="h-4 w-4 text-blue-600 dark:text-blue-400 shrink-0" />
                 <span>Restorasi vegetasi tanah tanpa residu pupuk kimia sintetis</span>
               </div>
