@@ -26,10 +26,10 @@ export default function HomePage() {
       {/*Motion Grafis*/}
       <div className="max-w-7xl lg:pt-10 mx-auto sm:pt-7 px-4 sm:px-6 lg:px-8">
         <MotionGrafisVideo/>
-              </div>
+      </div>
 
-              {/* 1.2 Editorial Berita Terbaru: featured split + grid 3 kartu */}
-              <LatestInsightSection />
+      {/* 1.2 Editorial Berita Terbaru: featured split + grid 3 kartu */}
+      <LatestInsightSection />
 
       {/* 1.5 Standalone Anatomy Rig Section: Direct Physical Machine Explainer */}
       <section className="py-10 sm:py-20 border-b border-border/80 bg-background" id="mesin-ekstrusi">

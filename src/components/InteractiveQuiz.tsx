@@ -119,8 +119,8 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
               Pertanyaan <AnimatedNumber value={currentIndex + 1} /> dari <AnimatedNumber value={questions.length} />
             </span>
           </div>
-          <Badge variant="secondary" className="text-xs font-bold text-primary tabular-nums">
-            Skor Sementara: <AnimatedNumber value={score} />
+          <Badge variant="default" className="text-xs font-bold tabular-nums">
+            Skor Sementara: {score}
           </Badge>
         </div>
         <Progress value={progressPercent} className="h-1.5" />

@@ -43,9 +43,9 @@ export default function PantauPage() {
         </section>
 
         {/* 3. Direktori Posko Resmi & Hotline */}
-        <section className="pt-10 border-t border-border" aria-labelledby="hotline-heading">
+        {/*<section className="pt-10 border-t border-border" aria-labelledby="hotline-heading">
           <HotlineDirectory />
-        </section>
+        </section>*/}
 
         {/* Bottom Callout */}
         <Alert className="border-primary/30 bg-primary/10 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl shadow-sm">

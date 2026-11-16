@@ -269,7 +269,7 @@ export default function WasteImpactSimulator() {
                   </span>
                   <div className="flex items-baseline gap-1 font-mono">
                     <span className="text-4xl sm:text-5xl font-black text-foreground tabular-nums">
-                      <AnimatedNumber value={wasteAmountKg} />
+                      {wasteAmountKg}
                     </span>
                     <span className="text-base text-muted-foreground font-bold">kg</span>
                   </div>
@@ -288,8 +288,8 @@ export default function WasteImpactSimulator() {
                     aria-label={`Jumlah setoran ${currentMeta.label} dalam kilogram`}
                   />
                   <div className="flex justify-between text-[10px] font-mono text-muted-foreground">
-                    <span><AnimatedNumber value={5} /> kg</span>
-                    <span>Maksimal <AnimatedNumber value={currentMeta.maxKg} /> kg</span>
+                    <span>5 kg</span>
+                    <span>Maksimal {currentMeta.maxKg} kg</span>
                   </div>
                 </div>
 
@@ -311,7 +311,7 @@ export default function WasteImpactSimulator() {
                             : "border-border/80 hover:bg-muted text-muted-foreground"
                         )}
                       >
-                        <AnimatedNumber value={val} /> kg
+                        {val} kg
                       </button>
                     ))}
                   </div>
@@ -363,7 +363,7 @@ export default function WasteImpactSimulator() {
                     <Coins className="h-4 w-4" />
                   </div>
                   <div className="text-2xl sm:text-3xl font-black text-foreground font-mono tabular-nums">
-                    +<AnimatedNumber value={output.points} />{" "}
+                    + {output.points} {" "}
                     <span className="text-sm font-normal text-muted-foreground">Poin</span>
                   </div>
                   <p className="text-xs text-muted-foreground">

@@ -77,7 +77,7 @@ export default function CircularProductCatalog() {
             onClick={() => setSelectedCategory("ALL")}
             className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
-            Semua Produk (<AnimatedNumber value={CIRCULAR_PRODUCTS.length} />)
+            Semua Produk ({CIRCULAR_PRODUCTS.length})
           </Button>
           <Button
             type="button"
@@ -137,7 +137,7 @@ export default function CircularProductCatalog() {
                   />
                   <div className="absolute top-2.5 right-2.5 z-10">
                     <Badge variant="default" className="text-[10px] font-mono font-bold uppercase backdrop-blur-md bg-background/80 px-2 py-0.5">
-                      <AnimatedNumber value={p.pointsRequired} /> Poin
+                      <AnimatedNumber value={p.pointsRequired} />Poin
                     </Badge>
                   </div>
                 </div>
@@ -200,7 +200,7 @@ export default function CircularProductCatalog() {
                   Nilai Komunitas
                 </span>
                 <span className="text-xs font-black font-mono tabular-nums text-foreground">
-                  Rp <AnimatedNumber value={p.priceEstimateRp} />
+                  Rp {p.priceEstimateRp}
                 </span>
               </div>
               <div className="flex items-center gap-1.5">

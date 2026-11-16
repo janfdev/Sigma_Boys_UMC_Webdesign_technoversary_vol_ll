@@ -670,16 +670,28 @@ const CardDetails = ({ item }: { item: RailItem }) => (
 const STRETCHED =
   "outline-none after:absolute after:inset-0 after:rounded-2xl after:content-['']";
 
+const CARD_SCALE = [1, 0.72, 0.56];
+
+/** Keep the visual gap constant while the depth scale shrinks the card. */
+const overlapFor = (previous: number, current: number) =>
+  `calc(${(2 - previous - current).toFixed(2)} * var(--rail-card) / -2 - 0.75rem)`;
+
 const RailCard = ({
   item,
   saved,
   current,
+  scale,
+  reducedMotion,
+  marginInlineStart,
   onToggleSaved,
   onSelect,
 }: {
   item: RailItem;
   saved: boolean;
   current: boolean;
+  scale: number;
+  reducedMotion: boolean;
+  marginInlineStart?: string;
   onToggleSaved: (id: string) => void;
   onSelect?: (item: RailItem) => void;
 }) => {
@@ -712,11 +724,18 @@ const RailCard = ({
     </button>
   );
 
+  const cardDepth = {
+    zIndex: 20 - Math.round((1 - scale) * 40),
+    marginInlineStart,
+    ...(reducedMotion ? {} : { transform: `scale(${scale})` }),
+  };
+
   return (
     <li
       aria-current={current ? "true" : undefined}
       aria-roledescription="slide"
-      className="kokonutui-rail-card w-[var(--rail-card)] flex-none"
+      className="kokonutui-rail-card w-[var(--rail-card)] flex-none transition-transform duration-500 ease-out"
+      style={cardDepth}
     >
       <div className="kokonutui-rail-tilt group/rail-card relative">
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-200 ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
@@ -912,6 +931,10 @@ export default function CarouselCards({
     move(next);
   };
 
+  const scales = items.map(
+    (_, index) => CARD_SCALE[Math.min(Math.abs(index - active), CARD_SCALE.length - 1)]
+  );
+
   const toggleSaved = (id: string) => {
     const next = !saved.has(id);
     setSaved((prev) => {
@@ -1000,7 +1023,7 @@ export default function CarouselCards({
         tabIndex={0}
       >
         <ul
-          className="relative flex w-max gap-4 px-[calc(50cqw-var(--rail-card)/2)]"
+          className="relative flex w-max items-center gap-0 px-[calc(50cqw-var(--rail-card)/2)]"
           ref={trackRef}
         >
           {items.map((item, index) => (
@@ -1008,6 +1031,11 @@ export default function CarouselCards({
               current={index === active}
               item={item}
               key={item.id}
+              marginInlineStart={
+                index === 0 ? undefined : overlapFor(scales[index - 1], scales[index])
+              }
+              reducedMotion={reducedMotion}
+              scale={scales[index]}
               onSelect={onSelect}
               onToggleSaved={toggleSaved}
               saved={saved.has(item.id)}

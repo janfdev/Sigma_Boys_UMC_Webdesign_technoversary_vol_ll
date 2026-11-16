@@ -12,11 +12,12 @@ const slides: RailItem[] = [
   { id: "organizer", alt: "Organizer alat tulis dari botol plastik", file: "Organizer Alat Tulis Botol Daur Ulang.png" },
   { id: "lentera", alt: "Lentera bunga dari botol PET", file: "Lentera Bunga PET di Senja Hari.png" },
 ].map(({ id, alt, file }) => ({
-  id,
-  image: `/image-lomba/${encodeURIComponent(file)}`,
-  imageAlt: alt,
-  href: "/galeri",
-}));
+    id,
+    image: `/image-lomba/${encodeURIComponent(file)}`,
+    imageAlt: alt,
+    href: "/galeri",
+    play: true,
+  }));
 
 export default function HeroSection() {
   return (
