@@ -2,10 +2,8 @@
 
 /**
  * @author: @dorianbaffier
- * @description: Momentum Rail. A card rail you can flick with the mouse: the
- * release velocity projects an end point, a spring snaps to the nearest card
- * and the ends rubber-band. Scroll position drives a cover-flow depth, image
- * parallax and the centered card's details with CSS scroll-driven animations.
+ * @description: A card rail centered on the active item. It auto-advances when
+ * enabled, with a pause control and keyboard navigation; it does not drag.
  * @version: 2.0.0
  * @date: 2026-10-14
  * @license: MIT
@@ -13,9 +11,10 @@
  * @github: https://github.com/kokonut-labs/kokonutui
  */
 
-import { ChevronLeft, ChevronRight, Play, Star } from "lucide-react";
+import { Pause, Play, Star } from "lucide-react";
 import {
   type CSSProperties,
+  type KeyboardEvent as ReactKeyboardEvent,
   type ReactNode,
   type RefObject,
   useCallback,
@@ -74,7 +73,7 @@ export interface CarouselCardsProps {
   autoplay?: boolean;
   /** Delay between auto-advances, in ms. Default 4500. */
   autoplayInterval?: number;
-  /** Show the eyebrow/title/counter/arrows row. Default true. */
+  /** Show the eyebrow/title/counter row. Default true. */
   showHeader?: boolean;
   className?: string;
 }
@@ -674,11 +673,13 @@ const STRETCHED =
 const RailCard = ({
   item,
   saved,
+  current,
   onToggleSaved,
   onSelect,
 }: {
   item: RailItem;
   saved: boolean;
+  current: boolean;
   onToggleSaved: (id: string) => void;
   onSelect?: (item: RailItem) => void;
 }) => {
@@ -712,8 +713,12 @@ const RailCard = ({
   );
 
   return (
-  <li className="kokonutui-rail-card w-[var(--rail-card)] flex-none snap-center">
-    <div className="kokonutui-rail-tilt group/rail-card relative">
+    <li
+      aria-current={current ? "true" : undefined}
+      aria-roledescription="slide"
+      className="kokonutui-rail-card w-[var(--rail-card)] flex-none"
+    >
+      <div className="kokonutui-rail-tilt group/rail-card relative">
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-200 ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
         {item.image ? (
           <div className={cn(LAYER_CLASS, "[--rail-depth:8%]")}>
@@ -723,8 +728,9 @@ const RailCard = ({
               className="h-full w-full object-cover"
               decoding="async"
               draggable={false}
+              fetchPriority={current ? "high" : "auto"}
               height={500}
-              loading="lazy"
+              loading={current ? "eager" : "lazy"}
               src={item.image}
               width={520}
             />
@@ -771,392 +777,34 @@ const RailCard = ({
         </div>
       )}
     </div>
-  </li>
+    </li>
   );
 };
 
 /* ------------------------------------------------------------------ */
-/* Momentum: drag, project, spring to a card, rubber-band at the ends. */
+/* Rail control: one index, one scroll position, no drag.             */
 /* ------------------------------------------------------------------ */
 
-const STIFFNESS = 170;
-const DAMPING = 26; // about 2·√170: critically damped, so no bounce at the card
-const DECELERATION = 0.997; // UIScrollView's normal rate, per ms
-const DRAG_THRESHOLD = 4;
-
-const rubber = (overshoot: number, size: number) =>
-  Math.sign(overshoot) *
-  (1 - 1 / ((Math.abs(overshoot) * 0.55) / size + 1)) *
-  size;
-
-const clamp = (v: number, min: number, max: number) =>
-  Math.min(max, Math.max(min, v));
-
-interface RailState {
-  mode: "idle" | "pressing" | "dragging" | "spring";
-  pointerId: number;
-  startX: number;
-  startPos: number;
-  pos: number;
-  vel: number;
-  target: number;
-  samples: { t: number; x: number }[];
-  raf: number;
-  last: number;
-  suppressClick: boolean;
-  /** The press caught a moving rail, so letting go must settle it. */
-  caught: boolean;
-}
-
-const maxScroll = (scroller: HTMLElement) =>
-  scroller.scrollWidth - scroller.clientWidth;
-
-const snapPoints = (scroller: HTMLElement, track: HTMLUListElement) => {
-  const max = maxScroll(scroller);
-  return Array.from(track.children, (child) => {
-    const card = child as HTMLElement;
-    const center = track.offsetLeft + card.offsetLeft + card.offsetWidth / 2;
-    return clamp(center - scroller.clientWidth / 2, 0, max);
-  });
-};
-
-const nearestIndex = (points: number[], pos: number) => {
-  let best = 0;
-  for (let i = 1; i < points.length; i++) {
-    if (Math.abs(points[i] - pos) < Math.abs(points[best] - pos)) {
-      best = i;
-    }
+const centerOf = (
+  scroller: HTMLElement,
+  track: HTMLUListElement,
+  index: number
+) => {
+  const card = track.children[index] as HTMLElement | undefined;
+  if (!card || scroller.clientWidth === 0 || card.offsetWidth === 0) {
+    return null;
   }
-  return best;
+  const center =
+    track.offsetLeft +
+    card.offsetLeft +
+    card.offsetWidth / 2 -
+    scroller.clientWidth / 2;
+  const max = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+  return Math.min(Math.max(0, center), max);
 };
 
-// Release velocity in px/ms from the last 100ms of samples; a pause before
-// letting go means no flick.
-const releaseVelocity = (samples: RailState["samples"], now: number) => {
-  const first = samples[0];
-  const last = samples.at(-1) ?? first;
-  const dt = last.t - first.t;
-  if (dt <= 0 || now - last.t > 60) {
-    return 0;
-  }
-  return -(last.x - first.x) / dt;
-};
-
-function useMomentumRail(
-  scrollerRef: RefObject<HTMLElement | null>,
-  trackRef: RefObject<HTMLUListElement | null>,
-  onIndex: (index: number) => void
-) {
-  const state = useRef<RailState>({
-    mode: "idle",
-    pointerId: -1,
-    startX: 0,
-    startPos: 0,
-    pos: 0,
-    vel: 0,
-    target: 0,
-    samples: [],
-    raf: 0,
-    last: 0,
-    suppressClick: false,
-    caught: false,
-  });
-  const onIndexRef = useRef(onIndex);
-  onIndexRef.current = onIndex;
-
-  // Write a virtual position: the in-range part scrolls natively, the rest
-  // becomes a damped translate on the track (the rubber band).
-  const apply = useCallback(
-    (pos: number) => {
-      const scroller = scrollerRef.current;
-      const track = trackRef.current;
-      if (!(scroller && track)) {
-        return;
-      }
-      const inRange = clamp(pos, 0, maxScroll(scroller));
-      scroller.scrollLeft = inRange;
-      const over = pos - inRange;
-      track.style.transform =
-        Math.abs(over) > 0.1
-          ? `translate3d(${(-rubber(over, scroller.clientWidth)).toFixed(2)}px,0,0)`
-          : "";
-    },
-    [scrollerRef, trackRef]
-  );
-
-  // Native scroll snap is off while JS owns the position.
-  const setFree = useCallback(
-    (free: boolean) => {
-      const scroller = scrollerRef.current;
-      if (scroller) {
-        scroller.dataset.free = String(free);
-      }
-    },
-    [scrollerRef]
-  );
-
-  const step = useCallback(
-    (now: number) => {
-      const s = state.current;
-      const dt = Math.min((now - s.last) / 1000, 1 / 30);
-      s.last = now;
-      // Semi-implicit Euler substeps keep the spring stable at any frame rate.
-      const h = dt / 4;
-      for (let i = 0; i < 4; i++) {
-        const accel = -STIFFNESS * (s.pos - s.target) - DAMPING * s.vel;
-        s.vel += accel * h;
-        s.pos += s.vel * h;
-      }
-      if (Math.abs(s.pos - s.target) < 0.5 && Math.abs(s.vel) < 8) {
-        s.pos = s.target;
-        s.vel = 0;
-        s.mode = "idle";
-        apply(s.target);
-        setFree(false);
-        return;
-      }
-      apply(s.pos);
-      s.raf = requestAnimationFrame(step);
-    },
-    [apply, setFree]
-  );
-
-  const springTo = useCallback(
-    (target: number, velocity: number) => {
-      const s = state.current;
-      const scroller = scrollerRef.current;
-      if (!scroller) {
-        return;
-      }
-      cancelAnimationFrame(s.raf);
-      // A spring, drag or caught press carries its own virtual position,
-      // overshoot included.
-      if (s.mode === "idle") {
-        s.pos = scroller.scrollLeft;
-      }
-      s.target = target;
-      s.vel = velocity;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        s.mode = "idle";
-        s.pos = target;
-        apply(target);
-        setFree(false);
-        return;
-      }
-      s.mode = "spring";
-      setFree(true);
-      s.last = performance.now();
-      s.raf = requestAnimationFrame(step);
-    },
-    [apply, scrollerRef, setFree, step]
-  );
-
-  const goTo = useCallback(
-    (index: number) => {
-      const scroller = scrollerRef.current;
-      const track = trackRef.current;
-      if (!(scroller && track)) {
-        return;
-      }
-      const s = state.current;
-      const points = snapPoints(scroller, track);
-      const i = clamp(index, 0, points.length - 1);
-      springTo(points[i], s.mode === "spring" ? s.vel : 0);
-    },
-    [scrollerRef, springTo, trackRef]
-  );
-
-  const currentIndex = useCallback(() => {
-    const scroller = scrollerRef.current;
-    const track = trackRef.current;
-    if (!(scroller && track)) {
-      return 0;
-    }
-    const s = state.current;
-    const pos = s.mode === "spring" ? s.target : scroller.scrollLeft;
-    return nearestIndex(snapPoints(scroller, track), pos);
-  }, [scrollerRef, trackRef]);
-
-  useEffect(() => {
-    const scroller = scrollerRef.current;
-    const track = trackRef.current;
-    if (!(scroller && track)) {
-      return;
-    }
-    const s = state.current;
-    let scrollRaf = 0;
-
-    const onScroll = () => {
-      cancelAnimationFrame(scrollRaf);
-      scrollRaf = requestAnimationFrame(() => {
-        onIndexRef.current(
-          nearestIndex(snapPoints(scroller, track), scroller.scrollLeft)
-        );
-      });
-    };
-
-    const suppressNextClick = () => {
-      s.suppressClick = true;
-      setTimeout(() => {
-        s.suppressClick = false;
-      }, 0);
-    };
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse" || e.button !== 0) {
-        return;
-      }
-      if ((e.target as Element).closest("button:not([data-rail-link])")) {
-        return;
-      }
-      cancelAnimationFrame(s.raf);
-      // Catching a moving rail keeps its virtual position, overshoot included.
-      s.caught = s.mode === "spring";
-      s.pos = s.caught ? s.pos : scroller.scrollLeft;
-      s.mode = "pressing";
-      s.pointerId = e.pointerId;
-      s.startX = e.clientX;
-      s.startPos = s.pos;
-      s.samples = [{ t: e.timeStamp, x: e.clientX }];
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (e.pointerId !== s.pointerId) {
-        return;
-      }
-      const dx = e.clientX - s.startX;
-      if (s.mode === "pressing" && Math.abs(dx) > DRAG_THRESHOLD) {
-        s.mode = "dragging";
-        scroller.setPointerCapture(e.pointerId);
-        scroller.dataset.dragging = "true";
-        setFree(true);
-      }
-      if (s.mode !== "dragging") {
-        return;
-      }
-      s.pos = s.startPos - dx;
-      apply(s.pos);
-      s.samples.push({ t: e.timeStamp, x: e.clientX });
-      while (s.samples.length > 2 && e.timeStamp - s.samples[0].t > 100) {
-        s.samples.shift();
-      }
-    };
-
-    const onRelease = (e: PointerEvent) => {
-      if (e.pointerId !== s.pointerId) {
-        return;
-      }
-      s.pointerId = -1;
-      if (s.mode !== "dragging") {
-        if (s.caught) {
-          // A rail caught mid-flight (or mid-rubber-band) and let go
-          // settles on the nearest card instead of freezing there. Like a
-          // native list, the tap that stopped it does not open a card.
-          suppressNextClick();
-          const points = snapPoints(scroller, track);
-          springTo(points[nearestIndex(points, s.pos)], 0);
-          return;
-        }
-        // A press that never became a drag hands back to native snapping.
-        s.mode = "idle";
-        setFree(false);
-        return;
-      }
-      scroller.dataset.dragging = "false";
-      suppressNextClick();
-      const v = releaseVelocity(s.samples, e.timeStamp);
-      const projected = s.pos + (v * DECELERATION) / (1 - DECELERATION);
-      const points = snapPoints(scroller, track);
-      springTo(points[nearestIndex(points, projected)], v * 1000);
-    };
-
-    // A drag that ends over a card must not follow its link.
-    const onClickCapture = (e: MouseEvent) => {
-      if (s.suppressClick) {
-        e.preventDefault();
-        e.stopPropagation();
-        s.suppressClick = false;
-      }
-    };
-
-    // Wheel or touch takes over from a running spring.
-    const onNativeInput = () => {
-      if (s.mode !== "spring") {
-        return;
-      }
-      cancelAnimationFrame(s.raf);
-      s.mode = "idle";
-      apply(clamp(s.pos, 0, maxScroll(scroller)));
-      setFree(false);
-    };
-
-    // Arrow keys step one card; Home and End jump to the ends.
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.target !== scroller) {
-        return;
-      }
-      const last = track.children.length - 1;
-      const index = nearestIndex(
-        snapPoints(scroller, track),
-        s.mode === "spring" ? s.target : scroller.scrollLeft
-      );
-      let next = -1;
-      switch (e.key) {
-        case "ArrowLeft":
-          next = index - 1;
-          break;
-        case "ArrowRight":
-          next = index + 1;
-          break;
-        case "Home":
-          next = 0;
-          break;
-        case "End":
-          next = last;
-          break;
-        default:
-          return;
-      }
-      e.preventDefault();
-      goTo(next);
-    };
-
-    scroller.addEventListener("keydown", onKeyDown);
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    scroller.addEventListener("pointerdown", onPointerDown);
-    scroller.addEventListener("pointermove", onPointerMove);
-    scroller.addEventListener("pointerup", onRelease);
-    scroller.addEventListener("pointercancel", onRelease);
-    scroller.addEventListener("lostpointercapture", onRelease);
-    scroller.addEventListener("click", onClickCapture, true);
-    scroller.addEventListener("wheel", onNativeInput, { passive: true });
-    scroller.addEventListener("touchstart", onNativeInput, { passive: true });
-    return () => {
-      cancelAnimationFrame(scrollRaf);
-      cancelAnimationFrame(s.raf);
-      scroller.removeEventListener("keydown", onKeyDown);
-      scroller.removeEventListener("scroll", onScroll);
-      scroller.removeEventListener("pointerdown", onPointerDown);
-      scroller.removeEventListener("pointermove", onPointerMove);
-      scroller.removeEventListener("pointerup", onRelease);
-      scroller.removeEventListener("pointercancel", onRelease);
-      scroller.removeEventListener("lostpointercapture", onRelease);
-      scroller.removeEventListener("click", onClickCapture, true);
-      scroller.removeEventListener("wheel", onNativeInput);
-      scroller.removeEventListener("touchstart", onNativeInput);
-    };
-  }, [apply, goTo, scrollerRef, setFree, springTo, trackRef]);
-
-  return { goTo, currentIndex };
-}
-
-/* ------------------------------------------------------------------ */
-/* Rail                                                               */
-/* ------------------------------------------------------------------ */
-
-// `aria-disabled` rather than `disabled` at the ends, so focus stays put.
-const ARROW_CLASS =
-  "grid size-8 cursor-pointer place-items-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-[background-color,opacity] duration-150 ease-out hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-zinc-900 focus-visible:outline-offset-2 aria-disabled:cursor-default aria-disabled:opacity-40 aria-disabled:hover:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:aria-disabled:hover:bg-zinc-950 dark:focus-visible:outline-zinc-100 dark:hover:bg-zinc-900";
+const CONTROL_CLASS =
+  "inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-zinc-300 bg-white/80 px-3 py-1.5 font-medium text-xs text-zinc-700 transition-colors duration-150 ease-out hover:bg-white focus-visible:outline-2 focus-visible:outline-zinc-900 focus-visible:outline-offset-2 dark:border-zinc-700 dark:bg-zinc-950/70 dark:text-zinc-200 dark:focus-visible:outline-zinc-100 dark:hover:bg-zinc-900";
 
 export default function CarouselCards({
   items = DEFAULT_ITEMS,
@@ -1176,46 +824,93 @@ export default function CarouselCards({
   const [saved, setSaved] = useState<ReadonlySet<string>>(
     () => new Set(defaultFavorites)
   );
-  const { goTo, currentIndex } = useMomentumRail(
-    scrollerRef,
-    trackRef,
-    setActive
+  const [reducedMotion, setReducedMotion] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+  const [playing, setPlaying] = useState(true);
+  const [focused, setFocused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  const activeRef = useRef(active);
+  activeRef.current = active;
+
+  const move = useCallback(
+    (index: number, smooth = true) => {
+      const next = Math.min(Math.max(index, 0), items.length - 1);
+      setActive(next);
+      const scroller = scrollerRef.current;
+      const track = trackRef.current;
+      if (!(scroller && track)) {
+        return;
+      }
+      const left = centerOf(scroller, track, next);
+      if (left === null) {
+        return;
+      }
+      if (smooth && !reducedMotion && typeof scroller.scrollTo === "function") {
+        scroller.scrollTo({ left, behavior: "smooth" });
+      } else {
+        scroller.scrollLeft = left;
+      }
+    },
+    [items.length, reducedMotion]
   );
 
-  // Autoplay: pause while hovered, focused or touched, and never fight a drag.
-  const [paused, setPaused] = useState(false);
-  useEffect(() => {
-    if (!(autoplay && items.length > 1) || paused) {
-      return;
-    }
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-    // A touch has no hover, so it holds playback for a few seconds after.
-    let resumeTimer: ReturnType<typeof setTimeout> | undefined;
-    const hold = () => {
-      setPaused(true);
-      resumeTimer = setTimeout(() => setPaused(false), 6000);
-    };
-    const scroller = scrollerRef.current;
-    scroller?.addEventListener("pointerdown", hold);
-    const onVisibility = () => setPaused(document.hidden);
-    document.addEventListener("visibilitychange", onVisibility);
 
+  // The first card is centered on arrival, not only after the first advance.
+  useEffect(() => {
+    move(0, false);
+    const onResize = () => move(activeRef.current, false);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [move]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReducedMotion(media.matches);
+    media.addEventListener?.("change", sync);
+    return () => media.removeEventListener?.("change", sync);
+  }, []);
+
+  // Autoplay loops, and never fights a hidden tab or a reduced-motion request.
+  const canPlay = autoplay && items.length > 1 && !reducedMotion;
+  useEffect(() => {
+    if (!(canPlay && playing && !focused && !hovered)) {
+      return;
+    }
     const id = setInterval(() => {
       if (document.hidden) {
         return;
       }
-      goTo((currentIndex() + 1) % items.length);
+      move((activeRef.current + 1) % items.length);
     }, autoplayInterval);
+    return () => clearInterval(id);
+  }, [autoplayInterval, canPlay, focused, hovered, items.length, move, playing]);
 
-    return () => {
-      clearInterval(id);
-      clearTimeout(resumeTimer);
-      scroller?.removeEventListener("pointerdown", hold);
-      document.removeEventListener("visibilitychange", onVisibility);
-    };
-  }, [autoplay, autoplayInterval, currentIndex, goTo, items.length, paused]);
+  // Arrow keys step one card; Home and End jump to the ends.
+  const onKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
+    let next: number;
+    switch (event.key) {
+      case "ArrowLeft":
+        next = activeRef.current - 1;
+        break;
+      case "ArrowRight":
+        next = activeRef.current + 1;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = items.length - 1;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault();
+    move(next);
+  };
 
   const toggleSaved = (id: string) => {
     const next = !saved.has(id);
@@ -1231,75 +926,86 @@ export default function CarouselCards({
     onToggleFavorite?.(id, next);
   };
 
-  const step = (delta: number) => goTo(currentIndex() + delta);
-
   return (
     <section
       aria-label={title}
       aria-roledescription="carousel"
-      onPointerEnter={() => setPaused(true)}
-      onPointerLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setFocused(false);
+        }
+      }}
       className={cn(
         "w-full py-4 [--rail-card:13.5rem] sm:[--rail-card:15rem] lg:[--rail-card:16rem]",
         className
       )}
     >
-      {showHeader && (
-      <div className="mb-2 flex items-end justify-between gap-4 px-4">
-        <div className="min-w-0">
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">{eyebrow}</p>
-          <h2 className="truncate font-semibold text-lg text-zinc-900 tracking-tight dark:text-zinc-100">
-            {title}
-          </h2>
+      {(showHeader || canPlay) && (
+        <div className="mb-2 flex items-center justify-between gap-4 px-4">
+          {showHeader ? (
+            <div className="min-w-0">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                {eyebrow}
+              </p>
+              <h2 className="truncate font-semibold text-lg text-zinc-900 tracking-tight dark:text-zinc-100">
+                {title}
+              </h2>
+            </div>
+          ) : (
+            <span />
+          )}
+          <div className="flex shrink-0 items-center gap-3">
+            {canPlay && (
+              <button
+                aria-label={
+                  playing
+                    ? "Jeda putaran otomatis"
+                    : "Lanjutkan putaran otomatis"
+                }
+                className={CONTROL_CLASS}
+                onClick={() => setPlaying((value) => !value)}
+                type="button"
+              >
+                {playing ? (
+                  <Pause aria-hidden="true" className="size-3.5" />
+                ) : (
+                  <Play aria-hidden="true" className="size-3.5" />
+                )}
+                {playing ? "Jeda" : "Lanjut"}
+              </button>
+            )}
+            <span
+              aria-live="polite"
+              className="text-xs text-zinc-500 tabular-nums dark:text-zinc-400"
+            >
+              <span className="sr-only">Kartu </span>
+              {String(active + 1).padStart(2, "0")}
+              <span aria-hidden="true"> / </span>
+              <span className="sr-only"> dari </span>
+              {String(items.length).padStart(2, "0")}
+            </span>
+          </div>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <span
-            aria-live="polite"
-            className="mr-1 text-xs text-zinc-500 tabular-nums dark:text-zinc-400"
-          >
-            <span className="sr-only">Card </span>
-            {String(active + 1).padStart(2, "0")}
-            <span aria-hidden="true"> / </span>
-            <span className="sr-only"> of </span>
-            {String(items.length).padStart(2, "0")}
-          </span>
-          <button
-            aria-disabled={active === 0}
-            aria-label="Previous"
-            className={ARROW_CLASS}
-            onClick={() => step(-1)}
-            type="button"
-          >
-            <ChevronLeft aria-hidden="true" className="size-4" />
-          </button>
-          <button
-            aria-disabled={active === items.length - 1}
-            aria-label="Next"
-            className={ARROW_CLASS}
-            onClick={() => step(1)}
-            type="button"
-          >
-            <ChevronRight aria-hidden="true" className="size-4" />
-          </button>
-        </div>
-      </div>
       )}
 
       <section
-        aria-label={`${title}, use arrow keys to move`}
-        className="relative snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-6 outline-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-inset data-[dragging=true]:cursor-grabbing data-[free=true]:snap-none dark:focus-visible:ring-zinc-100 [&::-webkit-scrollbar]:hidden [@media(pointer:fine)]:cursor-grab [@media(pointer:fine)]:select-none"
+        aria-label={`${title}, gunakan tombol panah untuk berpindah`}
+        className="relative overflow-x-hidden overscroll-x-contain py-6 outline-none [container-type:inline-size] focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-inset dark:focus-visible:ring-zinc-100"
+        onKeyDown={onKeyDown}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
         ref={scrollerRef}
-        // biome-ignore lint/a11y/noNoninteractiveTabindex: a focusable scroller is how keyboard users reach the arrow keys
+        // biome-ignore lint/a11y/noNoninteractiveTabindex: a focusable rail is how keyboard users reach the arrow keys
         tabIndex={0}
       >
         <ul
           className="relative flex w-max gap-4 px-[calc(50cqw-var(--rail-card)/2)]"
           ref={trackRef}
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <RailCard
+              current={index === active}
               item={item}
               key={item.id}
               onSelect={onSelect}
