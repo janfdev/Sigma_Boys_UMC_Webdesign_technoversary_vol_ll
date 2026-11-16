@@ -136,7 +136,7 @@ export default function CircularProductCatalog() {
                     loading="lazy"
                   />
                   <div className="absolute top-2.5 right-2.5 z-10">
-                    <Badge variant="default" className="text-[10px] font-mono font-bold uppercase backdrop-blur-md bg-background/80 px-2 py-0.5">
+                    <Badge variant="default" className="text-[10px] font-mono font-bold uppercase px-2 py-0.5">
                       <AnimatedNumber value={p.pointsRequired} />Poin
                     </Badge>
                   </div>

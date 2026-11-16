@@ -227,7 +227,7 @@ export default function GaleriPage() {
                         loading="lazy"
                       />
                       <div className="absolute top-3 left-3 z-10">
-                        <Badge variant="default" className="font-mono text-[10px] font-bold uppercase backdrop-blur-md bg-background/80">
+                        <Badge variant="default" className="font-mono text-[10px] font-bold uppercase">
                           {article.category}
                         </Badge>
                       </div>
