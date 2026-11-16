@@ -10,7 +10,7 @@ import CampaignActionSection from "@/components/CampaignActionSection";
 import HomeFaqSection from "@/components/HomeFaqSection";
 import CircularCtaSection from "@/components/blocks/cta-ex-2";
 import MotionGrafisVideo from "@/components/MotionGrafisVideo";
-import LatestInsightSection from "@/components/LatestInsightSection";
+import HomeInsightSection from "@/components/HomeInsightSection";
 // import { TRAIL_SEEDS, CIRCULIFE_INFO } from "@/lib/constants";
 // import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout, Sparkles } from "lucide-react";
 // import { Badge } from "@/components/ui/badge";
@@ -28,8 +28,8 @@ export default function HomePage() {
         <MotionGrafisVideo/>
       </div>
 
-      {/* 1.2 Editorial Berita Terbaru: featured split + grid 3 kartu */}
-      <LatestInsightSection />
+      {/* 1.2 Sorotan lingkungan + arsip entri terbaru */}
+      <HomeInsightSection />
 
       {/* 1.5 Standalone Anatomy Rig Section: Direct Physical Machine Explainer */}
       <section className="py-10 sm:py-20 border-b border-border/80 bg-background" id="mesin-ekstrusi">
