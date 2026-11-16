@@ -145,7 +145,7 @@ export default function GaleriPage() {
                         </div>
                       )}
                       <div className="absolute top-3 left-3 z-10">
-                        <Badge variant="secondary" className="font-mono text-[10px] font-bold uppercase backdrop-blur-md bg-background/80">
+                        <Badge variant="default" className="font-mono text-[10px] font-bold uppercase backdrop-blur-md">
                           {item.category}
                         </Badge>
                       </div>
@@ -163,7 +163,7 @@ export default function GaleriPage() {
 
                   <CardFooter className="p-5 pt-3 border-t border-border/40 bg-muted/20 flex items-center justify-between">
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                      Tervalidasi ISO
+                      Capaian Pengelolaan
                     </span>
                     <span className="text-xs font-mono font-bold text-primary">
                       <NumericText text={item.wasteTransformed} />

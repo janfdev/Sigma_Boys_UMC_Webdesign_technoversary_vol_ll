@@ -734,48 +734,61 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-1",
     title: "Pencetakan Presisi Eco-Paving Block K-250",
     category: "TRANSFORMASI",
-    imageUrl: "/images/gallery/paving-molding.jpg",
-    description: "Proses pelelehan botol plastik terpilah dicampur pasir silika dan dicetak dengan mesin hidrolik bertekanan tinggi.",
+    imageUrl: "/image-lomba/mesin-press-paving.png",
+    description: `Pemanfaatan cacahan limbah plastik anorganik yang
+    dilelehkan pada suhu terkontrol dan dicetak dengan mesin
+    hidrolik presisi menjadi balok paving berkekuatan tinggi.`,
     wasteTransformed: "1.200 kg Plastik PET",
   },
   {
     id: "gal-2",
-    title: "Biopon Maggot BSF Sampah Sayuran Segar",
+    title: `Biokonversi Sampah Organik
+    Menggunakan Maggot BSF`,
     category: "BIOKONVERSI",
-    imageUrl: "/images/gallery/maggot-bio.jpg",
-    description: "Ratusan ribu larva BSF mengurai 250 kg limbah buah dan sayuran pasar dalam waktu kurang dari 48 jam.",
-    wasteTransformed: "4.500 kg Sisa Pangan",
+    imageUrl: "/image-lomba/larva-bsf.png",
+    description: `Pemanfaatan larva Black Soldier Fly (BSF) untuk
+    menguraikan sampah organik, seperti sisa sayuran dan
+    buah, menjadi biomassa berprotein dan kasgot bernutrisi.`,
+    wasteTransformed: "4.500 kg Sampah Organik",
   },
   {
     id: "gal-3",
     title: "Perakitan Tungku Ultralight dari Kaleng Bekas",
     category: "UPCYCLING",
-    imageUrl: "/images/gallery/stove-upcycling.jpg",
-    description: "Pengrajin muda desa merakit kaleng gas portabel menjadi kompor biomassa mini yang efisien dan tahan angin.",
+    imageUrl: "/image-lomba/kaleng-daur-ulang.png",
+    description: `Pemanfaatan limbah kaleng logam bekas menjadi kompor
+    biomassa mini (wood gasifier) portabel hemat bahan bakar
+    untuk kebutuhan lapangan dan kegiatan luar ruangan.`,
     wasteTransformed: "380 Kaleng Gas Portabel",
   },
   {
     id: "gal-4",
-    title: "Penimbangan Digital Presisi di Drop-Point Posko",
+    title: "Sistem Pemilahan dan Penimbangan Sampah di Drop Point",
     category: "LOGISTIK",
-    imageUrl: "/images/gallery/digital-scale.jpg",
-    description: "Penyetor memindai QR code akun CircuLife saat petugas menimbang sampah botol plastik untuk mencatat poin sirkular.",
+    imageUrl: "/image-lomba/penimbangan-sampah.png",
+    description: `Penimbangan presisi sampah anorganik terpilah di posko
+    drop-point berbasis pencatatan digital dan scan QR code
+    untuk transparansi data insentif warga.`,
     wasteTransformed: "850 kg Sampah Terpilah",
   },
   {
     id: "gal-5",
-    title: "Pemasangan Jalan Setapak Paving Block Plastik",
+    title: "Pemanfaatan Paving Block Daur Ulang untuk Infrastruktur Lingkungan",
     category: "DAMPAK",
-    imageUrl: "/images/gallery/paving-pathway.jpg",
-    description: "Jalan setapak sepanjang 350 meter di desa binaan dibangun menggunakan 8.400 buah paving block hasil daur ulang.",
+    imageUrl: "/image-lomba/pemasangan-paving.png",
+    description: `Aplikasi paving block hasil daur ulang plastik untuk
+    perkerasan jalan setapak warga dan jalur konservasi ramah
+    resapan air.`,
     wasteTransformed: "10.080 kg Plastik Daur Ulang",
   },
   {
     id: "gal-6",
-    title: "Panen Pupuk Kasgot untuk Persemaian Bibit",
+    title: "Pemanfaatan Kasgot sebagai Pupuk Organik untuk Pembibitan Tanaman",
     category: "BIOKONVERSI",
-    imageUrl: "/images/gallery/kasgot-harvest.jpg",
-    description: "Pupuk kasgot kering disaring dan dikemas untuk menyuburkan persemaian 5.000 bibit pohon penghijauan.",
+    imageUrl: "/image-lomba/bibit-pupuk-kasgot.png",
+    description: `Hasil pengolahan sisa media budidaya maggot BSF
+    dimanfaatkan sebagai pupuk organik kaya hara untuk
+    mendukung pembibitan pohon dan penghijauan desa.`,
     wasteTransformed: "2.100 kg Pupuk Kasgot",
   },
 ];

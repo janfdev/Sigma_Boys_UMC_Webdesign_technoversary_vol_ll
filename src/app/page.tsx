@@ -23,7 +23,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/*Motion Grafis*/}
-      <div className="max-w-7xl pt-5 mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl lg:pt-10 mx-auto sm:pt-7 px-4 sm:px-6 lg:px-8">
         <MotionGrafisVideo/>
       </div>
 
