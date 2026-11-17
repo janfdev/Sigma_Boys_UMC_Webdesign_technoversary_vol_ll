@@ -177,7 +177,7 @@ export default function HomeInsightSection() {
                   ))}
                 </div>
 
-                <span className="absolute left-3 top-3 max-w-[calc(100%-1.5rem)] rounded-full border border-primary/30 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-primary backdrop-blur-md">
+                <span className="absolute left-3 top-3 max-w-[calc(100%-1.5rem)] rounded-full border border-emerald-400/40 bg-black/75 px-2.5 py-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-emerald-300 backdrop-blur-md shadow-sm">
                   Pengelolaan Sampah &amp; Eksplorasi Kebijakan
                 </span>
                 <span className="absolute bottom-3 right-3 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/80 backdrop-blur-md">
