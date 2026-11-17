@@ -1,10 +1,9 @@
 import React from "react";
 import SpeciesDirectory from "@/components/SpeciesDirectory";
-import RestorationTracker from "@/components/RestorationTracker";
 import CircularProductCatalog from "@/components/CircularProductCatalog";
 import BioDigesterAnatomy from "@/components/BioDigesterAnatomy";
 import { SPECIES_SEEDS } from "@/lib/constants";
-import { Recycle, TreePine, Sparkles, Layers } from "lucide-react";
+import { Recycle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata = {
@@ -23,7 +22,7 @@ export default function KonservasiPage() {
             <span>Ekonomi Sirkular &amp; Konservasi Lingkungan</span>
           </Badge>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground leading-[1.15]">
-            Katalog Produk Olahan Sampah &amp; Restorasi Berkelanjutan
+            Katalog Inovasi Sirkular
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Mengubah sampah anorganik terpilah menjadi material konstruksi jalan setapak ramah lingkungan, pupuk persemaian bibit penghijauan, dan produk upcycling bernilai tambah tinggi.
@@ -76,11 +75,6 @@ export default function KonservasiPage() {
             </p>
           </div>
           <SpeciesDirectory speciesList={SPECIES_SEEDS} />
-        </section>
-
-        {/* 3. Ecosystem Restoration Section */}
-        <section className="pt-10 border-t border-border" aria-labelledby="restoration-heading">
-          <RestorationTracker />
         </section>
       </div>
     </div>

@@ -6,16 +6,10 @@ import WasteImpactSimulator from "@/components/WasteImpactSimulator";
 import WasteUtilizationFlow from "@/components/WasteUtilizationFlow";
 import EnvironmentalComparisonSlider from "@/components/EnvironmentalComparisonSlider";
 import CampaignActionSection from "@/components/CampaignActionSection";
-// import TrailStatusBoard from "@/components/TrailStatusBoard";
 import HomeFaqSection from "@/components/HomeFaqSection";
 import CircularCtaSection from "@/components/blocks/cta-ex-2";
 import MotionGrafisVideo from "@/components/MotionGrafisVideo";
 import HomeInsightSection from "@/components/HomeInsightSection";
-// import { TRAIL_SEEDS, CIRCULIFE_INFO } from "@/lib/constants";
-// import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout, Sparkles } from "lucide-react";
-// import { Badge } from "@/components/ui/badge";
-// import { buttonVariants } from "@/components/ui/button";
-// import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
@@ -24,7 +18,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/*Motion Grafis*/}
-      <div className="max-w-7xl lg:pt-10 mx-auto sm:pt-7 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl md:max-w-6xl lg:pt-10 mx-auto sm:pt-7 px-4 sm:px-6 lg:px-8">
         <MotionGrafisVideo/>
       </div>
 
@@ -57,13 +51,8 @@ export default function HomePage() {
       {/* 4. Interactive Before-After Environmental Restoration Split Slider */}
       <EnvironmentalComparisonSlider />
 
-      {/* 5. Conservation Action Initiatives (Bento Grid 3 Circular Pillars) */}
+      {/* 6. Conservation Action Initiatives (Bento Grid 3 Circular Pillars) */}
       <CampaignActionSection />
-
-      {/* 6. Drop-Point & Bank Sampah Status Board (Anchor: #jalur-status) */}
-      {/*<div id="jalur-status">
-        <TrailStatusBoard trails={TRAIL_SEEDS} />
-      </div>*/}
 
       {/* 7. Interactive Accordion FAQ & Operational Transparency */}
       <HomeFaqSection />

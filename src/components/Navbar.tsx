@@ -35,7 +35,7 @@ export interface NavbarProps {
 
 export const NAV_ITEMS = [
   { href: "/", label: "Beranda" },
-  { href: "/konservasi", label: "Produk Olahan" },
+  { href: "/inovasi", label: "Inovasi Sirkular" },
   { href: "/pantau", label: "Hitung Dampak" },
   { href: "/edukasi", label: "Panduan" },
   { href: "/galeri", label: "Dokumentasi" },
@@ -115,14 +115,14 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
           {/* 2. Produk Olahan */}
           <Link
-            href="/konservasi"
+            href="/inovasi"
             className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all ${
-              activePath === "/konservasi"
+              activePath === "/inovasi"
                 ? "bg-primary/10 text-primary font-black"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
             }`}
           >
-            Produk Olahan
+            Inovasi Sirkular
           </Link>
 
           {/* 3. Dropdown Menu: Wawasan & Fitur */}

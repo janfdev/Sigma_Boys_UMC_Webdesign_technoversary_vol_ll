@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
           <div className="flex items-center gap-2.5 font-semibold text-foreground">
             <Recycle className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-            <span>Hotline Kemitraan & Penyetoran CircuLife (<AnimatedNumber value={24} /> Jam) : 0821-2345-6789</span>
+            <span>Hotline Kemitraan & Penyetoran CircuLife 24 Jam : 0821-2345-6789</span>
           </div>
           <Link
             href="/contact"
@@ -29,7 +29,7 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-14 sm:py-20 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:gap-14">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:gap-14">
           {/* Col 1: Mission */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
@@ -82,31 +82,6 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
-
-          {/* Col 3: Sentra Drop Point Mitra */}
-          <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">
-              Jaringan Drop Point Komunitas
-            </h2>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="rounded-xl border border-border bg-background/60 p-3">
-                <p className="font-bold text-foreground">Sentra Kuningan</p>
-                <p className="text-muted-foreground mt-0.5">KSM Berkah Argamukti</p>
-              </div>
-              <div className="rounded-xl border border-border bg-background/60 p-3">
-                <p className="font-bold text-foreground">Sentra Majalengka</p>
-                <p className="text-muted-foreground mt-0.5">Bank Sampah Sahabat Bumi</p>
-              </div>
-              <div className="rounded-xl border border-border bg-background/60 p-3">
-                <p className="font-bold text-foreground">Sentra Cirebon</p>
-                <p className="text-muted-foreground mt-0.5">Sentra Inovasi Resik</p>
-              </div>
-              <div className="rounded-xl border border-border bg-background/60 p-3">
-                <p className="font-bold text-foreground">Sentra Bandung Raya</p>
-                <p className="text-muted-foreground mt-0.5">KSM Eco Harmoni</p>
-              </div>
-            </div>
           </div>
         </div>
 

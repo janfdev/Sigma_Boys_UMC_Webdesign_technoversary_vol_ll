@@ -32,34 +32,10 @@ export default function EdukasiPage() {
           </p>
         </div>
 
-        {/* 1. Link to the insight archive */}
-        <Card className="flex flex-col gap-4 border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="space-y-1.5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary">
-              [ Arsip Insight ]
-            </p>
-            <h2 className="text-lg font-black text-foreground sm:text-xl">
-              Kajian Lapangan &amp; Riset Terapan
-            </h2>
-            <p className="max-w-xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-              Baca kajian konservasi Ciremai, riset paving block limbah plastik, panduan zero waste,
-              dan kriya botol PET dalam satu arsip.
-            </p>
-          </div>
-          <Link
-            href="/insight"
-            className={cn(buttonVariants({ variant: "outline" }), "shrink-0 rounded-full font-mono text-[11px] uppercase tracking-[0.12em]")}
-          >
-            Buka Arsip Insight
-          </Link>
-        </Card>
-
-        {/* 2. SOP Guidelines Section */}
         <section aria-labelledby="sop-section">
           <SopGuidelines />
         </section>
 
-        {/* 3. Interactive Quiz Section */}
         <section className="pt-10 border-t border-border" aria-labelledby="quiz-section">
           <div className="mb-8 space-y-2">
             <Badge variant="outline" className="mb-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
@@ -78,7 +54,6 @@ export default function EdukasiPage() {
           </div>
         </section>
 
-        {/* Bottom CTA to report */}
         <Card className="border-border bg-muted/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm rounded-2xl">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-lg font-black text-foreground">

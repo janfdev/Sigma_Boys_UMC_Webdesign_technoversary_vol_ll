@@ -3,12 +3,12 @@ import { HeroVideoDialog } from './ui/hero-video-dialog'
 
 const MotionGrafisVideo = () => {
   return (
-    <div className="relative mx-auto w-full max-w-5xl">
+    <div className="relative mx-auto w-full">
       <HeroVideoDialog
         className="w-full"
         animationStyle="from-center"
-        videoSrc="https://www.youtube.com/embed/Y7M15Aw2jRc?si=oCXQ5OsRv69ZfahS"
-        thumbnailSrc="/image-lomba/motion-grafis-thumbnail.webp"
+        videoSrc="https://www.youtube.com/embed/w9_TWY8A6is?si=WGTX0y_GNhOcRQIn"
+        thumbnailSrc=""
         thumbnailAlt="Edukasi Sampah & Motion Grafis CircuLife"
       />
     </div>
