@@ -20,24 +20,25 @@ describe("registry AnimatedNumber", () => {
     const tick = (next: number) => act(() => { time = next; const callback = frame; frame = undefined; callback?.(time); });
     const { rerender } = render(<AnimatedNumber value={1200} duration={100} />);
     tick(started + 50);
-    const intermediate = screen.getByLabelText("1.200").textContent;
+    const node = () => document.querySelector('[data-slot="animated-number"]');
+    const intermediate = node()?.textContent;
     rerender(<AnimatedNumber value={1200} duration={100} className="font-bold" />);
-    expect(screen.getByLabelText("1.200").textContent).toBe(intermediate);
+    expect(node()?.textContent).toBe(intermediate);
     rerender(<AnimatedNumber value={850} duration={100} />);
     tick(started + 150);
-    expect(screen.getByLabelText("850")).toHaveTextContent("850");
+    expect(screen.getByText("850")).toHaveTextContent("850");
     expect(frame).toBeUndefined();
   });
 
   it("reserves enough width for animated fractional frames", () => {
     render(<AnimatedNumber value={1} />);
-    expect(screen.getByLabelText("1")).toHaveStyle({ minWidth: "4ch" });
+    expect(screen.getByText("1")).toHaveStyle({ minWidth: "4ch" });
   });
 
   it("renders the final value immediately for zero duration", () => {
     vi.spyOn(window, "matchMedia").mockReturnValue({ matches: false } as MediaQueryList);
     render(<AnimatedNumber value={42} duration={0} />);
-    expect(screen.getByLabelText("42")).toHaveTextContent("42");
+    expect(screen.getByText("42")).toHaveTextContent("42");
   });
 
   it("hydrates final server values without mismatch under reduced motion", () => {

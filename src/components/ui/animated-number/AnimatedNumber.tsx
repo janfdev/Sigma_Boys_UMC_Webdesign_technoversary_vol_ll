@@ -88,8 +88,11 @@ const AnimatedNumber = React.forwardRef<HTMLSpanElement, AnimatedNumberProps>(
     }, [value, from, duration, delay, disabled, setDisplay])
 
     return (
-      <Tag ref={ref as never} data-uipkge="" data-slot="animated-number" aria-label={fmt(value)} aria-live="off" className={cn('tabular-nums', as === 'span' && 'inline-block', className)} style={as === 'span' ? { minWidth: `${Math.max(fmt(value).length, fmt(value + 0.88).length, fmt(value - 0.88).length)}ch`, ...props.style } : props.style} {...props}>
-        <Tag aria-hidden="true">{fmt(display)}</Tag>
+      // no aria-label here: generic spans and tspans cannot carry a name, and the
+      // rendered text already is the accessible value (aria-live is off, so the
+      // counting frames are never announced).
+      <Tag ref={ref as never} data-uipkge="" data-slot="animated-number" aria-live="off" className={cn('tabular-nums', as === 'span' && 'inline-block', className)} style={as === 'span' ? { minWidth: `${Math.max(fmt(value).length, fmt(value + 0.88).length, fmt(value - 0.88).length)}ch`, ...props.style } : props.style} {...props}>
+        {fmt(display)}
       </Tag>
     )
   },

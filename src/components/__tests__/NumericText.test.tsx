@@ -33,8 +33,8 @@ describe("quantitative UI text", () => {
   it("renders final server values and immediately retargets under reduced motion", () => {
     expect(renderToString(<NumericText text="142.5 Ton" />)).toContain("142,5");
     const { rerender } = render(<NumericText text="142.5 Ton" />);
-    expect(screen.getByLabelText("142,5")).toHaveTextContent("142,5");
+    expect(screen.getByText("142,5")).toHaveTextContent("142,5");
     rerender(<NumericText text="0 Ton" />);
-    expect(screen.getByLabelText("0")).toHaveTextContent("0");
+    expect(screen.getByText("0")).toHaveTextContent("0");
   });
 });

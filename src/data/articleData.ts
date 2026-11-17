@@ -154,7 +154,7 @@ export const PAVING_ARTICLE: ConservationArticle = {
   readTime: "5 menit baca",
   topic: "Divisi Investigasi Tapak",
   image: {
-    src: "/image-lomba/pemasangan-paving.png",
+    src: "/image-lomba/pemasangan-paving.webp",
     alt: "Paving block berbahan limbah plastik dipasang di jalan lingkungan oleh mahasiswa KKN 33 UMC",
     caption: "Paving block berbahan limbah plastik rumah tangga dipasang di jalan lingkungan kampung.",
     credit: "DOC: KKN 33 UMC X CIRCULIFE",
@@ -197,7 +197,7 @@ export const PAVING_ARTICLE: ConservationArticle = {
         "Video di bawah merekam tahapan pencacahan, peleburan, dan pencetakan paving block oleh Mahasiswa KKN 33 UMC bersama warga.",
       ],
       widgets: ["video"],
-      videoId: "zvu01_wvbBc",
+      videoId: "https://youtu.be/rvuOl_wpbBo",
     },
     {
       id: "sirkularitas",
@@ -299,7 +299,7 @@ const UPCYCLING_ARTICLE: ConservationArticle = {
   readTime: "3 menit baca",
   topic: "Divisi Edukasi & Inovasi Sirkular",
   image: {
-    src: "/image-lomba/kreasi-daur-ulang.png",
+    src: "/image-lomba/kreasi-daur-ulang.webp",
     alt: "Ragam kreasi kerajinan dari botol plastik bekas termasuk pot tanaman gantung dan celengan karakter",
     caption:
       "Ragam kreasi upcycling botol plastik bekas menjadi produk dekoratif dan fungsional rumah tangga.",

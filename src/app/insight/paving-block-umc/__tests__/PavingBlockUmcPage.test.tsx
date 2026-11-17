@@ -14,7 +14,7 @@ describe("Paving block UMC article page", () => {
     expect(screen.getByText(/60% Pasir/i)).toBeTruthy();
 
     const frame = screen.getByTitle(/Dokumentasi proses pencacahan/i);
-    expect(frame).toHaveAttribute("src", "https://www.youtube.com/embed/zvu01_wvbBc");
+    expect(frame).toHaveAttribute("src", "https://www.youtube.com/embed/rvuOl_wpbBo");
   });
 
   it("counts an appreciation click", () => {

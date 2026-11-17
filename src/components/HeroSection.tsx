@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 
 // Photos double as the gallery preview: the rail links every card to /galeri.
 const slides: RailItem[] = [
-  { id: "kasgot", alt: "Bibit tanaman diberi pupuk kasgot", file: "bibit-pupuk-kasgot.png" },
-  { id: "kolase", alt: "Proses pengolahan plastik menjadi paving", file: "Kolase Daur Ulang Plastik Menjadi Paving.png" },
-  { id: "paving", alt: "Pemasangan paving daur ulang di tepi sungai", file: "pemasangan-paving.png" },
-  { id: "organizer", alt: "Organizer alat tulis dari botol plastik", file: "Organizer Alat Tulis Botol Daur Ulang.png" },
-  { id: "lentera", alt: "Lentera bunga dari botol PET", file: "Lentera Bunga PET di Senja Hari.png" },
+  { id: "kasgot", alt: "Bibit tanaman diberi pupuk kasgot", file: "bibit-pupuk-kasgot.webp" },
+  { id: "kolase", alt: "Proses pengolahan plastik menjadi paving", file: "Kolase Daur Ulang Plastik Menjadi Paving.webp" },
+  { id: "paving", alt: "Pemasangan paving daur ulang di tepi sungai", file: "pemasangan-paving.webp" },
+  { id: "organizer", alt: "Organizer alat tulis dari botol plastik", file: "Organizer Alat Tulis Botol Daur Ulang.webp" },
+  { id: "lentera", alt: "Lentera bunga dari botol PET", file: "Lentera Bunga PET di Senja Hari.webp" },
 ].map(({ id, alt, file }) => ({
   id,
   image: `/image-lomba/${encodeURIComponent(file)}`,

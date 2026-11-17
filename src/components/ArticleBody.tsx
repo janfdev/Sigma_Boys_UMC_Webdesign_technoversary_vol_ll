@@ -38,7 +38,7 @@ function Widget({ name, videoId }: { name: ArticleWidgetName; videoId?: string }
 
 export default function ArticleBody({ article }: { article: ConservationArticle }) {
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 pt-14 sm:px-6 sm:pt-16">
+    <div className="mx-auto w-full max-w-4xl px-4 pt-14 sm:px-6 sm:pt-16">
       <div className="space-y-14">
         {article.sections.map((section) => (
           <section aria-labelledby={`${section.id}-heading`} id={section.id} key={section.id}>

@@ -17,7 +17,7 @@ describe("WasteImpactSimulator Component", () => {
     expect(screen.getByText("Minyak Jelantah")).toBeInTheDocument();
 
     // Default 25 kg PET calculation (25 * 0.8 = 20 paving blocks)
-    expect(screen.getByLabelText("20").parentElement).toBeInTheDocument();
+    expect(screen.getAllByText("20").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Eco-Paving Block K-250").length).toBeGreaterThanOrEqual(1);
   });
 
@@ -38,6 +38,6 @@ describe("WasteImpactSimulator Component", () => {
     fireEvent.click(preset50);
 
     // 50 * 0.8 = 40 paving blocks
-    expect(screen.getByLabelText("40").parentElement).toBeInTheDocument();
+    expect(screen.getAllByText("40").length).toBeGreaterThan(0);
   });
 });

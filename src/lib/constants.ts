@@ -734,7 +734,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-1",
     title: "Pencetakan Presisi Eco-Paving Block K-250",
     category: "TRANSFORMASI",
-    imageUrl: "/image-lomba/mesin-press-paving.png",
+    imageUrl: "/image-lomba/mesin-press-paving.webp",
     description: `Pemanfaatan cacahan limbah plastik anorganik yang
     dilelehkan pada suhu terkontrol dan dicetak dengan mesin
     hidrolik presisi menjadi balok paving berkekuatan tinggi.`,
@@ -745,7 +745,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     title: `Biokonversi Sampah Organik
     Menggunakan Maggot BSF`,
     category: "BIOKONVERSI",
-    imageUrl: "/image-lomba/larva-bsf.png",
+    imageUrl: "/image-lomba/larva-bsf.webp",
     description: `Pemanfaatan larva Black Soldier Fly (BSF) untuk
     menguraikan sampah organik, seperti sisa sayuran dan
     buah, menjadi biomassa berprotein dan kasgot bernutrisi.`,
@@ -755,7 +755,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-3",
     title: "Perakitan Tungku Ultralight dari Kaleng Bekas",
     category: "UPCYCLING",
-    imageUrl: "/image-lomba/kaleng-daur-ulang.png",
+    imageUrl: "/image-lomba/kaleng-daur-ulang.webp",
     description: `Pemanfaatan limbah kaleng logam bekas menjadi kompor
     biomassa mini (wood gasifier) portabel hemat bahan bakar
     untuk kebutuhan lapangan dan kegiatan luar ruangan.`,
@@ -765,7 +765,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-4",
     title: "Sistem Pemilahan dan Penimbangan Sampah di Drop Point",
     category: "LOGISTIK",
-    imageUrl: "/image-lomba/penimbangan-sampah.png",
+    imageUrl: "/image-lomba/penimbangan-sampah.webp",
     description: `Penimbangan presisi sampah anorganik terpilah di posko
     drop-point berbasis pencatatan digital dan scan QR code
     untuk transparansi data insentif warga.`,
@@ -775,7 +775,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-5",
     title: "Pemanfaatan Paving Block Daur Ulang untuk Infrastruktur Lingkungan",
     category: "DAMPAK",
-    imageUrl: "/image-lomba/pemasangan-paving.png",
+    imageUrl: "/image-lomba/pemasangan-paving.webp",
     description: `Aplikasi paving block hasil daur ulang plastik untuk
     perkerasan jalan setapak warga dan jalur konservasi ramah
     resapan air.`,
@@ -785,7 +785,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-6",
     title: "Pemanfaatan Kasgot sebagai Pupuk Organik untuk Pembibitan Tanaman",
     category: "BIOKONVERSI",
-    imageUrl: "/image-lomba/bibit-pupuk-kasgot.png",
+    imageUrl: "/image-lomba/bibit-pupuk-kasgot.webp",
     description: `Hasil pengolahan sisa media budidaya maggot BSF
     dimanfaatkan sebagai pupuk organik kaya hara untuk
     mendukung pembibitan pohon dan penghijauan desa.`,

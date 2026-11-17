@@ -22,9 +22,9 @@ const RESEARCH = {
     "Mengapa pemilahan dari tingkat rumah tangga, rukun tetangga, dan warung menjadi kunci vital dalam mengurangi beban tempat pemrosesan akhir (TPA) secara berkelanjutan, sekaligus menciptakan bahan baku bersih bagi industri daur ulang.",
   // Three frames of the same field activity: sorted plastic, the press, the finished paving.
   collage: [
-    { src: "/image-lomba/Kolase Daur Ulang Plastik Menjadi Paving.png", alt: "Pemilahan limbah plastik sebelum dicacah" },
-    { src: "/image-lomba/mesin-press-paving.png", alt: "Mesin press mencetak paving block" },
-    { src: "/image-lomba/pemasangan-paving.png", alt: "Paving block hasil daur ulang dipasang" },
+    { src: "/image-lomba/Kolase Daur Ulang Plastik Menjadi Paving.webp", alt: "Pemilahan limbah plastik sebelum dicacah" },
+    { src: "/image-lomba/mesin-press-paving.webp", alt: "Mesin press mencetak paving block" },
+    { src: "/image-lomba/pemasangan-paving.webp", alt: "Paving block hasil daur ulang dipasang" },
   ],
 };
 
@@ -46,7 +46,7 @@ const SIDE_ENTRIES = [
     title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna.",
     summary:
       "Botol PET yang biasanya berakhir di TPA bisa menjadi pot gantung, organizer, hingga lentera. Panduan singkat menyiapkan bahan, alat, dan langkah pemotongan yang aman.",
-    image: "/image-lomba/kreasi-daur-ulang.png",
+    image: "/image-lomba/kreasi-daur-ulang.webp",
     cta: "Baca Panduan",
   },
 ];

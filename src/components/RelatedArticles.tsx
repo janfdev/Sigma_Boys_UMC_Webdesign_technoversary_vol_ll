@@ -81,19 +81,6 @@ export default function RelatedArticles({
             </li>
           ))}
         </ul>
-
-        <div className="mt-10 flex justify-center">
-          <Link
-            className={cn(
-              buttonVariants({ variant: "outline", size: "lg" }),
-              "cursor-pointer gap-2 rounded-full font-mono text-[11px] uppercase tracking-[0.14em]"
-            )}
-            href="/insight"
-          >
-            <ArrowLeft aria-hidden="true" className="size-3.5" />
-            Kembali ke Daftar Artikel
-          </Link>
-        </div>
       </div>
     </section>
   );

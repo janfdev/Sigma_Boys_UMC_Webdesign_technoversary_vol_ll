@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export interface NavbarDarkShadowProps {
@@ -33,15 +32,6 @@ export function NavbarDarkShadow({
   mobileMenuOpen = false,
 }: NavbarDarkShadowProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (typeof latest === "number") {
-      setIsScrolled(latest > threshold);
-    }
-  });
-
-  // Fallback passive listener for reliable cross-browser and test environment support
   useEffect(() => {
     const handleScroll = () => {
       if (typeof window !== "undefined") {

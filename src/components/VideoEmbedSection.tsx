@@ -1,3 +1,9 @@
+// accepts a bare id or a full youtube link, so the data file can store either
+const toId = (value: string) =>
+  /^[\w-]{11}$/.test(value)
+    ? value
+    : value.match(/(?:youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/)?.[1] ?? value;
+
 export default function VideoEmbedSection({ videoId }: { videoId: string }) {
   return (
     <figure className="mt-6">
@@ -8,7 +14,7 @@ export default function VideoEmbedSection({ videoId }: { videoId: string }) {
           className="size-full"
           loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={`https://www.youtube.com/embed/${toId(videoId)}`}
           title="Dokumentasi proses pencacahan, peleburan, dan pencetakan paving block oleh Mahasiswa KKN 33 UMC"
         />
       </div>
