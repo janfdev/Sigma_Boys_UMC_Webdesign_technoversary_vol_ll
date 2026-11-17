@@ -7,7 +7,7 @@ const FEATURED_TOPICS = ["DAS Cisanggarung", "Flora Endemik", "Patroli Masyaraka
 
 const FEATURED = {
   href: insightHref(CIREMAI_ARTICLE.slug),
-  image: "/image-lomba/ciremai-insight.webp",
+  image: CIREMAI_ARTICLE.image.src,
   imageAlt: CIREMAI_ARTICLE.image.alt,
   title: CIREMAI_ARTICLE.title,
   summary:
