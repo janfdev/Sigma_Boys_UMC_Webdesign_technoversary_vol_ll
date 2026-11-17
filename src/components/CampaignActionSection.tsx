@@ -1,5 +1,3 @@
-import { AnimatedNumber } from "@/components/ui/animated-number";
-
 import React from "react";
 import Link from "next/link";
 import { Flame, Sprout, ArrowUpRight, ArrowRight, CheckCircle2, Layers, ShieldCheck, Sparkles } from "lucide-react";
@@ -145,7 +143,23 @@ export default function CampaignActionSection() {
               </p>
             </CardHeader>
 
-            <CardContent className="p-6 sm:p-8 pt-6 space-y-4">
+            <CardContent className="p-6 sm:p-8 pt-6 space-y-5">
+              {/* Telemetry Impact Stat Bar */}
+              <div className="grid grid-cols-3 gap-2.5 p-3.5 rounded-xl bg-muted/30 border border-border/60 text-center font-mono">
+                <div>
+                  <span className="block text-base sm:text-xl font-black text-foreground tabular-nums">1.920+</span>
+                  <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Unit Tungku</span>
+                </div>
+                <div className="border-x border-border/60">
+                  <span className="block text-base sm:text-xl font-black text-amber-800 dark:text-amber-300 tabular-nums">42.6%</span>
+                  <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Efisiensi Kalor</span>
+                </div>
+                <div>
+                  <span className="block text-base sm:text-xl font-black text-emerald-800 dark:text-emerald-300 tabular-nums">0 Risiko</span>
+                  <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Sisa Gas Buang</span>
+                </div>
+              </div>
+
               <ul className="space-y-2.5 text-xs text-muted-foreground font-mono">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
@@ -153,11 +167,11 @@ export default function CampaignActionSection() {
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                  <span>Fabrikasi perforated ventilation untuk efisiensi biomassa <AnimatedNumber value={300} />%</span>
+                  <span>Fabrikasi double-wall perforated ventilation untuk efisiensi biomassa</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                  <span>1.920 unit tungku ultralight didistribusikan ke penggiat alam</span>
+                  <span>Mitra Bengkel Logam Komunitas Hijau &amp; Sentra Upcycling</span>
                 </li>
               </ul>
             </CardContent>
@@ -196,7 +210,7 @@ export default function CampaignActionSection() {
                   </Badge>
                 </div>
               </div>
-              <div className="md:col-span-8 p-6 sm:p-8">
+              <div className="md:col-span-8 p-6 sm:p-8 space-y-6">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
@@ -213,7 +227,8 @@ export default function CampaignActionSection() {
                         Kompos Bio-Kasgot &amp; Penukaran Sampah dengan Bibit Tanaman
                       </h3>
                       <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-3xl">
-                        Setiap 5 kg sampah terpilah yang disetorkan ke drop-point dapat langsung ditukarkan dengan <AnimatedNumber value={1} /> bibit tanaman siap tanam atau produk daur ulang. Sampah organik diurai larva maggot BSF untuk nutrisi tanah tanpa bau menyengat.</p>
+                        Setiap 5 kg sampah terpilah yang disetorkan ke drop-point dapat langsung ditukarkan dengan 1 bibit tanaman siap tanam atau produk daur ulang. Sampah organik diurai larva maggot BSF untuk nutrisi tanah tanpa bau menyengat.
+                      </p>
                     </div>
                   </div>
 
@@ -228,6 +243,34 @@ export default function CampaignActionSection() {
                       <span>Pelajari Kasgot</span>
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
+                  </div>
+                </div>
+
+                {/* 3-Step Feature Highlights & Telemetry Strip */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2 border-t border-border/50">
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1">
+                    <span className="text-[10px] font-mono font-bold uppercase text-primary tracking-wider block">
+                      01 / Biokonversi BSF 14 Hari
+                    </span>
+                    <p className="text-xs font-semibold text-foreground leading-snug">
+                      Mereduksi 80% volume sampah dapur harian tanpa menghasilkan bau busuk.
+                    </p>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1">
+                    <span className="text-[10px] font-mono font-bold uppercase text-emerald-800 dark:text-emerald-300 tracking-wider block">
+                      02 / Pupuk Kasgot SNI
+                    </span>
+                    <p className="text-xs font-semibold text-foreground leading-snug">
+                      Kaya hara makro NPK seimbang (pH 6.9) untuk nutrisi persemaian bibit.
+                    </p>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1">
+                    <span className="text-[10px] font-mono font-bold uppercase text-amber-800 dark:text-amber-300 tracking-wider block">
+                      03 / Reward 1 Bibit
+                    </span>
+                    <p className="text-xs font-semibold text-foreground leading-snug">
+                      Setiap 5 kg sampah terpilah ditukar 1 bibit pohon produktif siap tanam.
+                    </p>
                   </div>
                 </div>
               </div>

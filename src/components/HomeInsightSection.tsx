@@ -19,7 +19,7 @@ const RESEARCH = {
   href: insightHref("paving-block-umc"),
   title: "Dari Sampah Menjadi Manfaat: Mahasiswa UMC Membuat Paving Block Berbahan Limbah Plastik",
   summary:
-    "Mengapa pemilahan dari tingkat rumah tangga, rukun tetangga, dan warung menjadi kunci vital dalam mengurangi beban tempat pemrosesan akhir (TPA) secara berkelanjutan, sekaligus menciptakan bahan baku bersih bagi industri daur ulang.",
+    "Inovasi mahasiswa Universitas Muhammadiyah Cirebon memformulasi limbah plastik PET dan pasir sungai dengan rasio 40:60 menjadi eco-paving block mutu K-250 tahan cuaca ekstrem untuk pedestrian ramah lingkungan.",
   // Three frames of the same field activity: sorted plastic, the press, the finished paving.
   collage: [
     { src: "/image-lomba/Kolase Daur Ulang Plastik Menjadi Paving.webp", alt: "Pemilahan limbah plastik sebelum dicacah" },
@@ -35,7 +35,7 @@ const SIDE_ENTRIES = [
     readTime: "4 Mnt Baca",
     title: "Mulai dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste untuk Masa Depan",
     summary:
-      "Zero waste tidak berarti nol sampah sejak hari pertama. Ia tumbuh dari kebiasaan belanja, memilah, dan menolak kemasan sekali pakai di tingkat rumah tangga.",
+      "Zero waste bukan sekadar gaya hidup tanpa sampah, melainkan komitmen mengurangi timbulan dari hulu melalui prinsip 5R (Refuse, Reduce, Reuse, Repurpose, Rot) di kehidupan sehari-hari.",
     image: "/image-lomba/gaya-hidup-zero-waste.webp",
     cta: "Baca Artikel",
   },
@@ -43,9 +43,9 @@ const SIDE_ENTRIES = [
     href: insightHref("upcycling-botol-plastik"),
     header: "Inovasi Daur Ulang",
     readTime: "3 Mnt Baca",
-    title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna.",
+    title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna",
     summary:
-      "Botol PET yang biasanya berakhir di TPA bisa menjadi pot gantung, organizer, hingga lentera. Panduan singkat menyiapkan bahan, alat, dan langkah pemotongan yang aman.",
+      "Langkah terpadu mengubah limbah botol PET menjadi pot hidroponik vertikal, wadah organizer alat tulis, dan lentera estetik yang memiliki nilai fungsi dan nilai ekonomi sirkular.",
     image: "/image-lomba/kreasi-daur-ulang.webp",
     cta: "Baca Panduan",
   },
@@ -216,7 +216,7 @@ export default function HomeInsightSection() {
                   className="group flex flex-1 flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
                   key={entry.title}
                 >
-                  <div className="relative h-44 w-full shrink-0 overflow-hidden sm:h-48">
+                  <div className="relative h-40 sm:h-44 w-full shrink-0 overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       alt={entry.title}

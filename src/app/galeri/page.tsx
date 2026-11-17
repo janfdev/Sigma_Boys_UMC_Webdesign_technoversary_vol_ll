@@ -38,7 +38,7 @@ export default function GaleriPage() {
       ? CIRCULIFE_ARTICLES
       : CIRCULIFE_ARTICLES.filter((a) => a.category === selectedArticleCategory);
 
-  const articleCategories = ["ALL", "PANDUAN", "TEKNOLOGI", "ORGANIK", "UPCYCLING"];
+  const articleCategories = ["ALL", "KONSERVASI", "TEKNOLOGI", "PANDUAN", "UPCYCLING"];
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -263,11 +263,11 @@ export default function GaleriPage() {
                     </div>
 
                     <Link
-                      href={`/insight#${article.slug}`}
-                      className="font-mono font-bold text-primary hover:underline inline-flex items-center gap-1 text-xs"
+                      href={`/insight/${article.slug}`}
+                      className="font-mono font-bold text-primary hover:underline inline-flex items-center gap-1.5 text-xs transition-colors"
                     >
-                      <span>Baca Ringkasan</span>
-                      <ArrowRight className="h-3 w-3" />
+                      <span>Baca Artikel Lengkap</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
                 </Card>
