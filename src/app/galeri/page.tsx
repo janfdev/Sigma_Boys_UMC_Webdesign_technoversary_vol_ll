@@ -254,7 +254,7 @@ export default function GaleriPage() {
                     </p>
                   </div>
 
-                  <div className="p-6 pt-0 mt-auto border-t border-border/60 flex items-center justify-between text-xs">
+                  <div className="p-6 pt-3 mt-auto border-t border-border/60 flex flex-wrap items-center justify-between gap-2.5 text-xs">
                     <div className="flex items-center gap-2 text-muted-foreground font-mono">
                       <User className="h-3.5 w-3.5 text-primary" />
                       <span>{article.author}</span>

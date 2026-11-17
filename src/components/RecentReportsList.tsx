@@ -132,7 +132,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
           </Button>
         </div>
 
-        <div className="relative min-w-[240px]">
+        <div className="relative w-full sm:w-auto sm:min-w-[240px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
           <Input
             type="text"

@@ -90,7 +90,7 @@ export default function EnvironmentalComparisonSlider() {
             value={100 - sliderPosition}
             onValueChange={(position) => setSliderPosition(100 - position)}
             style={{ touchAction: "pan-y" }}
-            className="h-[420px] sm:h-[500px] lg:h-[560px] w-full rounded-none border-0"
+            className="h-[320px] sm:h-[480px] lg:h-[560px] w-full rounded-none border-0"
           />
           <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-6">
             <div className="flex flex-col gap-3 rounded-xl border border-border bg-muted/40 p-4">

@@ -54,7 +54,7 @@ export default function EdukasiPage() {
           </div>
         </section>
 
-        <Card className="border-border bg-muted/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm rounded-2xl">
+        <Card className="border-border bg-muted/40 p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm rounded-2xl">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-lg font-black text-foreground">
               Sudah Memilah Sampah dari Rumah Anda?
@@ -65,7 +65,7 @@ export default function EdukasiPage() {
           </div>
           <Link
             href="/lapor"
-            className={cn(buttonVariants({ variant: "default", size: "lg" }), "h-12 px-6 text-xs font-bold gap-2.5 shadow-sm shrink-0 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90")}
+            className={cn(buttonVariants({ variant: "default", size: "lg" }), "w-full sm:w-auto h-12 px-6 text-xs font-bold gap-2.5 shadow-sm shrink-0 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 justify-center text-center")}
           >
             <PackageCheck className="h-4 w-4" aria-hidden="true" />
             <span>Setor Sampah Sekarang</span>

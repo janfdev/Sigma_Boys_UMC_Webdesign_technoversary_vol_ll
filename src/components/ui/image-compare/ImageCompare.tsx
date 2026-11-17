@@ -173,7 +173,7 @@ const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
           draggable={false}
         />
         {showLabels && (
-          <span className="bg-background/80 text-foreground absolute bottom-2 left-2 max-w-[45%] rounded px-2 py-0.5 text-[10px] sm:text-xs font-medium backdrop-blur-sm">
+          <span className="bg-background/80 text-foreground absolute bottom-2 left-2 max-w-[45%] rounded px-2 py-0.5 text-[10px] sm:text-xs font-medium backdrop-blur-sm leading-tight truncate sm:whitespace-normal">
             {beforeLabel}
           </span>
         )}
@@ -187,7 +187,7 @@ const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
             draggable={false}
           />
           {showLabels && (
-            <span className="bg-background/80 text-foreground absolute right-2 bottom-2 max-w-[45%] rounded px-2 py-0.5 text-[10px] sm:text-xs font-medium backdrop-blur-sm">
+            <span className="bg-background/80 text-foreground absolute right-2 bottom-2 max-w-[45%] rounded px-2 py-0.5 text-[10px] sm:text-xs font-medium backdrop-blur-sm leading-tight truncate sm:whitespace-normal">
               {afterLabel}
             </span>
           )}

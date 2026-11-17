@@ -42,7 +42,7 @@ export default function PantauPage() {
         </section>*/}
 
         {/* Bottom Callout */}
-        <Alert className="border-primary/30 bg-primary/10 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl shadow-sm">
+        <Alert className="border-primary/30 bg-primary/10 p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl shadow-sm">
           <div className="flex items-start gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
               <PackageCheck className="h-6 w-6" aria-hidden="true" />
@@ -59,7 +59,7 @@ export default function PantauPage() {
 
           <Link
             href="/lapor"
-            className={cn(buttonVariants({ variant: "default", size: "lg" }), "h-12 px-6 text-xs font-bold shadow-sm shrink-0 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90")}
+            className={cn(buttonVariants({ variant: "default", size: "lg" }), "w-full sm:w-auto h-12 px-6 text-xs font-bold shadow-sm shrink-0 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 justify-center text-center")}
           >
             <span>Setor & Catat Sampah Sekarang</span>
           </Link>

@@ -91,7 +91,7 @@ export default function CampaignActionSection() {
               </div>
             </CardContent>
 
-            <CardFooter className="p-4 sm:p-6 px-6 sm:px-8 border-t border-border/60 bg-muted/10 flex items-center justify-between">
+            <CardFooter className="p-4 sm:p-6 px-6 sm:px-8 border-t border-border/60 bg-muted/10 flex flex-wrap items-center justify-between gap-3">
               <Link
                 href="/galeri"
                 className={cn(
@@ -176,7 +176,7 @@ export default function CampaignActionSection() {
               </ul>
             </CardContent>
 
-            <CardFooter className="p-4 sm:p-6 px-6 sm:px-8 border-t border-border/60 bg-muted/10 flex items-center justify-between">
+            <CardFooter className="p-4 sm:p-6 px-6 sm:px-8 border-t border-border/60 bg-muted/10 flex flex-wrap items-center justify-between gap-3">
               <Link
                 href="/pantau"
                 className={cn(

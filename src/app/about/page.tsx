@@ -46,41 +46,41 @@ export default function AboutPage() {
           </div>
 
           {/* Quick Metrics Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border/60">
-            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-border/60">
+            <div className="p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Total Sampah Terolah
               </span>
-              <span className="text-2xl font-black text-foreground font-mono block mt-1 tabular-nums">
+              <span className="text-xl sm:text-2xl font-black text-foreground font-mono block mt-1 tabular-nums">
                 {CIRCULIFE_INFO.managedWasteTons} Ton
               </span>
               <span className="text-xs text-muted-foreground mt-0.5 block">Akumulasi nasional</span>
             </div>
 
-            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
+            <div className="p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Eco-Paving Terpasang
               </span>
-              <span className="text-2xl font-black text-foreground font-mono block mt-1 tabular-nums">
+              <span className="text-xl sm:text-2xl font-black text-foreground font-mono block mt-1 tabular-nums">
               {CIRCULIFE_INFO.pavingBlocksManufactured}
               </span>
               <span className="text-xs text-muted-foreground mt-0.5 block">Kekuatan K-250 teruji</span>
             </div>
 
-            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
+            <div className="p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Mitra KSM Komunitas
               </span>
-              <span className="text-2xl font-black text-primary font-mono block mt-1 tabular-nums">
+              <span className="text-xl sm:text-2xl font-black text-primary font-mono block mt-1 tabular-nums">
           18 Kelompok</span>
               <span className="text-xs text-muted-foreground mt-0.5 block">Pemberdayaan warga</span>
             </div>
 
-            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
+            <div className="p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Reduksi Jejak Karbon
               </span>
-              <span className="text-2xl font-black text-emerald-700 dark:text-emerald-400 font-mono block mt-1 tabular-nums">
+              <span className="text-xl sm:text-2xl font-black text-emerald-700 dark:text-emerald-400 font-mono block mt-1 tabular-nums">
               {CIRCULIFE_INFO.co2eReductionTons}
               </span>
               <span className="text-xs text-muted-foreground mt-0.5 block">CO2e terhindar</span>

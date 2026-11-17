@@ -190,7 +190,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-1">
             Nomor Tiket Penyetoran & Daur Ulang
           </span>
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <span className="text-2xl sm:text-3xl font-black text-foreground tabular-nums tracking-wider font-mono">
               {submittedReport.id}
             </span>

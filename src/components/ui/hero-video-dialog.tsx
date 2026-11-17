@@ -49,12 +49,12 @@ export function HeroVideoDialog({
           className="h-full w-full object-cover rounded-2xl border border-border transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:brightness-[0.85]"
         />
         <div className="absolute inset-0 flex scale-[0.9] items-center justify-center rounded-2xl transition-all duration-200 ease-out group-hover:scale-100">
-          <div className="bg-primary/10 flex size-28 items-center justify-center rounded-full backdrop-blur-md">
+          <div className="bg-primary/10 flex size-16 sm:size-28 items-center justify-center rounded-full backdrop-blur-md">
             <div
-              className={`from-primary/30 to-primary relative flex size-20 scale-100 items-center justify-center rounded-full bg-linear-to-b shadow-md transition-all duration-200 ease-out group-hover:scale-[1.2]`}
+              className={`from-primary/30 to-primary relative flex size-12 sm:size-20 scale-100 items-center justify-center rounded-full bg-linear-to-b shadow-md transition-all duration-200 ease-out group-hover:scale-[1.2]`}
             >
               <Play
-                className="size-8 scale-100 fill-white text-white transition-transform duration-200 ease-out group-hover:scale-105"
+                className="size-5 sm:size-8 scale-100 fill-white text-white transition-transform duration-200 ease-out group-hover:scale-105"
                 style={{
                   filter:
                     "drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))",
@@ -77,7 +77,12 @@ export function HeroVideoDialog({
             className="fixed inset-0 z-50 flex animate-in fade-in items-center justify-center bg-black/50 backdrop-blur-md duration-200"
           >
             <div className="relative mx-4 aspect-video w-full max-w-4xl animate-in zoom-in-95 duration-300 md:mx-0">
-              <button className="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md dark:bg-neutral-100/50 dark:text-black">
+              <button
+                type="button"
+                onClick={() => setIsVideoOpen(false)}
+                aria-label="Tutup video"
+                className="absolute -top-12 sm:-top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md dark:bg-neutral-100/50 dark:text-black cursor-pointer"
+              >
                 <XIcon className="size-5" />
               </button>
               <div className="relative isolate z-1 size-full overflow-hidden rounded-2xl border-2 border-white">

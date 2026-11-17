@@ -13,12 +13,12 @@ export default function MaterialRatioBar() {
       >
         {/* Two hues carry the split, so they get literal lime/emerald rather than theme tokens. */}
         <span
-          className="flex items-center justify-center bg-[#A3E635] text-[11px] text-[#0A110E]"
+          className="flex items-center justify-center bg-[#A3E635] text-[10px] sm:text-[11px] text-[#0A110E] px-1 truncate"
           style={{ width: "40%" }}
         >
           40% Limbah Plastik
         </span>
-        <span className="flex flex-1 items-center justify-center bg-emerald-500 text-[11px] text-white">
+        <span className="flex flex-1 items-center justify-center bg-emerald-500 text-[10px] sm:text-[11px] text-white px-1 truncate">
           60% Pasir &amp; Agregat
         </span>
       </div>

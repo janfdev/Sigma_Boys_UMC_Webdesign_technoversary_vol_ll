@@ -21,7 +21,7 @@ export default function PointBonusBanner() {
 
       <Link
         href="/lapor"
-        className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/15 px-3.5 py-2 font-mono text-[11px] font-bold uppercase tracking-wider text-primary transition-colors hover:bg-primary/25"
+        className="inline-flex w-full sm:w-auto justify-center shrink-0 items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/15 px-3.5 py-2 font-mono text-[11px] font-bold uppercase tracking-wider text-primary transition-colors hover:bg-primary/25"
       >
         <span>Setor Sekarang</span>
         <ArrowRight className="size-3" aria-hidden="true" />

@@ -56,7 +56,7 @@ export default function FivePillarsGrid() {
           return (
             <div
               key={pillar.name}
-              className="group flex flex-col justify-between rounded-xl border border-border bg-card p-3 sm:p-3.5 transition-all duration-200 hover:border-primary/40 hover:bg-card"
+              className="group flex flex-col justify-between rounded-xl border border-border bg-card p-3 sm:p-3.5 transition-all duration-200 hover:border-primary/40 hover:bg-card last:col-span-2 sm:last:col-span-1"
             >
               <div>
                 <div className="flex items-center justify-between">
