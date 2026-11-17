@@ -13,6 +13,13 @@ interface WasteMachineAnatomyProps {
 }
 
 export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
+  const uid = React.useId().replace(/:/g, "");
+  const basePlateId = `iso-base-plate-${uid}`;
+  const steelBarrelId = `iso-steel-barrel-${uid}`;
+  const thermalGlowId = `iso-thermal-glow-${uid}`;
+  const pavingBlockId = `iso-paving-block-${uid}`;
+  const groundShadowId = `iso-ground-shadow-${uid}`;
+
   const [pressureBar, setPressureBar] = useState<number>(185);
   const [tempCelsius, setTempCelsius] = useState<number>(215);
   const [shreddedFlakesKg, setShreddedFlakesKg] = useState<number>(35);
@@ -91,31 +98,31 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
             >
               <defs>
                 {/* Metallic Linear Gradients */}
-                <linearGradient id="iso-base-plate" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id={basePlateId} x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="hsl(var(--muted))" />
                   <stop offset="100%" stopColor="hsl(var(--card))" />
                 </linearGradient>
 
-                <linearGradient id="iso-steel-barrel" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={steelBarrelId} x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#4A5568" />
                   <stop offset="50%" stopColor="#CBD5E1" />
                   <stop offset="100%" stopColor="#334155" />
                 </linearGradient>
 
-                <linearGradient id="iso-thermal-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={thermalGlowId} x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#EA580C" />
                   <stop offset="50%" stopColor="#F97316" />
                   <stop offset="100%" stopColor="#C2410C" />
                 </linearGradient>
 
-                <linearGradient id="iso-paving-block" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id={pavingBlockId} x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#1B4D3E" />
                   <stop offset="50%" stopColor="#22A06B" />
                   <stop offset="100%" stopColor="#0F382B" />
                 </linearGradient>
 
                 {/* Drop shadow filter for floating elements */}
-                <filter id="iso-ground-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <filter id={groundShadowId} x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur in="SourceAlpha" stdDeviation="10" />
                   <feOffset dx="0" dy="16" result="offsetblur" />
                   <feComponentTransfer>
@@ -129,7 +136,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
               </defs>
 
               {/* 1. Base Machine Chassis (Ground Plate) */}
-              <g filter="url(#iso-ground-shadow)">
+              <g filter={`url(#${groundShadowId})`}>
                 {/* Machine Floor Silhouette */}
                 <path
                   d="M 120 280 L 340 160 L 580 290 L 360 410 Z"
@@ -140,7 +147,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 {/* Top Machined Plate */}
                 <path
                   d="M 120 270 L 340 150 L 580 280 L 360 400 Z"
-                  fill="url(#iso-base-plate)"
+                  fill={`url(#${basePlateId})`}
                   stroke="hsl(var(--primary))"
                   strokeOpacity="0.25"
                   strokeWidth="1.5"
@@ -206,15 +213,15 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 {/* Heat Jacket Outer Shell */}
                 <path
                   d="M 230 170 L 380 250 L 380 275 L 230 195 Z"
-                  fill="url(#iso-steel-barrel)"
+                  fill={`url(#${steelBarrelId})`}
                   stroke="#1E293B"
                   strokeWidth="1.5"
                 />
                 {/* Thermal Heating Elements & Ring Bands */}
-                <path d="M 260 186 L 260 211" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" />
-                <path d="M 290 202 L 290 227" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.3s" }} />
-                <path d="M 320 218 L 320 243" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.6s" }} />
-                <path d="M 350 234 L 350 259" stroke="url(#iso-thermal-glow)" strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.9s" }} />
+                <path d="M 260 186 L 260 211" stroke={`url(#${thermalGlowId})`} strokeWidth="4" className="animate-thermal-pulse" />
+                <path d="M 290 202 L 290 227" stroke={`url(#${thermalGlowId})`} strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.3s" }} />
+                <path d="M 320 218 L 320 243" stroke={`url(#${thermalGlowId})`} strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.6s" }} />
+                <path d="M 350 234 L 350 259" stroke={`url(#${thermalGlowId})`} strokeWidth="4" className="animate-thermal-pulse" style={{ animationDelay: "0.9s" }} />
 
                 {/* Heat Jacket Top Face */}
                 <path
@@ -337,7 +344,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 {/* Finished Eco-Paving Block (Dense Recycled Plastic PET) */}
                 <polygon
                   points="425,262 465,240 505,262 465,285"
-                  fill="url(#iso-paving-block)"
+                  fill={`url(#${pavingBlockId})`}
                   stroke="#37E598"
                   strokeWidth="1.5"
                 />

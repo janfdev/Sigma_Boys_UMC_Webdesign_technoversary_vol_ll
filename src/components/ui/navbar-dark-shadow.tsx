@@ -13,6 +13,7 @@ export interface NavbarDarkShadowProps {
   actions?: React.ReactNode;
   mobileMenu?: React.ReactNode;
   mobileMenuOpen?: boolean;
+  onBackdropClick?: () => void;
 }
 
 /**
@@ -30,6 +31,7 @@ export function NavbarDarkShadow({
   actions,
   mobileMenu,
   mobileMenuOpen = false,
+  onBackdropClick,
 }: NavbarDarkShadowProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
@@ -73,15 +75,15 @@ export function NavbarDarkShadow({
           "mx-auto transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
           isScrolled
             ? "max-w-5xl px-3 sm:px-6"
-            : "max-w-7xl px-4 sm:px-6 lg:px-8 w-full"
+            : "max-w-7xl px-3 sm:px-6 lg:px-8 w-full"
         )}
       >
         <div
           className={cn(
             "flex items-center justify-between transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
             isScrolled
-              ? "h-13 sm:h-14 px-4 sm:px-6 rounded-2xl sm:rounded-full bg-background/85 dark:bg-neutral-950/85 backdrop-blur-xl border border-border/70 dark:border-white/15 shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_12px_32px_-8px_rgba(0,0,0,0.12),inset_0_1px_0_0_rgba(255,255,255,0.8),inset_0_-1px_0_0_rgba(0,0,0,0.05)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_16px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.18),inset_0_-1px_0_0_rgba(0,0,0,0.6)] ring-1 ring-primary/10"
-              : "h-16 sm:h-18 px-0 rounded-none border-b border-border/80 bg-background/95 dark:bg-background/95 backdrop-blur-md shadow-none"
+              ? "h-14 px-3.5 sm:px-6 rounded-2xl sm:rounded-full bg-background/85 dark:bg-neutral-950/85 backdrop-blur-xl border border-border/70 dark:border-white/15 shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_12px_32px_-8px_rgba(0,0,0,0.12),inset_0_1px_0_0_rgba(255,255,255,0.8),inset_0_-1px_0_0_rgba(0,0,0,0.05)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_16px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.18),inset_0_-1px_0_0_rgba(0,0,0,0.6)] ring-1 ring-primary/10"
+              : "h-15 sm:h-16 lg:h-18 px-3.5 sm:px-6 lg:px-0 rounded-2xl lg:rounded-none border-b border-border/80 bg-background/95 dark:bg-background/95 backdrop-blur-md shadow-none"
           )}
         >
           {/* Brand Slot */}
@@ -89,9 +91,9 @@ export function NavbarDarkShadow({
             {brand}
           </div>
 
-          {/* Desktop Nav Slot */}
+          {/* Desktop Nav Slot (lg and above to prevent tablet width collisions) */}
           {desktopNav && (
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {desktopNav}
             </div>
           )}
@@ -106,14 +108,22 @@ export function NavbarDarkShadow({
       {/* Children override if provided directly */}
       {children}
 
-      {/* Mobile Menu Drawer with matching tactile dark shadow */}
+      {/* Mobile Menu Drawer with matching tactile dark shadow and dismissible backdrop */}
       {mobileMenuOpen && mobileMenu && (
-        <div
-          data-testid="mobile-menu"
-          className="mx-auto mt-2 max-w-[calc(100vw-2rem)] sm:max-w-lg max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain rounded-2xl border border-border/80 dark:border-white/15 bg-card/95 dark:bg-neutral-950/95 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_20px_40px_-10px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15),inset_0_-1px_0_0_rgba(0,0,0,0.6)] backdrop-blur-xl md:hidden animate-in slide-in-from-top-2 duration-200"
-        >
-          {mobileMenu}
-        </div>
+        <>
+          {/* Fullscreen Backdrop Scrim */}
+          <div
+            aria-hidden="true"
+            onClick={onBackdropClick}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden animate-in fade-in duration-200"
+          />
+          <div
+            data-testid="mobile-menu"
+            className="relative z-50 mx-auto mt-2 max-w-[calc(100vw-1.5rem)] sm:max-w-lg max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-border/80 dark:border-white/15 bg-card/98 dark:bg-neutral-950/98 p-4 sm:p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_20px_40px_-10px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15),inset_0_-1px_0_0_rgba(0,0,0,0.6)] backdrop-blur-2xl lg:hidden animate-in slide-in-from-top-2 duration-200"
+          >
+            {mobileMenu}
+          </div>
+        </>
       )}
     </header>
   );

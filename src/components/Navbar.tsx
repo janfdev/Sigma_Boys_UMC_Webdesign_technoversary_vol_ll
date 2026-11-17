@@ -13,6 +13,11 @@ import {
   BookOpen,
   Image as ImageIcon,
   Newspaper,
+  Home,
+  Layers,
+  Users,
+  PhoneCall,
+  Sparkles,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -58,6 +63,17 @@ export default function Navbar({ currentPath }: NavbarProps) {
     activePath === "/galeri" ||
     activePath.startsWith("/insight");
 
+  // Lock background scroll when mobile menu drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [mobileMenuOpen]);
+
   // Close mobile menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -72,6 +88,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
   return (
     <NavbarDarkShadow
       mobileMenuOpen={mobileMenuOpen}
+      onBackdropClick={() => setMobileMenuOpen(false)}
       brand={
         <Link
           href="/"
@@ -229,7 +246,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
         </nav>
       }
       actions={
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <AnimatedThemeToggler
             variant="circle"
             duration={450}
@@ -244,7 +261,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label={mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
             aria-expanded={mobileMenuOpen}
-            className="h-9 w-9 rounded-full border-border/80 shadow-xs"
+            className="h-9 w-9 sm:h-10 sm:w-10 rounded-full border-border/80 shadow-xs active:scale-95 transition-transform"
           >
             {mobileMenuOpen ? (
               <X className="h-4 w-4" aria-hidden="true" />
@@ -255,30 +272,189 @@ export default function Navbar({ currentPath }: NavbarProps) {
         </div>
       }
       mobileMenu={
-        <nav className="flex flex-col gap-2" aria-label="Navigasi Mobile">
-          {NAV_ITEMS.map((item) => {
-            const isActive = activePath === item.href;
+        <nav className="flex flex-col gap-4 text-left" aria-label="Navigasi Mobile">
+          {/* Top Status Header */}
+          <div className="flex items-center justify-between pb-3 border-b border-border/70">
+            <div className="flex items-center gap-2">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                CircuLife Ecosystem
+              </span>
+            </div>
+            <Badge variant="outline" className="font-mono text-[10px] border-primary/30 text-primary">
+              Zero Waste Hub
+            </Badge>
+          </div>
 
-            return (
+          {/* Section 1: Halaman Utama */}
+          <div className="space-y-1">
+            <span className="px-2 font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-1">
+              Navigasi Utama
+            </span>
+            <div className="grid grid-cols-2 gap-1.5">
               <Link
-                key={item.href}
-                href={item.href}
+                href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex h-11 items-center justify-between rounded-xl px-4 text-sm font-bold transition-all ${
-                  isActive
-                    ? "bg-primary text-primary-foreground shadow-sm"
+                className={`flex h-11 items-center gap-2.5 rounded-xl px-3 text-xs font-bold transition-all ${
+                  activePath === "/"
+                    ? "bg-primary text-primary-foreground shadow-xs"
+                    : "text-foreground hover:bg-muted/70 bg-muted/30"
+                }`}
+              >
+                <Home className="h-4 w-4 shrink-0 opacity-80" />
+                <span className="truncate">Beranda</span>
+              </Link>
+
+              <Link
+                href="/konservasi"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex h-11 items-center gap-2.5 rounded-xl px-3 text-xs font-bold transition-all ${
+                  activePath === "/konservasi"
+                    ? "bg-primary text-primary-foreground shadow-xs"
+                    : "text-foreground hover:bg-muted/70 bg-muted/30"
+                }`}
+              >
+                <Layers className="h-4 w-4 shrink-0 opacity-80" />
+                <span className="truncate">Produk Olahan</span>
+              </Link>
+
+              <Link
+                href="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex h-11 items-center gap-2.5 rounded-xl px-3 text-xs font-bold transition-all ${
+                  activePath === "/about"
+                    ? "bg-primary text-primary-foreground shadow-xs"
+                    : "text-foreground hover:bg-muted/70 bg-muted/30"
+                }`}
+              >
+                <Users className="h-4 w-4 shrink-0 opacity-80" />
+                <span className="truncate">Tentang Kami</span>
+              </Link>
+
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex h-11 items-center gap-2.5 rounded-xl px-3 text-xs font-bold transition-all ${
+                  activePath === "/contact"
+                    ? "bg-primary text-primary-foreground shadow-xs"
+                    : "text-foreground hover:bg-muted/70 bg-muted/30"
+                }`}
+              >
+                <PhoneCall className="h-4 w-4 shrink-0 opacity-80" />
+                <span className="truncate">Kontak</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Section 2: Fitur & Wawasan Interaktif */}
+          <div className="space-y-1.5 pt-1">
+            <span className="px-2 font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground block">
+              Fitur &amp; Wawasan Sirkular
+            </span>
+            <div className="flex flex-col gap-1">
+              <Link
+                href="/pantau"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  activePath === "/pantau"
+                    ? "bg-primary/10 border border-primary/30 text-primary font-bold"
                     : "text-foreground hover:bg-muted/70"
                 }`}
               >
-                <span>{item.label}</span>
-                {item.isAction && (
-                  <Badge variant="secondary" className="text-[10px] font-mono uppercase tracking-wider rounded-full">
-                    Aksi Warga
-                  </Badge>
-                )}
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                    <Calculator className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="font-bold block text-foreground truncate">Hitung Dampak</span>
+                    <span className="text-[11px] text-muted-foreground block truncate">Kalkulator konversi limbah</span>
+                  </div>
+                </div>
               </Link>
-            );
-          })}
+
+              <Link
+                href="/edukasi"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  activePath === "/edukasi"
+                    ? "bg-primary/10 border border-primary/30 text-primary font-bold"
+                    : "text-foreground hover:bg-muted/70"
+                }`}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                    <BookOpen className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="font-bold block text-foreground truncate">Panduan &amp; Kuis</span>
+                    <span className="text-[11px] text-muted-foreground block truncate">Modul pemilahan zero waste</span>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/insight"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  activePath.startsWith("/insight")
+                    ? "bg-primary/10 border border-primary/30 text-primary font-bold"
+                    : "text-foreground hover:bg-muted/70"
+                }`}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                    <Newspaper className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="font-bold block text-foreground truncate">Arsip Insight</span>
+                    <span className="text-[11px] text-muted-foreground block truncate">Kajian &amp; riset lapangan</span>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/galeri"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  activePath === "/galeri"
+                    ? "bg-primary/10 border border-primary/30 text-primary font-bold"
+                    : "text-foreground hover:bg-muted/70"
+                }`}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                    <ImageIcon className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="font-bold block text-foreground truncate">Dokumentasi</span>
+                    <span className="text-[11px] text-muted-foreground block truncate">Foto transformasi fisik</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Section 3: Prominent Setor Sampah Action Button */}
+          <div className="pt-2 border-t border-border/70">
+            <Link
+              href="/lapor"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between p-3.5 rounded-2xl bg-primary text-primary-foreground font-bold text-sm shadow-md transition-all active:scale-[0.98] group"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/15 text-primary-foreground shrink-0">
+                  <PackageCheck className="h-5 w-5" />
+                </div>
+                <div className="text-left min-w-0">
+                  <span className="block font-black leading-tight text-primary-foreground truncate">Setor Sampah</span>
+                  <span className="text-[11px] opacity-90 block mt-0.5 text-primary-foreground/80 truncate">Timbang di drop point &amp; klaim reward</span>
+                </div>
+              </div>
+              <Badge className="bg-primary-foreground/20 text-primary-foreground border-none font-mono text-[10px] uppercase font-bold shrink-0 ml-2">
+                Aksi Warga
+              </Badge>
+            </Link>
+          </div>
         </nav>
       }
     />

@@ -38,7 +38,7 @@ export function NumericText({ text, svg = false }: { text: string | number | und
         minimumIntegerDigits: /^0\d$/.test(token) ? 2 : 1,
         signDisplay: token.startsWith("+") ? "always" : "auto",
       });
-      parts.push(<AnimatedNumber key={index} value={number} format={formatter.format} as={svg ? "tspan" : "span"} />);
+      parts.push(<AnimatedNumber key={index} value={number} duration={250} format={formatter.format} as={svg ? "tspan" : "span"} />);
     } else {
       parts.push(token);
     }

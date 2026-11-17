@@ -927,7 +927,7 @@ export default function CarouselCards({
 
   const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
     const scroller = scrollerRef.current;
-    if (!(scroller && event.pointerType === "mouse")) {
+    if (!scroller) {
       return;
     }
     dragRef.current = {
@@ -1088,6 +1088,7 @@ export default function CarouselCards({
 
       <section
         aria-label={`${title}, geser atau gunakan tombol panah untuk berpindah`}
+        style={{ touchAction: "pan-y" }}
         className="relative overflow-x-hidden overscroll-x-contain py-6 outline-none [container-type:inline-size] focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-inset lg:cursor-grab lg:active:cursor-grabbing dark:focus-visible:ring-zinc-100"
         onClickCapture={(event) => {
           if (draggedRef.current) {
