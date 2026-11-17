@@ -18,6 +18,8 @@ export interface AnimatedNumberProps extends React.HTMLAttributes<HTMLSpanElemen
   format?: (value: number) => string
   /** Render the target value instantly, no tween. */
   disabled?: boolean
+  /** Render tightly inline without extra minWidth reservation. */
+  compact?: boolean
 }
 
 const defaultFormat = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 }).format
@@ -28,7 +30,7 @@ const defaultFormat = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 
  * Server render outputs the final value so hydration always matches.
  */
 const AnimatedNumber = React.forwardRef<HTMLSpanElement, AnimatedNumberProps>(
-  ({ value, as = 'span', fractionDigits, minimumIntegerDigits = 1, signDisplay = 'auto', from = 0, duration = 900, delay = 0, format, disabled = false, className, ...props }, ref) => {
+  ({ value, as = 'span', fractionDigits, minimumIntegerDigits = 1, signDisplay = 'auto', from = 0, duration = 900, delay = 0, format, disabled = false, compact = false, className, ...props }, ref) => {
     const Tag = as as React.ElementType
     const [display, setDisplayState] = React.useState(value)
     const displayRef = React.useRef(value)
@@ -91,7 +93,24 @@ const AnimatedNumber = React.forwardRef<HTMLSpanElement, AnimatedNumberProps>(
       // no aria-label here: generic spans and tspans cannot carry a name, and the
       // rendered text already is the accessible value (aria-live is off, so the
       // counting frames are never announced).
-      <Tag ref={ref as never} data-uipkge="" data-slot="animated-number" aria-live="off" className={cn('tabular-nums', as === 'span' && 'inline-block', className)} style={as === 'span' ? { minWidth: `${Math.max(fmt(value).length, fmt(value + 0.88).length, fmt(value - 0.88).length)}ch`, ...props.style } : props.style} {...props}>
+      <Tag
+        ref={ref as never}
+        data-uipkge=""
+        data-slot="animated-number"
+        aria-live="off"
+        className={cn('tabular-nums', as === 'span' && (compact ? 'inline' : 'inline-block'), className)}
+        style={
+          as === 'span'
+            ? {
+                minWidth: compact
+                  ? undefined
+                  : `${Math.max(fmt(value).length, fmt(value + 0.88).length, fmt(value - 0.88).length)}ch`,
+                ...props.style,
+              }
+            : props.style
+        }
+        {...props}
+      >
         {fmt(display)}
       </Tag>
     )

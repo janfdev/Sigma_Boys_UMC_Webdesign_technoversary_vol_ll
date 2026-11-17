@@ -35,6 +35,13 @@ describe("registry AnimatedNumber", () => {
     expect(screen.getByText("1")).toHaveStyle({ minWidth: "4ch" });
   });
 
+  it("renders tightly without minWidth when compact is enabled", () => {
+    render(<AnimatedNumber value={1} compact />);
+    const el = screen.getByText("1");
+    expect(el).toHaveClass("inline");
+    expect(el.style.minWidth).toBe("");
+  });
+
   it("renders the final value immediately for zero duration", () => {
     vi.spyOn(window, "matchMedia").mockReturnValue({ matches: false } as MediaQueryList);
     render(<AnimatedNumber value={42} duration={0} />);

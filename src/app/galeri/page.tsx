@@ -67,7 +67,7 @@ export default function GaleriPage() {
               onClick={() => setActiveTab("semua")}
               className="rounded-full text-xs font-bold font-mono h-9 px-4 border-border/80"
             >
-              Semua Konten (<AnimatedNumber value={CIRCULIFE_ARTICLES.length + CIRCULIFE_GALLERY.length + CIRCULAR_PRODUCTS.length} />)
+              Semua Konten (<AnimatedNumber value={CIRCULIFE_ARTICLES.length + CIRCULIFE_GALLERY.length + CIRCULAR_PRODUCTS.length} compact />)
             </Button>
             <Button
               variant={activeTab === "galeri" ? "default" : "outline"}
@@ -76,7 +76,7 @@ export default function GaleriPage() {
               className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <ImageIcon className="h-3.5 w-3.5" />
-              <span>Galeri Transformasi (<AnimatedNumber value={CIRCULIFE_GALLERY.length} />)</span>
+              <span>Galeri Transformasi (<AnimatedNumber value={CIRCULIFE_GALLERY.length} compact />)</span>
             </Button>
             <Button
               variant={activeTab === "artikel" ? "default" : "outline"}
@@ -85,7 +85,7 @@ export default function GaleriPage() {
               className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <BookOpen className="h-3.5 w-3.5" />
-              <span>Artikel &amp; Panduan (<AnimatedNumber value={CIRCULIFE_ARTICLES.length} />)</span>
+              <span>Artikel &amp; Panduan (<AnimatedNumber value={CIRCULIFE_ARTICLES.length} compact />)</span>
             </Button>
             <Button
               variant={activeTab === "produk" ? "default" : "outline"}
@@ -94,7 +94,7 @@ export default function GaleriPage() {
               className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <Layers className="h-3.5 w-3.5" />
-              <span>Katalog Produk (<AnimatedNumber value={CIRCULAR_PRODUCTS.length} />)</span>
+              <span>Katalog Produk (<AnimatedNumber value={CIRCULAR_PRODUCTS.length} compact />)</span>
             </Button>
           </div>
         </div>

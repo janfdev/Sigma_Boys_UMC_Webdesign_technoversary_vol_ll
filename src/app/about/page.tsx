@@ -228,7 +228,7 @@ export default function AboutPage() {
                 <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/70 space-y-2">
                   <div className="flex items-center justify-between text-xs font-mono">
                     <span className="text-muted-foreground font-bold">Landfill Diversion :</span>
-                    <span className="font-black text-foreground"><AnimatedNumber value={78.4} fractionDigits={1} />%</span>
+                    <span className="font-black text-foreground"><AnimatedNumber value={78.4} fractionDigits={1} compact />%</span>
                   </div>
                   <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-amber-500 h-full rounded-full" style={{ width: "78.4%" }} />
@@ -264,7 +264,7 @@ export default function AboutPage() {
                 <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/70 space-y-2">
                   <div className="flex items-center justify-between text-xs font-mono">
                     <span className="text-muted-foreground font-bold">Reduksi Emisi CO2e :</span>
-                    <span className="font-black text-emerald-800 dark:text-emerald-300"><AnimatedNumber value={68.2} fractionDigits={1} /> Ton</span>
+                    <span className="font-black text-emerald-800 dark:text-emerald-300"><AnimatedNumber value={68.2} fractionDigits={1} compact /> Ton</span>
                   </div>
                   <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-emerald-500 h-full rounded-full" style={{ width: "85%" }} />
@@ -392,7 +392,7 @@ export default function AboutPage() {
                   Validasi Mutu & Uji Teknis SNI
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Pengujian mekanika tekan 25 MPa (K-250), serapan air di bawah <AnimatedNumber value={3} />%, dan verifikasi bebas racun lindi logam berat TCLP.</p>
+                  Pengujian mekanika tekan 25 MPa (K-250), serapan air di bawah 3%, dan verifikasi bebas racun lindi logam berat TCLP.</p>
               </div>
               <div className="pt-3 border-t border-border/60 text-[11px] font-mono text-muted-foreground">
                 Output: Sertifikasi SNI & lembar uji mutu publik

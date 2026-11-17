@@ -99,7 +99,7 @@ export default function ContactPage() {
                     Kirimkan Pesan atau Ajukan Kerjasama
                   </CardTitle>
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    Tim respon CircuLife akan menghubungi kembali dalam waktu maksimal <AnimatedNumber value={1} />x<AnimatedNumber value={24} /> jam kerja.</p>
+                    Tim respon CircuLife akan menghubungi kembali dalam waktu maksimal 1x24 jam kerja.</p>
                 </div>
 
                 {formSubmitted ? (

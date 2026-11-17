@@ -82,7 +82,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                <span><AnimatedNumber value={24} /> Sentra Drop Point &amp; <AnimatedNumber value={18} /> KSM Binaan Terverifikasi</span>
+                <span><AnimatedNumber value={24} compact /> Sentra Drop Point &amp; <AnimatedNumber value={18} compact /> KSM Binaan Terverifikasi</span>
               </div>
             </div>
           </div>

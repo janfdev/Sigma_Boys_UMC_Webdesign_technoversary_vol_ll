@@ -97,15 +97,15 @@ export default function LaporPage() {
                 <CardContent className="p-0">
                   <ul className="text-xs sm:text-sm text-muted-foreground space-y-3 leading-relaxed">
                     <li className="flex items-start gap-2.5">
-                      <span className="font-bold font-mono text-primary shrink-0 mt-0.5"><AnimatedNumber value={1} />.</span>
+                      <span className="font-bold font-mono text-primary shrink-0 mt-0.5">1.</span>
                       <span>Kemas rapi botol plastik PET kosong dan kosongkan sisa gas dari kaleng kompor lapangan.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <span className="font-bold font-mono text-primary shrink-0 mt-0.5"><AnimatedNumber value={2} />.</span>
+                      <span className="font-bold font-mono text-primary shrink-0 mt-0.5">2.</span>
                       <span>Timbang kantong sampah di timbangan digital posko registrasi jalur turun Anda.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <span className="font-bold font-mono text-primary shrink-0 mt-0.5"><AnimatedNumber value={3} />.</span>
+                      <span className="font-bold font-mono text-primary shrink-0 mt-0.5">3.</span>
                       <span>Tunjukkan tiket digital formulir ini kepada petugas drop-point untuk menukar poin atau mengambil bibit pohon siap tanam.</span>
                     </li>
                   </ul>
@@ -116,7 +116,7 @@ export default function LaporPage() {
                 <Sprout className="h-5 w-5 text-emerald-800 dark:text-emerald-300 mb-1" />
                 <AlertDescription className="text-xs sm:text-sm leading-relaxed">
                   <strong className="font-bold block mb-1">Gerakan 1 Setoran 1 Pohon :</strong>
-                  Setiap setoran minimal <AnimatedNumber value={2} /> kg botol plastik atau <AnimatedNumber value={5} /> kaleng gas berhak mendapatkan <AnimatedNumber value={1} /> bibit pohon penghijauan binaan CircuLife.</AlertDescription>
+                  Setiap setoran minimal 2 kg botol plastik atau 5 kaleng gas berhak mendapatkan 1 bibit pohon penghijauan binaan CircuLife.</AlertDescription>
               </Alert>
 
               {/* Drop-Point Hub Quick Reference */}

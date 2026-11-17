@@ -49,7 +49,7 @@ export default function EnvironmentalComparisonSlider() {
                   : "border-border/70 hover:bg-muted text-muted-foreground"
               )}
             >
-              Kondisi Awal (<AnimatedNumber value={0} />%)
+              Kondisi Awal (<AnimatedNumber value={0} compact />%)
             </button>
             <button
               type="button"

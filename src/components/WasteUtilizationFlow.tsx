@@ -169,7 +169,7 @@ export default function WasteUtilizationFlow() {
                       <NumericText text={currentStage.badgeText} />
                     </Badge>
                     <span className="text-xs font-mono text-muted-foreground">
-                      Tahap <AnimatedNumber value={currentStage.step} />  dari <AnimatedNumber value={4} /></span>
+                      Tahap <AnimatedNumber value={currentStage.step} compact /> dari <AnimatedNumber value={4} compact /></span>
                   </div>
                   <CardTitle className="text-xl sm:text-2xl font-black text-foreground mt-1">
                     {currentStage.title} : <NumericText text={currentStage.subtitle} />
