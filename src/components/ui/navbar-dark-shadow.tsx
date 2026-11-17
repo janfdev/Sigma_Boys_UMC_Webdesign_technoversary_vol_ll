@@ -50,6 +50,7 @@ export function NavbarDarkShadow({
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "bg-background/95 dark:bg-[#0A110E]/95 backdrop-blur-md",
         isScrolled ? "pt-2 sm:pt-3 pb-1" : "pt-0 pb-0",
         className
       )}
@@ -75,15 +76,15 @@ export function NavbarDarkShadow({
           "mx-auto transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
           isScrolled
             ? "max-w-5xl px-3 sm:px-6"
-            : "max-w-7xl px-3 sm:px-6 lg:px-8 w-full"
+            : "max-w-7xl px-4 sm:px-6 lg:px-8 w-full"
         )}
       >
         <div
           className={cn(
             "flex items-center justify-between transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
             isScrolled
-              ? "h-14 px-3.5 sm:px-6 rounded-2xl sm:rounded-full bg-background/85 dark:bg-neutral-950/85 backdrop-blur-xl border border-border/70 dark:border-white/15 shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_12px_32px_-8px_rgba(0,0,0,0.12),inset_0_1px_0_0_rgba(255,255,255,0.8),inset_0_-1px_0_0_rgba(0,0,0,0.05)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_16px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.18),inset_0_-1px_0_0_rgba(0,0,0,0.6)] ring-1 ring-primary/10"
-              : "h-15 sm:h-16 lg:h-18 px-3.5 sm:px-6 lg:px-0 rounded-2xl lg:rounded-none border-b border-border/80 bg-background/95 dark:bg-background/95 backdrop-blur-md shadow-none"
+              ? "h-14 px-4 sm:px-6 rounded-2xl sm:rounded-full bg-card dark:bg-[#111C17] border border-border/70 dark:border-white/15 shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_12px_32px_-8px_rgba(0,0,0,0.12),inset_0_1px_0_0_rgba(255,255,255,0.8),inset_0_-1px_0_0_rgba(0,0,0,0.05)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_16px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.18),inset_0_-1px_0_0_rgba(0,0,0,0.6)] ring-1 ring-primary/10"
+              : "h-16 sm:h-18 px-0 rounded-none border-b border-border/80 bg-transparent shadow-none"
           )}
         >
           {/* Brand Slot */}
@@ -115,11 +116,11 @@ export function NavbarDarkShadow({
           <div
             aria-hidden="true"
             onClick={onBackdropClick}
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden animate-in fade-in duration-200"
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm z-40 lg:hidden animate-in fade-in duration-200"
           />
           <div
             data-testid="mobile-menu"
-            className="relative z-50 mx-auto mt-2 max-w-[calc(100vw-1.5rem)] sm:max-w-lg max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-border/80 dark:border-white/15 bg-card/98 dark:bg-neutral-950/98 p-4 sm:p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_20px_40px_-10px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15),inset_0_-1px_0_0_rgba(0,0,0,0.6)] backdrop-blur-2xl lg:hidden animate-in slide-in-from-top-2 duration-200"
+            className="relative z-50 mx-auto mt-2 max-w-[calc(100vw-1.5rem)] sm:max-w-lg max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-border/80 dark:border-[#1E3028] bg-card dark:bg-[#111C17] p-4 sm:p-5 shadow-2xl lg:hidden animate-in slide-in-from-top-2 duration-200"
           >
             {mobileMenu}
           </div>
