@@ -37,15 +37,16 @@ export function HeroVideoDialog({
       <button
         type="button"
         aria-label="Play video"
-        className="group relative cursor-pointer border-0 bg-transparent p-0"
+        className="group relative block w-full aspect-video cursor-pointer border-0 bg-transparent p-0 overflow-hidden rounded-2xl shadow-xl"
         onClick={() => setIsVideoOpen(true)}
       >
         <img
           src={thumbnailSrc}
           alt={thumbnailAlt}
-          width={1920}
-          height={1080}
-          className="w-full rounded-md border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
+          width={1280}
+          height={720}
+          loading="lazy"
+          className="h-full w-full object-cover rounded-2xl border border-border transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:brightness-[0.85]"
         />
         <div className="absolute inset-0 flex scale-[0.9] items-center justify-center rounded-2xl transition-all duration-200 ease-out group-hover:scale-100">
           <div className="bg-primary/10 flex size-28 items-center justify-center rounded-full backdrop-blur-md">

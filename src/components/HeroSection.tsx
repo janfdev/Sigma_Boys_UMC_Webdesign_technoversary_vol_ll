@@ -22,12 +22,16 @@ const slides: RailItem[] = [
 }));
 
 export default function HeroSection() {
-  preload("/image-lomba/Gunung%20Ciremai.webp", { as: "image", fetchPriority: "high" });
+  preload("/image-lomba/Gunung%20Ciremai-mobile.webp", { as: "image", fetchPriority: "high" });
 
   return (
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-[#0b1611] text-white">
       <picture className="absolute inset-0 -z-20 h-full w-full">
-        <source srcSet="/image-lomba/Gunung%20Ciremai.avif" type="image/avif" />
+        <source
+          media="(max-width: 640px)"
+          srcSet="/image-lomba/Gunung%20Ciremai-mobile.webp"
+          type="image/webp"
+        />
         <source srcSet="/image-lomba/Gunung%20Ciremai.webp" type="image/webp" />
         <img
           src="/image-lomba/Gunung%20Ciremai.webp"

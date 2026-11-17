@@ -20,6 +20,7 @@ import {
   type RefObject,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -874,17 +875,46 @@ export default function CarouselCards({
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const recenterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingJumpRef = useRef(false);
 
   const activeRef = useRef(active);
   activeRef.current = active;
+
+  useLayoutEffect(() => {
+    if (pendingJumpRef.current) {
+      pendingJumpRef.current = false;
+      const scroller = scrollerRef.current;
+      const track = trackRef.current;
+      if (scroller && track) {
+        const left = centerOf(scroller, track, active);
+        if (left !== null) {
+          scroller.scrollLeft = left;
+        }
+      }
+    }
+  }, [active]);
 
   const move = useCallback(
     (index: number, smooth = true) => {
       const maxIndex = displayItems.length - 1;
       const next = Math.min(Math.max(index, 0), maxIndex);
-      setActive(next);
+      activeRef.current = next;
       const scroller = scrollerRef.current;
       const track = trackRef.current;
+
+      if (!smooth) {
+        pendingJumpRef.current = true;
+        setActive(next);
+        if (scroller && track) {
+          const left = centerOf(scroller, track, next);
+          if (left !== null) {
+            scroller.scrollLeft = left;
+          }
+        }
+        return;
+      }
+
+      setActive(next);
       if (!(scroller && track)) {
         return;
       }
@@ -892,7 +922,7 @@ export default function CarouselCards({
       if (left === null) {
         return;
       }
-      if (smooth && !reducedMotion && typeof scroller.scrollTo === "function") {
+      if (!reducedMotion && typeof scroller.scrollTo === "function") {
         scroller.scrollTo({ left, behavior: "smooth" });
       } else {
         scroller.scrollLeft = left;
@@ -987,7 +1017,7 @@ export default function CarouselCards({
         }
         recenterTimeoutRef.current = setTimeout(() => {
           move(middleTarget, false);
-        }, 450);
+        }, 500);
       }
     }
   };
@@ -1027,7 +1057,7 @@ export default function CarouselCards({
           }
           recenterTimeoutRef.current = setTimeout(() => {
             move(middleTarget, false);
-          }, 450);
+          }, 500);
         }
       } else {
         move((activeRef.current + 1) % items.length);
@@ -1064,7 +1094,7 @@ export default function CarouselCards({
       }
       recenterTimeoutRef.current = setTimeout(() => {
         move(middleTarget, false);
-      }, 450);
+      }, 500);
     }
   };
 

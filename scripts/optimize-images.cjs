@@ -17,8 +17,6 @@ async function optimizeFile(filePath, maxWidth, quality, format = null) {
     pipeline = pipeline.webp({ quality, effort: 6 });
   } else if (ext === 'jpg' || ext === 'jpeg') {
     pipeline = pipeline.jpeg({ quality, mozjpeg: true });
-  } else if (ext === 'png') {
-    pipeline = pipeline.png({ quality, compressionLevel: 9 });
   }
 
   const outputBuffer = await pipeline.toBuffer();
@@ -31,26 +29,40 @@ async function optimizeFile(filePath, maxWidth, quality, format = null) {
 }
 
 async function run() {
-  console.log('--- Optimizing Hero & PageSpeed Heavyweight Images ---');
+  console.log('--- Tier-2 Precision Image Compression for 95+ PageSpeed ---');
 
-  // 1. Gunung Ciremai: optimize JPG and generate WebP
+  // 1. Gunung Ciremai: desktop (1080w) & mobile (720w)
   const ciremaiJpg = path.join('public', 'image-lomba', 'Gunung Ciremai.jpg');
   const ciremaiWebp = path.join('public', 'image-lomba', 'Gunung Ciremai.webp');
+  const ciremaiMobile = path.join('public', 'image-lomba', 'Gunung Ciremai-mobile.webp');
+  const ciremaiAvif = path.join('public', 'image-lomba', 'Gunung Ciremai.avif');
 
-  if (fs.existsSync(ciremaiJpg)) {
-    const ciremaiBuffer = fs.readFileSync(ciremaiJpg);
-    const webpBuffer = await sharp(ciremaiBuffer)
-      .resize({ width: 1280, withoutEnlargement: true })
-      .webp({ quality: 75, effort: 6 })
-      .toBuffer();
-    fs.writeFileSync(ciremaiWebp, webpBuffer);
-    console.log(`Generated Gunung Ciremai.webp: ${(webpBuffer.length / 1024).toFixed(1)}KB`);
-
-    // Optimize JPG fallback
-    await optimizeFile(ciremaiJpg, 1280, 75, 'jpg');
+  if (fs.existsSync(ciremaiAvif)) {
+    fs.unlinkSync(ciremaiAvif);
+    console.log('Removed heavy Gunung Ciremai.avif');
   }
 
-  // 2. Carousel Cards (Hero Section) - displayed at max 520x500
+  if (fs.existsSync(ciremaiJpg)) {
+    const rawBuffer = fs.readFileSync(ciremaiJpg);
+
+    // Desktop WebP (1080w)
+    const desktopBuffer = await sharp(rawBuffer)
+      .resize({ width: 1080, withoutEnlargement: true })
+      .webp({ quality: 66, effort: 6 })
+      .toBuffer();
+    fs.writeFileSync(ciremaiWebp, desktopBuffer);
+    console.log(`Updated Gunung Ciremai.webp: ${(desktopBuffer.length / 1024).toFixed(1)}KB`);
+
+    // Mobile WebP (720w)
+    const mobileBuffer = await sharp(rawBuffer)
+      .resize({ width: 720, withoutEnlargement: true })
+      .webp({ quality: 64, effort: 6 })
+      .toBuffer();
+    fs.writeFileSync(ciremaiMobile, mobileBuffer);
+    console.log(`Created Gunung Ciremai-mobile.webp: ${(mobileBuffer.length / 1024).toFixed(1)}KB`);
+  }
+
+  // 2. Carousel Cards (Hero Section) - displayed at max 256px wide!
   const carouselImages = [
     'bibit-pupuk-kasgot.webp',
     'Kolase Daur Ulang Plastik Menjadi Paving.webp',
@@ -59,7 +71,7 @@ async function run() {
     'Lentera Bunga PET di Senja Hari.webp'
   ];
   for (const name of carouselImages) {
-    await optimizeFile(path.join('public', 'image-lomba', name), 560, 75, 'webp');
+    await optimizeFile(path.join('public', 'image-lomba', name), 440, 68, 'webp');
   }
 
   // 3. Insight & Lomba Section Images
@@ -72,34 +84,10 @@ async function run() {
     'kaleng-daur-ulang.webp'
   ];
   for (const name of insightImages) {
-    await optimizeFile(path.join('public', 'image-lomba', name), 640, 75, 'webp');
+    await optimizeFile(path.join('public', 'image-lomba', name), 480, 68, 'webp');
   }
 
-  // 4. Large Gallery & Articles Images
-  const galleryImages = [
-    path.join('public', 'images', 'gallery', 'kasgot-harvest.jpg'),
-    path.join('public', 'images', 'gallery', 'maggot-bio.jpg'),
-    path.join('public', 'images', 'articles', 'maggot-biokonversi.jpg'),
-    path.join('public', 'images', 'products', 'kompos-bio-kasgot.jpg'),
-    path.join('public', 'images', 'gallery', 'paving-pathway.jpg'),
-    path.join('public', 'images', 'products', 'paving-block-pet.jpg'),
-    path.join('public', 'images', 'gallery', 'trail-after-restored.jpg'),
-    path.join('public', 'images', 'gallery', 'trail-before-litter.jpg'),
-    path.join('public', 'images', 'articles', 'kaleng-upcycling.jpg')
-  ];
-  for (const p of galleryImages) {
-    await optimizeFile(p, 800, 75, 'jpg');
-  }
-
-  // Remove any leftover .tmp files
-  const tmpFiles = [
-    path.join('public', 'image-lomba', 'Gunung Ciremai.jpg.tmp')
-  ];
-  for (const tmp of tmpFiles) {
-    if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
-  }
-
-  console.log('--- Image Optimization Completed Successfully ---');
+  console.log('--- Tier-2 Image Optimization Completed ---');
 }
 
 run().catch(err => {

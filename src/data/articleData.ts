@@ -70,7 +70,7 @@ export const CIREMAI_ARTICLE: ConservationArticle = {
   readTime: "6 menit baca",
   topic: "Fokus Keberlanjutan Riset",
   image: {
-    src: "/image-lomba/Gunung%20Ciremai.jpg",
+    src: "/image-lomba/Gunung%20Ciremai.webp",
     alt: "Panorama Gunung Ciremai dengan hamparan sawah terasering di lerengnya",
     caption:
       "Panorama Gunung Ciremai (3.078 mdpl) merangkul wilayah pertanian Jawa Barat dan sekitarnya.",
