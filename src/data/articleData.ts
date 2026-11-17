@@ -11,9 +11,21 @@ export type ArticleSection = {
   heading: string;
   paragraphs: string[];
   quote?: { text: string; attribution: string };
-  widget?: "hydrology" | "material-ratio" | "video";
+  widgets?: ArticleWidgetName[];
   videoId?: string;
 };
+
+export type ArticleWidgetName =
+  | "hydrology"
+  | "material-ratio"
+  | "video"
+  | "pillars"
+  | "action-steps"
+  | "sorting"
+  | "flow"
+  | "steps"
+  | "gallery"
+  | "points";
 
 export type RelatedInsight = {
   href: string;
@@ -112,7 +124,7 @@ export const CIREMAI_ARTICLE: ConservationArticle = {
         "Balai TNGC bersama Sintas Indonesia memantau populasi lewat jaringan kamera jebak (camera trap) yang dipasang bergilir di jalur-jalur satwa. Catatan perjumpaan, sidik, dan suara menjadi dasar evaluasi patroli. Di sisi lain, tekanan wisata dan perluasan kebun di batas kawasan terus diuji, sehingga patroli tapak menjadi pekerjaan harian, bukan kegiatan seremonial tahunan.",
         "Untuk memahami seberapa besar ketergantungan layanan ekosistem ini pada tutupan lahan, gunakan simulasi di bawah. Geser curah hujan dan bandingkan dua kondisi tutupan untuk melihat dampaknya terhadap debit mata air.",
       ],
-      widget: "hydrology",
+      widgets: ["hydrology"],
     },
     {
       id: "komunitas",
@@ -174,7 +186,7 @@ export const PAVING_ARTICLE: ConservationArticle = {
         text: "Inovasi ini membuktikan bahwa sampah plastik bukan akhir dari siklus materi, melainkan bahan baku bernilai ekonomi tinggi jika dikelola dengan teknologi tepat guna dan kepedulian sosial mandiri.",
         attribution: "Tim KKN 33 UMC 2026",
       },
-      widget: "material-ratio",
+      widgets: ["material-ratio"],
     },
     {
       id: "dokumentasi",
@@ -184,7 +196,7 @@ export const PAVING_ARTICLE: ConservationArticle = {
       paragraphs: [
         "Video di bawah merekam tahapan pencacahan, peleburan, dan pencetakan paving block oleh Mahasiswa KKN 33 UMC bersama warga.",
       ],
-      widget: "video",
+      widgets: ["video"],
       videoId: "zvu01_wvbBc",
     },
     {
@@ -200,58 +212,159 @@ export const PAVING_ARTICLE: ConservationArticle = {
   ],
 };
 
-export const PAVING_RELATED: RelatedInsight[] = [
-  {
-    href: "/insight/zero-waste-lifestyle",
-    title: "Mulai dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste untuk Masa Depan",
-    excerpt:
-      "Zero waste tidak berarti nol sampah sejak hari pertama. Ia tumbuh dari kebiasaan belanja, memilah, dan menolak kemasan sekali pakai.",
-    category: "Gerakan Komunitas",
-    readTime: "4 menit baca",
-    image: "/image-lomba/gaya-hidup-zero-waste.webp",
-    imageAlt: "Ilustrasi kampanye gaya hidup zero waste dengan tempat sampah terpilah",
+const ZERO_WASTE_ARTICLE: ConservationArticle = {
+  slug: "zero-waste-lifestyle",
+  breadcrumb: ["Beranda", "Insight", "Gerakan Komunitas"],
+  badge: "Gerakan Komunitas & Gaya Hidup",
+  location: "Edukasi Publik",
+  title: "Mulai Dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste Untuk Masa Depan",
+  lead:
+    "Mengurangi timbulan sampah rumah tangga tidak selalu harus dimulai dari perubahan ekstrem yang memberatkan. Melalui kebiasaan harian yang terukur, siapa pun dapat berkontribusi nyata dalam menjaga kelestarian lingkungan dan menekan beban tempat pemrosesan akhir.",
+  author: "Tim Edukasi CircuLife",
+  date: "8 Februari 2026",
+  dateTime: "2026-02-08",
+  readTime: "4 menit baca",
+  topic: "Divisi Kampanye & Komunitas",
+  image: {
+    src: "/image-lomba/zero-waste-lifestyle.jpg",
+    alt: "Ilustrasi grafis bertuliskan ZERO WASTE LIFESTYLE dengan kolase ikon daur ulang berbentuk hati",
+    caption:
+      "Kampanye gaya hidup zero waste: perubahan kecil yang dijaga konsisten menggeser kebiasaan konsumsi harian.",
+    credit: "DOKUMENTASI: TIM EDUKASI CIRCULIFE",
   },
-  {
-    href: "/insight/upcycling-botol-plastik",
-    title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna",
-    excerpt:
-      "Botol PET yang biasanya berakhir di TPA bisa menjadi pot gantung, organizer, hingga lentera dengan alat sederhana.",
-    category: "Inovasi Daur Ulang",
-    readTime: "3 menit baca",
-    image: "/image-lomba/kreasi-daur-ulang.png",
-    imageAlt: "Kerajinan pot tanaman dari botol plastik bekas",
+  stats: [],
+  tags: ["ZeroWasteIndonesia", "GayaHidupBerkelanjutan", "PilahSampah", "CircuLifeInsight"],
+  appreciationBase: 64,
+  sections: [
+    {
+      id: "filosofi",
+      index: "01",
+      tag: "Filosofi Dasar",
+      heading: "Mengubah Paradigma: Bukan Sempurna, Tapi Konsisten",
+      paragraphs: [
+        "Gerakan Zero Waste kerap disalahpahami sebagai tuntutan hidup yang harus bebas sampah secara mutlak sejak hari pertama. Beban ekspektasi ini sering kali memicu keputusasaan sebelum kebiasaan sempat terbentuk. Padahal, filosofi zero waste sejatinya adalah proses bertahap untuk meminimalkan volume residu yang kita kirimkan ke Tempat Pemrosesan Akhir (TPA) melalui kesadaran penuh dalam memilih dan mengonsumsi barang.",
+        "Hierarki pengelolaan sampah modern menempatkan langkah pencegahan di posisi teratas. Melalui penerapan kerangka kerja 5R (Refuse, Reduce, Reuse, Recycle, Rot), setiap individu diajak mengenali siklus hidup dari setiap kemasan yang masuk ke rumah dan memprioritaskan pemanfaatan kembali sebelum mempertimbangkan opsi daur ulang.",
+      ],
+      widgets: ["pillars"],
+    },
+    {
+      id: "panduan-praktis",
+      index: "02",
+      tag: "Panduan Praktis",
+      heading: "Tiga Langkah Sederhana yang Dapat Dimulai Hari Ini",
+      paragraphs: [
+        "Memulai transisi ke gaya hidup ramah lingkungan tidak menuntut Anda langsung membeli perlengkapan serba baru. Kunci keberhasilan terletak pada konsistensi membangun kebiasaan harian dari hal-hal yang paling mudah dikendalikan di sekitar kita.",
+      ],
+      quote: {
+        text:
+          "Kita tidak membutuhkan segelintir orang yang menjalankan zero waste secara sempurna. Kita membutuhkan jutaan orang yang melakukannya secara tidak sempurna namun dengan konsisten setiap hari.",
+        attribution: "Anne Marie Bonneau, Zero Waste Chef",
+      },
+      widgets: ["action-steps", "sorting"],
+    },
+    {
+      id: "kompos",
+      index: "03",
+      tag: "Kompos & Organik",
+      heading: "Mengelola Sisa Makanan Dapur dari Sumbernya",
+      paragraphs: [
+        "Berdasarkan data Sistem Informasi Pengelolaan Sampah Nasional (SIPSN), lebih dari 40% hingga 50% komposisi sampah perkotaan di Indonesia didominasi oleh sampah organik dan sisa makanan rumah tangga. Ketika sampah organik ini tercampur dalam kantong plastik dan menumpuk di TPA tanpa sirkulasi udara, proses dekomposisi berlangsung secara anaerobik dan melepaskan gas metana (CH4), salah satu pemicu pemanasan global dengan daya rusak 28 kali lebih agresif dibanding karbon dioksida.",
+        "Mengolah sisa makanan di rumah sejatinya tidak rumit dan tidak menimbulkan bau menyengat jika sirkulasi oksigen terjaga. Anda dapat memulainya lewat metode sederhana seperti lubang resapan biopori di halaman, pot komposter gerabah aerobik dengan penambahan mikroorganisme lokal (MOL), pembuatan larutan eco-enzyme serbaguna dari kulit buah, hingga biokonversi larva maggot BSF (Black Soldier Fly) skala komunitas yang mampu mengurai residu organik dengan sangat cepat sekaligus menghasilkan pupuk kasgot bernutrisi tinggi bagi tanaman.",
+      ],
+    },
+    {
+      id: "dampak-tpa",
+      index: "04",
+      tag: "Dampak Ekosistem",
+      heading: "Dampak Nyata pada Pengurangan Beban TPA Daerah",
+      paragraphs: [
+        "Setiap kilogram sampah organik yang dikomposkan di rumah dan setiap botol plastik yang dialihkan ke bank sampah adalah kontribusi nyata dalam memperpanjang usia operasional TPA di berbagai wilayah Indonesia. Lebih dari sekadar menjaga estetika kebersihan lingkungan, gaya hidup zero waste memutus siklus konsumsi linier ambil-pakai-buang dan mengaktifkan rantai pasok ekonomi sirkular yang inklusif.",
+        "Melalui integrasi platform digital CircuLife, sampah anorganik terpilah Anda dapat disetorkan untuk dikonversi menjadi material bernilai guna seperti paving block berstandar teknik, sementara limbah organik kembali menjadi nutrisi penyubur tanah. Lingkaran keberlanjutan ini tidak bermula dari kebijakan yang rumit, melainkan dari satu keputusan kecil yang Anda ambil di dapur hari ini.",
+      ],
+    },
+  ],
+};
+
+const UPCYCLING_ARTICLE: ConservationArticle = {
+  slug: "upcycling-botol-plastik",
+  breadcrumb: ["Beranda", "Insight", "Inovasi Daur Ulang"],
+  badge: "Inovasi Daur Ulang",
+  location: "Panduan Kreatif",
+  title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna",
+  lead:
+    "Botol plastik jenis Polyethylene Terephthalate (PET, kode daur ulang #1) memiliki ketahanan fisik dan kejernihan material yang ideal untuk diolah kembali. Melalui sentuhan kreativitas dan teknik pemotongan sederhana, limbah kemasan air mineral dapat ditransformasikan menjadi pot hidroponik sistem sumbu, wadah alat tulis meja, kap lampu hias teras, hingga celengan karakter yang estetis dan bernilai ekonomi sirkular.",
+  author: "Tim Kreatif CircuLife",
+  date: "14 Februari 2026",
+  dateTime: "2026-02-14",
+  readTime: "3 menit baca",
+  topic: "Divisi Edukasi & Inovasi Sirkular",
+  image: {
+    src: "/image-lomba/kreasi-daur-ulang.png",
+    alt: "Ragam kreasi kerajinan dari botol plastik bekas termasuk pot tanaman gantung dan celengan karakter",
+    caption:
+      "Ragam kreasi upcycling botol plastik bekas menjadi produk dekoratif dan fungsional rumah tangga.",
+    credit: "DOKUMENTASI: STUDIO KREATIF CIRCULIFE",
   },
+  stats: [],
+  tags: ["UpcyclingIndonesia", "DaurUlangPlastik", "KriyaSirkular", "CircuLifeInsight"],
+  appreciationBase: 52,
+  sections: [
+    {
+      id: "konsep-upcycling",
+      index: "01",
+      tag: "Konsep Upcycling",
+      heading: "Dari Sampah Konsumsi Menjadi Elemen Dekorasi Fungsional",
+      paragraphs: [
+        "Botol plastik berbahan Polyethylene Terephthalate (PET) adalah salah satu jenis sampah anorganik yang paling melimpah di lingkungan perkotaan. Sifat fisiknya yang transparan, lentur namun tidak mudah pecah, serta kedap air menjadikannya material dasar yang sangat mumpuni untuk proyek kerajinan tangan (upcycling) daripada sekadar dibuang menumpuk di tempat sampah.",
+        "Berbeda dari proses daur ulang industri (recycling) yang memerlukan proses pencacahan dan peleburan termal berenergi tinggi, kriya daur ulang mandiri memanfaatkan bentuk utuh botol. Dengan memotong, merapikan tepi, dan merakit ulang komponennya, kita dapat mempertahankan 95% massa material tanpa menghasilkan emisi karbon tambahan.",
+      ],
+      widgets: ["flow"],
+    },
+    {
+      id: "tutorial",
+      index: "02",
+      tag: "Tutorial Praktis",
+      heading: "Panduan Langkah Demi Langkah: Pot Hidroponik Sumbu (Wick System)",
+      paragraphs: [
+        "Untuk memulai proyek ini, siapkan alat dan bahan sederhana yang mudah ditemukan di rumah: satu buah botol PET bekas ukuran 1,5 liter, gunting atau cutter tajam, potongan kain flanel atau sumbu kompor berukuran 2 x 20 cm, solder atau paku yang dipanaskan untuk membuat lubang, serta cat akrilik tahan air (opsional) untuk menghias bagian luar.",
+      ],
+      widgets: ["steps"],
+    },
+    {
+      id: "inspirasi",
+      index: "03",
+      tag: "Inspirasi Produk",
+      heading: "Inspirasi Wadah Alat Tulis & Kap Lampu Hias Teras",
+      paragraphs: [
+        "Selain pot tanaman, karakteristik dasar botol PET yang memiliki lekukan kontur bunga di bagian bawahnya memberikan ruang eksplorasi bentuk geometris yang sangat menarik untuk elemen dekorasi meja maupun instalasi pencahayaan ruangan.",
+      ],
+      quote: {
+        text:
+          "Kreativitas sejati dalam ekonomi sirkular bukan tentang menciptakan sampah baru yang cantik, melainkan melihat potensi fungsi baru di balik material yang dianggap tak lagi bernilai.",
+        attribution: "Divisi Inovasi Produk CircuLife",
+      },
+      widgets: ["gallery"],
+    },
+    {
+      id: "dampak-ekonomi",
+      index: "04",
+      tag: "Dampak & Nilai Ekonomi",
+      heading: "Dampak Lingkungan dan Potensi Penjualan di Bazar Komunitas",
+      paragraphs: [
+        "Setiap kali Anda mengolah satu botol plastik 1,5 liter menjadi produk fungsional, Anda telah mencegah pelepasan sekitar 50 gram gas rumah kaca ekuivalen yang biasanya tercipta selama proses ekstraksi minyak bumi untuk produksi botol baru. Dalam skala kolektif rukun warga, pengalihan ratusan botol dari TPA secara langsung menjaga kebersihan drainase lingkungan dan memangkas risiko sumbatan banjir saat musim hujan.",
+        "Lebih jauh lagi, produk kriya berbahan botol PET terbukti memiliki daya tarik komersial yang nyata. Pot hidroponik yang dihias rapi bersama bibit sayur selada atau pakcoy siap panen biasa laku dijual pada kisaran Rp15.000 hingga Rp45.000 per unit di bazar komunitas perkotaan, pasar kaget Car Free Day, dan pameran sekolah, membuka peluang ekonomi kreatif mandiri bagi kelompok ibu rumah tangga dan pemuda karang taruna.",
+      ],
+      widgets: ["points"],
+    },
+  ],
+};
+
+// Every article with a real route, in archive order.
+export const ARTICLES: ConservationArticle[] = [
+  CIREMAI_ARTICLE,
+  PAVING_ARTICLE,
+  ZERO_WASTE_ARTICLE,
+  UPCYCLING_ARTICLE,
 ];
 
-export const RELATED_INSIGHTS: RelatedInsight[] = [
-  {
-    href: "/edukasi",
-    title: "Mengubah Botol Bekas Jadi Produk Bernilai Tinggi",
-    excerpt:
-      "Alur pemilahan PET, pencacahan, sampai pencetakan paving block K-250 yang menyerap plastik dari lingkungan sekitar.",
-    category: "Daur Ulang",
-    readTime: "4 menit baca",
-    image: "/image-lomba/Kolase%20Daur%20Ulang%20Plastik%20Menjadi%20Paving.png",
-    imageAlt: "Kolase proses daur ulang plastik menjadi paving block",
-  },
-  {
-    href: "/edukasi",
-    title: "Lentera PET: Upcycling Botol Jadi Sumber Cahaya",
-    excerpt:
-      "Kriya sederhana dari botol PET bekas yang memberi penerangan alternatif dan nilai tambah bagi warga lereng.",
-    category: "Upcycling",
-    readTime: "3 menit baca",
-    image: "/image-lomba/Lentera%20Bunga%20PET%20di%20Senja%20Hari.png",
-    imageAlt: "Lentera bunga dari botol PET menyala saat senja",
-  },
-  {
-    href: "/edukasi",
-    title: "Maggot BSF: Biokonversi Sampah Organik di Lereng Ciremai",
-    excerpt:
-      "Larva Black Soldier Fly memangkas volume sisa organik dan menghasilkan kasgot sebagai pupuk persemaian bibit.",
-    category: "Organik",
-    readTime: "5 menit baca",
-    image: "/image-lomba/larva-bsf.png",
-    imageAlt: "Larva Black Soldier Fly pada media biokonversi",
-  },
-];
+export const getArticle = (slug: string) => ARTICLES.find((item) => item.slug === slug);

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import PavingBlockUmcArticlePage from "@/app/konservasi/paving-block-umc/page";
+import PavingBlockUmcArticlePage from "@/app/insight/paving-block-umc/page";
 
 describe("Paving block UMC article page", () => {
   it("renders the headline, the 40/60 material ratio and the field video", () => {

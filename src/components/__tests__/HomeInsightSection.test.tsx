@@ -6,7 +6,7 @@ describe("HomeInsightSection", () => {
   it("links the featured card to the Ciremai article", () => {
     render(<HomeInsightSection />);
     const cta = screen.getByRole("link", { name: /Baca Selengkapnya/i });
-    expect(cta).toHaveAttribute("href", "/konservasi/gunung-ciremai");
+    expect(cta).toHaveAttribute("href", "/insight/gunung-ciremai");
     expect(screen.getByText(/Menjaga Gunung Ciremai/i)).toBeTruthy();
   });
 
@@ -16,7 +16,7 @@ describe("HomeInsightSection", () => {
     expect(screen.getByText(/Paving Block Berbahan Limbah Plastik/i)).toBeTruthy();
     expect(screen.getByRole("link", { name: /Pelajari Riset/i })).toHaveAttribute(
       "href",
-      "/konservasi/paving-block-umc"
+      "/insight/paving-block-umc"
     );
     expect(screen.getByText(/Zero Waste untuk Masa Depan/i)).toBeTruthy();
     expect(screen.getByText(/Mengubah Botol Plastik Bekas/i)).toBeTruthy();

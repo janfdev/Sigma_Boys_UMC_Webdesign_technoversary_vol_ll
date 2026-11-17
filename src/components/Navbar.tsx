@@ -12,6 +12,7 @@ import {
   Calculator,
   BookOpen,
   Image as ImageIcon,
+  Newspaper,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ export const NAV_ITEMS = [
   { href: "/konservasi", label: "Produk Olahan" },
   { href: "/pantau", label: "Hitung Dampak" },
   { href: "/edukasi", label: "Panduan" },
+  { href: "/insight", label: "Insight" },
   { href: "/galeri", label: "Dokumentasi" },
   { href: "/about", label: "Tentang Kami" },
   { href: "/contact", label: "Kontak" },
@@ -53,7 +55,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
   const isEcosystemActive =
     activePath === "/pantau" ||
     activePath === "/edukasi" ||
-    activePath === "/galeri";
+    activePath === "/galeri" ||
+    activePath.startsWith("/insight");
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -152,6 +155,22 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <div>
                       <span className="font-bold block text-foreground leading-tight">Panduan &amp; Kuis</span>
                       <span className="text-[11px] text-muted-foreground block mt-0.5">Modul pemilahan zero waste</span>
+                    </div>
+                  </Link>
+                }
+              />
+              <DropdownMenuItem
+                render={
+                  <Link
+                    href="/insight"
+                    className="flex items-center gap-3 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full group/item"
+                  >
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors shrink-0">
+                      <Newspaper className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="font-bold block text-foreground leading-tight">Arsip Insight</span>
+                      <span className="text-[11px] text-muted-foreground block mt-0.5">Kajian &amp; riset lapangan</span>
                     </div>
                   </Link>
                 }

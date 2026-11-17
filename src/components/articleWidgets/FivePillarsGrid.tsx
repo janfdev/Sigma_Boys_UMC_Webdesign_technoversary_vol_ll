@@ -56,26 +56,26 @@ export default function FivePillarsGrid() {
           return (
             <div
               key={pillar.name}
-              className="group flex flex-col justify-between rounded-xl border border-[#1E3028] bg-[#111C17] p-3 sm:p-3.5 transition-all duration-200 hover:border-[#A3E635]/40 hover:bg-[#14231D]"
+              className="group flex flex-col justify-between rounded-xl border border-border bg-card p-3 sm:p-3.5 transition-all duration-200 hover:border-primary/40 hover:bg-card"
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-[#A3E635]">
+                  <span className="font-mono text-xs font-bold text-primary">
                     {pillar.number}.
                   </span>
-                  <span className="flex size-6 items-center justify-center rounded bg-[#1E3028] text-[#A3E635] transition-colors group-hover:bg-[#A3E635]/20">
+                  <span className="flex size-6 items-center justify-center rounded bg-border text-primary transition-colors group-hover:bg-primary/20">
                     <Icon className="size-3.5" aria-hidden="true" />
                   </span>
                 </div>
-                <h3 className="mt-2.5 text-xs sm:text-sm font-bold tracking-tight text-[#F8FAFC]">
+                <h3 className="mt-2.5 text-xs sm:text-sm font-bold tracking-tight text-foreground">
                   {pillar.name}
                 </h3>
-                <p className="text-[10px] uppercase tracking-wider text-[#10B981] font-mono">
+                <p className="text-[10px] uppercase tracking-wider text-primary font-mono">
                   {pillar.action}
                 </p>
               </div>
 
-              <p className="mt-3 text-xs leading-relaxed text-[#94A3B8]">
+              <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
                 {pillar.description}
               </p>
             </div>

@@ -44,27 +44,27 @@ export default function ActionStepsList() {
         return (
           <div
             key={step.number}
-            className="group flex items-start gap-4 rounded-xl border border-[#1E3028] bg-[#111C17] p-4 sm:p-5 transition-all duration-200 hover:border-[#A3E635]/40 hover:bg-[#14231D]"
+            className="group flex items-start gap-4 rounded-xl border border-border bg-card p-4 sm:p-5 transition-all duration-200 hover:border-primary/40 hover:bg-card"
           >
-            {/* Number box matching PRD spec: w-7 h-7 (or responsive sm:w-8 sm:h-8) rounded bg-[#A3E635]/15 border border-[#A3E635]/40 */}
+            {/* Number box matching PRD spec: w-7 h-7 (or responsive sm:w-8 sm:h-8) rounded bg-primary/15 border border-primary/40 */}
             <div
               aria-hidden="true"
-              className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded border border-[#A3E635]/40 bg-[#A3E635]/15 font-mono text-xs sm:text-sm font-bold text-[#A3E635]"
+              className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded border border-primary/40 bg-primary/15 font-mono text-xs sm:text-sm font-bold text-primary"
             >
               {step.number}
             </div>
 
             <div className="flex-1">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-sm sm:text-base font-bold tracking-tight text-[#F8FAFC]">
+                <h3 className="text-sm sm:text-base font-bold tracking-tight text-foreground">
                   {step.title}
                 </h3>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#10B981] inline-flex items-center gap-1">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-primary inline-flex items-center gap-1">
                   <Icon className="size-3" aria-hidden="true" />
                   {step.tag}
                 </span>
               </div>
-              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#94A3B8]">
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 {step.description}
               </p>
             </div>

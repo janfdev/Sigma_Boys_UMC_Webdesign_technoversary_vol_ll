@@ -1,7 +1,40 @@
-import type { ConservationArticle } from "@/data/articleData";
+import type { ConservationArticle, ArticleWidgetName } from "@/data/articleData";
 import HydrologySimulator from "@/components/HydrologySimulator";
 import MaterialRatioBar from "@/components/MaterialRatioBar";
 import VideoEmbedSection from "@/components/VideoEmbedSection";
+import ActionStepsList from "@/components/articleWidgets/ActionStepsList";
+import FivePillarsGrid from "@/components/articleWidgets/FivePillarsGrid";
+import InspirationGallery from "@/components/articleWidgets/InspirationGallery";
+import PointBonusBanner from "@/components/articleWidgets/PointBonusBanner";
+import SortingIllustration from "@/components/articleWidgets/SortingIllustration";
+import UpcyclingFlowBar from "@/components/articleWidgets/UpcyclingFlowBar";
+import UpcyclingStepGrid from "@/components/articleWidgets/UpcyclingStepGrid";
+
+// Prop-less widgets plug in through this map, so new ones are one line of data plus one entry.
+const PLAIN_WIDGETS: Record<string, () => React.ReactElement> = {
+  pillars: FivePillarsGrid,
+  "action-steps": ActionStepsList,
+  sorting: SortingIllustration,
+  flow: UpcyclingFlowBar,
+  steps: UpcyclingStepGrid,
+  gallery: InspirationGallery,
+  points: PointBonusBanner,
+};
+
+function Widget({ name, videoId }: { name: ArticleWidgetName; videoId?: string }) {
+  if (name === "hydrology") {
+    return (
+      <div className="mt-8">
+        <HydrologySimulator />
+      </div>
+    );
+  }
+  if (name === "material-ratio") return <MaterialRatioBar />;
+  if (name === "video" && videoId) return <VideoEmbedSection videoId={videoId} />;
+
+  const Plain = PLAIN_WIDGETS[name];
+  return Plain ? <Plain /> : null;
+}
 
 export default function ArticleBody({ article }: { article: ConservationArticle }) {
   return (
@@ -41,19 +74,9 @@ export default function ArticleBody({ article }: { article: ConservationArticle 
               </blockquote>
             ) : null}
 
-            {section.widget === "hydrology" ? (
-              <div className="mt-8">
-                <HydrologySimulator />
-              </div>
-            ) : null}
-
-            {section.widget === "material-ratio" ? (
-              <MaterialRatioBar />
-            ) : null}
-
-            {section.widget === "video" && section.videoId ? (
-              <VideoEmbedSection videoId={section.videoId} />
-            ) : null}
+            {section.widgets?.map((name) => (
+              <Widget key={name} name={name} videoId={section.videoId} />
+            ))}
           </section>
         ))}
       </div>

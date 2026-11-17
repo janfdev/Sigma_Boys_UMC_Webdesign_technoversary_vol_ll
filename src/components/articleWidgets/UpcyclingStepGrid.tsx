@@ -52,25 +52,25 @@ export default function UpcyclingStepGrid() {
         return (
           <div
             key={item.step}
-            className="group flex flex-col justify-between rounded-xl border border-[#1E3028] bg-[#111C17] p-5 transition-all duration-200 hover:border-[#A3E635]/40 hover:bg-[#14231D]"
+            className="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-200 hover:border-primary/40 hover:bg-card"
           >
             <div>
               {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-[#1E3028] pb-3">
-                <span className="inline-flex items-center gap-1.5 rounded bg-[#A3E635]/15 border border-[#A3E635]/40 px-2.5 py-0.5 font-mono text-xs font-bold text-[#A3E635]">
+              <div className="flex items-center justify-between border-b border-border pb-3">
+                <span className="inline-flex items-center gap-1.5 rounded bg-primary/15 border border-primary/40 px-2.5 py-0.5 font-mono text-xs font-bold text-primary">
                   <Icon className="size-3" aria-hidden="true" />
                   {item.step}
                 </span>
-                <span className="font-mono text-[11px] text-[#94A3B8]">
+                <span className="font-mono text-[11px] text-muted-foreground">
                   {item.estimate}
                 </span>
               </div>
 
               {/* Step Content */}
-              <h3 className="mt-4 text-base font-bold text-[#F8FAFC]">
+              <h3 className="mt-4 text-base font-bold text-foreground">
                 {item.title}
               </h3>
-              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#94A3B8]">
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 {item.description}
               </p>
             </div>

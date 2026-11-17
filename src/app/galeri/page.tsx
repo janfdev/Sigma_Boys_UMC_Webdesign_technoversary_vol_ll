@@ -263,10 +263,10 @@ export default function GaleriPage() {
                     </div>
 
                     <Link
-                      href="/contact"
+                      href={`/insight#${article.slug}`}
                       className="font-mono font-bold text-primary hover:underline inline-flex items-center gap-1 text-xs"
                     >
-                      <span>Diskusi Topik</span>
+                      <span>Baca Ringkasan</span>
                       <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>

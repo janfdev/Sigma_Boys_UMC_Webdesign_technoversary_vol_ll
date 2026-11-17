@@ -33,7 +33,7 @@ export default function RelatedArticles({
           </div>
           <Link
             className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-primary"
-            href="/edukasi"
+            href="/insight"
           >
             Semua Insight -&gt;
           </Link>
@@ -88,7 +88,7 @@ export default function RelatedArticles({
               buttonVariants({ variant: "outline", size: "lg" }),
               "cursor-pointer gap-2 rounded-full font-mono text-[11px] uppercase tracking-[0.14em]"
             )}
-            href="/edukasi"
+            href="/insight"
           >
             <ArrowLeft aria-hidden="true" className="size-3.5" />
             Kembali ke Daftar Artikel

@@ -34,9 +34,9 @@ export const BIN_CATEGORIES = [
 
 export default function SortingIllustration() {
   return (
-    <figure className="my-8 overflow-hidden rounded-2xl border border-[#1E3028] bg-[#111C17]">
+    <figure className="my-8 overflow-hidden rounded-2xl border border-border bg-card">
       {/* Banner Image */}
-      <div className="relative aspect-[16/9] w-full bg-[#0A110E] sm:aspect-[2/1]">
+      <div className="relative aspect-[16/9] w-full bg-background sm:aspect-[2/1]">
         <Image
           src="/image-lomba/gaya-hidup-zero-waste.webp"
           alt="Ilustrasi pemilahan sampah ke dalam 4 tempat sampah berbeda warna bertuliskan ZERO WASTE dan BRING YOUR OWN CUP"
@@ -47,27 +47,27 @@ export default function SortingIllustration() {
       </div>
 
       {/* Educational Color Legend Footer */}
-      <div className="border-t border-[#1E3028] bg-[#0E1713] p-4 sm:p-5">
-        <figcaption className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[#A3E635]">
+      <div className="border-t border-border bg-card p-4 sm:p-5">
+        <figcaption className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-primary">
           INFOGRAFIS // STANDARISASI KODE WARNA TEMPAT SAMPAH PILAH
         </figcaption>
         <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
           {BIN_CATEGORIES.map((bin) => (
             <div
               key={bin.name}
-              className="rounded-lg border border-[#1E3028] bg-[#111C17] p-2.5 transition-colors hover:border-[#A3E635]/30"
+              className="rounded-lg border border-border bg-card p-2.5 transition-colors hover:border-primary/30"
             >
               <div className="flex items-center gap-2">
                 <span
                   aria-hidden="true"
                   className={`size-2.5 rounded-full ${bin.color} ring-2 ring-white/10`}
                 />
-                <span className="font-mono text-xs font-semibold text-[#F8FAFC]">
+                <span className="font-mono text-xs font-semibold text-foreground">
                   {bin.name}
                 </span>
               </div>
-              <p className="mt-1 text-xs font-medium text-[#10B981]">{bin.category}</p>
-              <p className="mt-0.5 text-[10px] leading-tight text-[#94A3B8]">{bin.items}</p>
+              <p className="mt-1 text-xs font-medium text-primary">{bin.category}</p>
+              <p className="mt-0.5 text-[10px] leading-tight text-muted-foreground">{bin.items}</p>
             </div>
           ))}
         </div>

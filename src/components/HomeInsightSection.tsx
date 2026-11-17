@@ -1,11 +1,12 @@
 import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import { CIREMAI_ARTICLE } from "@/data/articleData";
+import { insightHref } from "@/data/insights";
 
 const FEATURED_TOPICS = ["DAS Cisanggarung", "Flora Endemik", "Patroli Masyarakat"];
 
 const FEATURED = {
-  href: `/konservasi/${CIREMAI_ARTICLE.slug}`,
+  href: insightHref(CIREMAI_ARTICLE.slug),
   image: CIREMAI_ARTICLE.image.src,
   imageAlt: CIREMAI_ARTICLE.image.alt,
   title: CIREMAI_ARTICLE.title,
@@ -15,6 +16,7 @@ const FEATURED = {
 
 const RESEARCH = {
   ref: "REF // POL-008-B / Februari 2026",
+  href: insightHref("paving-block-umc"),
   title: "Dari Sampah Menjadi Manfaat: Mahasiswa UMC Membuat Paving Block Berbahan Limbah Plastik",
   summary:
     "Mengapa pemilahan dari tingkat rumah tangga, rukun tetangga, dan warung menjadi kunci vital dalam mengurangi beban tempat pemrosesan akhir (TPA) secara berkelanjutan, sekaligus menciptakan bahan baku bersih bagi industri daur ulang.",
@@ -28,6 +30,7 @@ const RESEARCH = {
 
 const SIDE_ENTRIES = [
   {
+    href: insightHref("zero-waste-lifestyle"),
     header: "Gerakan Komunitas",
     readTime: "4 Mnt Baca",
     title: "Mulai dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste untuk Masa Depan",
@@ -37,6 +40,7 @@ const SIDE_ENTRIES = [
     cta: "Baca Artikel",
   },
   {
+    href: insightHref("upcycling-botol-plastik"),
     header: "Inovasi Daur Ulang",
     readTime: "3 Mnt Baca",
     title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna.",
@@ -197,7 +201,7 @@ export default function HomeInsightSection() {
                   </span>
                   <Link
                     className="inline-flex min-h-9 cursor-pointer items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-primary transition-opacity hover:opacity-80"
-                    href="/konservasi/paving-block-umc"
+                    href={RESEARCH.href}
                   >
                     Pelajari Riset
                     <ArrowRight aria-hidden="true" className="size-3.5" />
@@ -235,7 +239,7 @@ export default function HomeInsightSection() {
                     </p>
                     <Link
                       className="mt-auto inline-flex min-h-9 items-center gap-1.5 self-end pt-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-primary transition-opacity hover:opacity-80"
-                      href="/edukasi"
+                      href={entry.href}
                     >
                       {entry.cta}
                       <ArrowUpRight aria-hidden="true" className="size-3" />
