@@ -61,7 +61,7 @@ export default function EnvironmentalComparisonSlider() {
                   : "border-border/70 hover:bg-muted text-muted-foreground"
               )}
             >
-              <AnimatedNumber value={50} /> : <AnimatedNumber value={50} />
+             50 : 50
             </button>
             <button
               type="button"
@@ -73,7 +73,7 @@ export default function EnvironmentalComparisonSlider() {
                   : "border-border/70 hover:bg-muted text-muted-foreground"
               )}
             >
-              Hasil Sirkular (<AnimatedNumber value={100} />%)
+              Hasil Sirkular 100%
             </button>
           </div>
         </div>
@@ -97,18 +97,18 @@ export default function EnvironmentalComparisonSlider() {
               <h3 className="flex items-center gap-2 font-bold"><AlertTriangle className="size-4" aria-hidden="true" /> Kondisi awal</h3>
               <p className="text-sm text-muted-foreground">Timbunan botol plastik sekali pakai, kaleng gas sisa tercecer, dan ancaman degradasi ekosistem lereng.</p>
               <dl className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div><dt>Sampah / Bln</dt><dd className="font-mono font-bold"><AnimatedNumber value={1450} format={(v) => Math.round(v).toLocaleString("id-ID")} /> kg</dd></div>
+                <div><dt>Sampah / Bln</dt><dd className="font-mono font-bold">1.450 kg</dd></div>
                 <div><dt>Risiko Bahaya Gas</dt><dd className="font-bold">TINGGI</dd></div>
-                <div><dt>Daur Ulang</dt><dd className="font-mono font-bold"><AnimatedNumber value={0} />%</dd></div>
+                <div><dt>Daur Ulang</dt><dd className="font-mono font-bold">0%</dd></div>
               </dl>
             </div>
             <div className="flex flex-col gap-3 rounded-xl border border-border bg-muted/40 p-4">
               <h3 className="flex items-center gap-2 font-bold"><CheckCircle2 className="size-4" aria-hidden="true" /> Hasil sirkular</h3>
               <p className="text-sm text-muted-foreground">Jalur tertata dengan Eco-Paving Block K-250, drop-box limbah terpilah, dan reboisasi pohon endemik.</p>
               <dl className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div><dt>Timbunan Sampah</dt><dd className="font-mono font-bold"><AnimatedNumber value={-94} />%</dd></div>
-                <div><dt>Eco-Paving K-250</dt><dd className="font-mono font-bold"><AnimatedNumber value={850} /> m²</dd></div>
-                <div><dt>Pohon Tertanam</dt><dd className="font-mono font-bold">+<AnimatedNumber value={1200} format={(v) => Math.round(v).toLocaleString("id-ID")} /></dd></div>
+                <div><dt>Timbunan Sampah</dt><dd className="font-mono font-bold">-94%</dd></div>
+                <div><dt>Eco-Paving K-250</dt><dd className="font-mono font-bold">850 m²</dd></div>
+                <div><dt>Pohon Tertanam</dt><dd className="font-mono font-bold">+ 1200</dd></div>
               </dl>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function EnvironmentalComparisonSlider() {
           <div className="p-4 sm:p-6 bg-muted/40 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
             <div className="flex items-center gap-2 text-muted-foreground">
               <SlidersHorizontal className="h-4 w-4 text-primary shrink-0" aria-hidden="true" />
-              <span>Gunakan slider untuk mengatur proporsi tampilan (<AnimatedNumber value={Math.round(sliderPosition)} />% hasil sirkular).</span>
+              <span>Gunakan slider untuk mengatur proporsi tampilan ({Math.round(sliderPosition)} % hasil sirkular).</span>
             </div>
 
             <div className="flex items-center gap-3 w-full sm:w-72">

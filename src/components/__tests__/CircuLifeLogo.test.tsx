@@ -4,12 +4,13 @@ import React from "react";
 import CircuLifeLogo from "../CircuLifeLogo";
 
 describe("CircuLifeLogo Component", () => {
-  it("should render the logo mark SVG with accessibility attributes", () => {
+  it("should render the logo mark image with accessibility attributes", () => {
     const { container } = render(<CircuLifeLogo />);
-    const svg = container.querySelector("svg");
+    const img = container.querySelector("img");
 
-    expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute("viewBox", "0 0 48 48");
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src", "/brand/circulife-mark.png");
+    expect(img).toHaveAttribute("alt", "CircuLife Logo Mark");
   });
 
   it("should render with wordmark when showWordmark is true", () => {

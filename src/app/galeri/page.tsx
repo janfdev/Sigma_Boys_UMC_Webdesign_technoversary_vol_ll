@@ -282,8 +282,10 @@ export default function GaleriPage() {
         <section id="produk-section" className="py-16 sm:py-20 bg-muted/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div>
-              <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary mb-2">
-                Katalog Produk Olahan
+              <Badge variant="outline" className="inline-flex items-center gap-1.5 font-mono text-xs uppercase border-primary/30 text-primary mb-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/circulife-mark.png" alt="CircuLife Logo" className="h-4 w-4 object-contain" />
+                <span>Katalog Produk Olahan</span>
               </Badge>
               <h2 className="text-2xl sm:text-3xl font-black text-foreground">
                 Etalase Produk Sirkular Nilai Tambah

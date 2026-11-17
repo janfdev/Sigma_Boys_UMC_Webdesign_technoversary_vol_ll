@@ -51,13 +51,13 @@ export default function HomePage() {
       {/* 4. Interactive Before-After Environmental Restoration Split Slider */}
       <EnvironmentalComparisonSlider />
 
-      {/* 6. Conservation Action Initiatives (Bento Grid 3 Circular Pillars) */}
+      {/* 6. Conservation Action Initiatives */}
       <CampaignActionSection />
 
       {/* 7. Interactive Accordion FAQ & Operational Transparency */}
       <HomeFaqSection />
 
-      {/* 8. Circular Animated Motion CTA Section (@bagui/cta-2) */}
+      {/* 8. Circular Animated Motion CTA Section */}
       <CircularCtaSection />
     </div>
   );

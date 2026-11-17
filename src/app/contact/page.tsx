@@ -259,8 +259,8 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-6">
               <Card className="rounded-3xl border-border bg-card shadow-sm p-6 space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-card border border-border/80 shadow-sm ring-1 ring-primary/20 shrink-0">
-                    <CircuLifeMark className="h-8 w-8" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-card border border-border/80 shadow-sm ring-1 ring-primary/20 shrink-0 p-1.5 overflow-hidden">
+                    <CircuLifeMark className="h-full w-full object-contain" />
                   </div>
                   <div className="space-y-1">
                     <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary">

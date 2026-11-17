@@ -33,8 +33,8 @@ export default function Footer() {
           {/* Col 1: Mission */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-card border border-border/80 shadow-sm">
-                <CircuLifeMark className="h-5 w-5" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-card border border-border/80 shadow-sm p-1 overflow-hidden">
+                <CircuLifeMark className="h-6 w-6 object-contain" />
               </div>
               <span className="text-lg font-black tracking-tight">CIRCULIFE</span>
             </div>

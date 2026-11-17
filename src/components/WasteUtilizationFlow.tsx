@@ -118,7 +118,7 @@ export default function WasteUtilizationFlow() {
 
                     <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground flex items-center gap-1.5">
                       {isActive && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
-                      <span>Langkah <AnimatedNumber value={stage.step} />/<AnimatedNumber value={4} /></span>
+                      <span>Langkah {stage.step} </span>
                     </span>
                   </div>
 
@@ -220,7 +220,7 @@ export default function WasteUtilizationFlow() {
               <div className="p-5 rounded-2xl border border-border/80 bg-muted/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-muted-foreground">
                   <Filter className="h-4 w-4 text-primary" />
-                  <span><AnimatedNumber value={1} />. Material Input Masuk</span>
+                  <span>1. Material Input Masuk</span>
                 </div>
                 <ul className="space-y-2">
                   {currentStage.inputMaterials.map((mat, i) => (
@@ -236,7 +236,7 @@ export default function WasteUtilizationFlow() {
               <div className="p-5 rounded-2xl border border-border/80 bg-muted/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-muted-foreground">
                   <RefreshCw className="h-4 w-4 text-primary" />
-                  <span><AnimatedNumber value={2} />. Proses Transformasi</span>
+                  <span>2. Proses Transformasi</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   <NumericText text={currentStage.transformationProcess} />
@@ -251,7 +251,7 @@ export default function WasteUtilizationFlow() {
               <div className="p-5 rounded-2xl border border-border/80 bg-muted/30 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-muted-foreground">
                   <Layers className="h-4 w-4 text-primary" />
-                  <span><AnimatedNumber value={3} />. Produk Output Bernilai</span>
+                  <span>3. Produk Output Bernilai</span>
                 </div>
                 <ul className="space-y-2">
                   {currentStage.outputProducts.map((prod, i) => (

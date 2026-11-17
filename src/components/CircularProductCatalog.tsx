@@ -1,6 +1,5 @@
 "use client";
 import { NumericText } from "@/components/NumericText";
-import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState, useEffect } from "react";
 import { CircularProduct, ProductCategory } from "@/types";
@@ -114,8 +113,10 @@ export default function CircularProductCatalog() {
           </Button>
         </div>
 
-        <Badge variant="outline" className="text-xs font-mono font-bold uppercase px-3 py-1.5 border-primary/30 text-primary">
-          Standar Sirkularitas Teruji
+        <Badge variant="outline" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase px-3 py-1.5 border-primary/30 text-primary">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/circulife-mark.png" alt="CircuLife" className="h-3.5 w-3.5 object-contain" />
+          <span>Standar Sirkularitas Teruji</span>
         </Badge>
       </div>
 
@@ -135,9 +136,16 @@ export default function CircularProductCatalog() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
+                  <div className="absolute top-2.5 left-2.5 z-10">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-background/85 px-2 py-0.5 text-[10px] font-mono font-semibold text-foreground backdrop-blur-sm border border-border/60 shadow-xs">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/brand/circulife-mark.png" alt="CircuLife" className="h-3 w-3 object-contain" />
+                      <span>CircuLife</span>
+                    </span>
+                  </div>
                   <div className="absolute top-2.5 right-2.5 z-10">
                     <Badge variant="default" className="text-[10px] font-mono font-bold uppercase px-2 py-0.5">
-                      <AnimatedNumber value={p.pointsRequired} />Poin
+                      {p.pointsRequired} Poin
                     </Badge>
                   </div>
                 </div>
@@ -152,7 +160,7 @@ export default function CircularProductCatalog() {
                   {!p.imageUrl && (
                     <div className="flex items-center gap-1.5">
                       <Badge variant="default" className="text-[10px] font-mono font-bold uppercase px-2 py-0.5">
-                        <AnimatedNumber value={p.pointsRequired} /> Poin
+                        {p.pointsRequired} Poin
                       </Badge>
                     </div>
                   )}

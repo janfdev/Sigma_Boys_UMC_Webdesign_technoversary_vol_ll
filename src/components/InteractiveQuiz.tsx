@@ -116,7 +116,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
           <div className="flex items-center gap-2">
             <HelpCircle className="h-4 w-4 text-primary" aria-hidden="true" />
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Pertanyaan <AnimatedNumber value={currentIndex + 1} /> dari <AnimatedNumber value={questions.length} />
+              Pertanyaan {currentIndex + 1} dari {questions.length}
             </span>
           </div>
           <Badge variant="default" className="text-xs font-bold tabular-nums">

@@ -29,6 +29,16 @@ export default function KonservasiPage() {
           </p>
         </div>
 
+        <div className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-sm">
+          <iframe
+            allowFullScreen
+            allow="autoplay; fullscreen; clipboard-write"
+            className="w-full h-[480px] sm:h-[560px] border-0"
+            src="https://heyzine.com/flip-book/8b06d5e06f.html"
+            title="Katalog Inovasi Sirkular CircuLife Flipbook"
+          />
+        </div>
+
         {/* 0. Standalone Bio-Digester Anatomy Section */}
         <section aria-labelledby="biodigester-heading" className="space-y-4">
           <div className="mb-2 space-y-2">
