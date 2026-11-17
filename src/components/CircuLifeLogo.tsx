@@ -40,11 +40,11 @@ export function CircuLifeLogo({
     <div className={cn("flex items-center gap-3", className)}>
       <div
         className={cn(
-          "flex items-center justify-center rounded-xl bg-card border border-border/80 shadow-sm transition-transform group-hover:scale-105",
+          "flex items-center justify-center rounded-xl bg-card border border-border/80 shadow-sm transition-transform group-hover:scale-105 p-1.5 overflow-hidden",
           sizeMap[size]
         )}
       >
-        <CircuLifeMark className="h-6 w-6 sm:h-7 sm:w-7" />
+        <CircuLifeMark className="h-full w-full object-contain" />
       </div>
 
       {showWordmark && (
