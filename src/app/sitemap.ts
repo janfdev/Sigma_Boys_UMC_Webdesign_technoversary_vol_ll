@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/lapor", priority: 0.95, changeFrequency: "always" as const },
     { url: "/pantau", priority: 0.85, changeFrequency: "hourly" as const },
     { url: "/edukasi", priority: 0.85, changeFrequency: "weekly" as const },
-    { url: "/konservasi", priority: 0.8, changeFrequency: "weekly" as const },
+    { url: "/inovasi", priority: 0.8, changeFrequency: "weekly" as const },
     { url: "/insight", priority: 0.9, changeFrequency: "weekly" as const },
     // Article pages come from the registry, so a new entry is listed without editing this file.
     ...ARTICLE_INSIGHTS.map((entry) => ({

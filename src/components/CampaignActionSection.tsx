@@ -208,7 +208,7 @@ export default function CampaignActionSection() {
 
                   <div className="shrink-0 flex items-center">
                     <Link
-                      href="/konservasi"
+                      href="/inovasi"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "sm" }),
                         "h-11 px-6 text-xs font-mono font-bold uppercase tracking-wider rounded-xl gap-2 border-border/80 hover:bg-muted text-foreground"

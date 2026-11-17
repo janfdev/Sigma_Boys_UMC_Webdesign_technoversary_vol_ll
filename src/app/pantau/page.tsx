@@ -1,6 +1,5 @@
 import React from "react";
 import WasteImpactSimulator from "@/components/WasteImpactSimulator";
-import RestorationTracker from "@/components/RestorationTracker";
 import HotlineDirectory from "@/components/HotlineDirectory";
 import { Recycle, PackageCheck } from "lucide-react";
 import Link from "next/link";
@@ -35,11 +34,6 @@ export default function PantauPage() {
         {/* 1. Simulator Konversi Dampak & Reduksi Karbon */}
         <section aria-labelledby="simulator-heading">
           <WasteImpactSimulator />
-        </section>
-
-        {/* 2. Tracker Restorasi Ekosistem & Pemanfaatan Pupuk Kasgot */}
-        <section aria-labelledby="restoration-heading">
-          <RestorationTracker />
         </section>
 
         {/* 3. Direktori Posko Resmi & Hotline */}

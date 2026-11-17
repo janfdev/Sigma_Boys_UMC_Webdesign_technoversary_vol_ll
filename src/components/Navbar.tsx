@@ -287,16 +287,16 @@ export default function Navbar({ currentPath }: NavbarProps) {
               </Link>
 
               <Link
-                href="/konservasi"
+                href="/inovasi"
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex h-11 items-center gap-2.5 rounded-xl px-3 text-xs font-bold transition-all ${
-                  activePath === "/konservasi"
+                  activePath === "/inovasi"
                     ? "bg-primary text-primary-foreground shadow-xs"
                     : "text-foreground hover:bg-muted/70 bg-muted/30"
                 }`}
               >
                 <Layers className="h-4 w-4 shrink-0 opacity-80" />
-                <span className="truncate">Produk Olahan</span>
+                <span className="truncate">Inovasi Sirkular</span>
               </Link>
 
               <Link
