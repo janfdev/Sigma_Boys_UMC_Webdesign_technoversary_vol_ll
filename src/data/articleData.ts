@@ -202,7 +202,7 @@ export const PAVING_ARTICLE: ConservationArticle = {
 
 export const PAVING_RELATED: RelatedInsight[] = [
   {
-    href: "/edukasi",
+    href: "/insight/zero-waste-lifestyle",
     title: "Mulai dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste untuk Masa Depan",
     excerpt:
       "Zero waste tidak berarti nol sampah sejak hari pertama. Ia tumbuh dari kebiasaan belanja, memilah, dan menolak kemasan sekali pakai.",
@@ -212,7 +212,7 @@ export const PAVING_RELATED: RelatedInsight[] = [
     imageAlt: "Ilustrasi kampanye gaya hidup zero waste dengan tempat sampah terpilah",
   },
   {
-    href: "/edukasi",
+    href: "/insight/upcycling-botol-plastik",
     title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna",
     excerpt:
       "Botol PET yang biasanya berakhir di TPA bisa menjadi pot gantung, organizer, hingga lentera dengan alat sederhana.",
