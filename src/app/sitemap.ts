@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { ARTICLE_INSIGHTS } from "@/data/insights";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://circulife.abyte.my.id";
@@ -13,6 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/pantau", priority: 0.85, changeFrequency: "hourly" as const },
     { url: "/edukasi", priority: 0.85, changeFrequency: "weekly" as const },
     { url: "/konservasi", priority: 0.8, changeFrequency: "weekly" as const },
+    { url: "/insight", priority: 0.9, changeFrequency: "weekly" as const },
+    // Article pages come from the registry, so a new entry is listed without editing this file.
+    ...ARTICLE_INSIGHTS.map((entry) => ({
+      url: entry.href,
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    })),
   ];
 
   return routes.map((route) => ({
