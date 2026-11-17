@@ -72,7 +72,7 @@ export default function HomeInsightSection() {
             />
 
             <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-primary backdrop-blur-md">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-emerald-300 backdrop-blur-md">
                 Sorotan Lingkungan
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/80 backdrop-blur-md">
@@ -81,7 +81,7 @@ export default function HomeInsightSection() {
               </span>
             </div>
 
-            <p className="absolute bottom-4 left-4 max-w-[calc(100%-2rem)] rounded-md border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-primary backdrop-blur-md">
+            <p className="absolute bottom-4 left-4 max-w-[calc(100%-2rem)] rounded-md border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-emerald-300 backdrop-blur-md">
               Elevasi: 3.078 mdpl // Atap Jawa Barat
             </p>
           </div>

@@ -214,7 +214,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               >
                 {copiedTicket ? (
                   <>
-                    <Check className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                    <Check className="h-4 w-4 text-emerald-800 dark:text-emerald-300" aria-hidden="true" />
                     <span>Tersalin!</span>
                   </>
                 ) : (

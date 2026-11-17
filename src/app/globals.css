@@ -31,7 +31,7 @@
     --accent-foreground: 48 20% 98%;
 
     /* Alert / Warning */
-    --destructive: 0 75% 50%; /* #DC2626 */
+    --destructive: 0 75% 45%; /* #C92020 */
     --destructive-foreground: 0 0% 100%;
 
     --border: 45 10% 86%; /* #DDDCD5 */

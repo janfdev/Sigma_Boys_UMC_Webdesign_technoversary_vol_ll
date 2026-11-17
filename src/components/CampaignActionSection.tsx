@@ -79,7 +79,7 @@ export default function CampaignActionSection() {
                   <span className="text-[10px] sm:text-xs text-muted-foreground uppercase font-bold tracking-wider">Plastik per Buah</span>
                 </div>
                 <div>
-                  <span className="block text-lg sm:text-2xl font-black text-emerald-600 dark:text-emerald-400 tabular-nums">K-250</span>
+                  <span className="block text-lg sm:text-2xl font-black text-emerald-800 dark:text-emerald-300 tabular-nums">K-250</span>
                   <span className="text-[10px] sm:text-xs text-muted-foreground uppercase font-bold tracking-wider">Standar Tekan Uji</span>
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function CampaignActionSection() {
 
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/20 group-hover:scale-105 transition-transform">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-800 dark:text-amber-300 ring-1 ring-amber-500/20 group-hover:scale-105 transition-transform">
                   <Flame className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-amber-50 text-amber-800 dark:bg-amber-950 dark:text-amber-200 border-amber-200 dark:border-amber-900">

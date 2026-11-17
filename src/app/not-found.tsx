@@ -16,7 +16,7 @@ export default function NotFound() {
         <div className="space-y-3">
           <Badge
             variant="outline"
-            className="px-3 py-1 text-xs font-mono font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 border-amber-500/30 rounded-full"
+            className="px-3 py-1 text-xs font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 border-amber-500/30 bg-amber-500/10 rounded-full"
           >
             <AlertTriangle className="h-3.5 w-3.5 mr-1.5" />
             <span>Kode Status: 404 Terdeteksi</span>
@@ -36,7 +36,7 @@ export default function NotFound() {
           </div>
           <div className="flex justify-between">
             <span>STATUS JALUR:</span>
-            <span className="text-amber-600 dark:text-amber-400 font-bold">NON-EXISTENT</span>
+            <span className="text-amber-800 dark:text-amber-300 font-bold">NON-EXISTENT</span>
           </div>
         </div>
 

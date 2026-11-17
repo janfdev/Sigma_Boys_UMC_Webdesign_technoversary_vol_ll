@@ -242,7 +242,7 @@ export default function WasteUtilizationFlow() {
                   <NumericText text={currentStage.transformationProcess} />
                 </p>
                 <div className="p-2.5 rounded-xl bg-card border border-border/60 text-[11px] font-mono text-foreground flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                  <ShieldCheck className="h-4 w-4 text-emerald-800 dark:text-emerald-300 shrink-0" />
                   <span>SOP Standar KSM Teruji Lab</span>
                 </div>
               </div>
@@ -267,7 +267,7 @@ export default function WasteUtilizationFlow() {
             {/* Impact Metric & Social Impact Callout Banner */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-start gap-3">
-                <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                <TrendingUp className="h-5 w-5 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 block">
                     Dampak Nyata Lingkungan :

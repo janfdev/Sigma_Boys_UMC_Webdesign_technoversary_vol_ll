@@ -54,9 +54,9 @@ export default function CircularProductCatalog() {
       case "COMPOST":
         return <Sprout className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />;
       case "UPCYCLING":
-        return <Flame className="h-4 w-4 text-amber-500" />;
+        return <Flame className="h-4 w-4 text-amber-700 dark:text-amber-400" />;
       default:
-        return <ShoppingBag className="h-4 w-4 text-blue-500" />;
+        return <ShoppingBag className="h-4 w-4 text-blue-700 dark:text-blue-400" />;
     }
   };
 
@@ -340,7 +340,7 @@ export default function CircularProductCatalog() {
 
             {/* Toxicity & Safety Certificate Strip */}
             <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-start gap-3">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="h-4 w-4 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5" />
               <div className="space-y-0.5">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-950 dark:text-emerald-300 block">
                   Sertifikasi Keselamatan Lingkungan

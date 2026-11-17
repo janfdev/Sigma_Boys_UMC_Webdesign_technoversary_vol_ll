@@ -79,7 +79,7 @@ export default function HotlineDirectory() {
                   className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-11 px-4 gap-1.5 text-xs font-bold rounded-xl")}
                   aria-label={`Kirim WhatsApp ke ${contact.name}`}
                 >
-                  <MessageSquare className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                  <MessageSquare className="h-4 w-4 text-emerald-800 dark:text-emerald-300" aria-hidden="true" />
                   <span>WA</span>
                 </a>
               )}

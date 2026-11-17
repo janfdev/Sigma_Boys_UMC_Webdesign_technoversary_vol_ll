@@ -54,7 +54,7 @@ const MATERIALS: MaterialMeta[] = [
     icon: Layers,
     defaultKg: 25,
     maxKg: 200,
-    colorCls: "text-emerald-500",
+    colorCls: "text-emerald-700 dark:text-emerald-400",
     badgeCls: "border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300",
     targetProduct: "Eco-Paving Block K-250",
     unitOutput: "Buah Paving",
@@ -79,7 +79,7 @@ const MATERIALS: MaterialMeta[] = [
     icon: Flame,
     defaultKg: 10,
     maxKg: 100,
-    colorCls: "text-amber-500",
+    colorCls: "text-amber-700 dark:text-amber-400",
     badgeCls: "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300",
     targetProduct: "Tungku Biomassa & Asbak Saku",
     unitOutput: "Unit Alat",
@@ -104,7 +104,7 @@ const MATERIALS: MaterialMeta[] = [
     icon: Sprout,
     defaultKg: 40,
     maxKg: 300,
-    colorCls: "text-lime-600",
+    colorCls: "text-lime-700 dark:text-lime-300",
     badgeCls: "border-lime-500/30 bg-lime-500/10 text-lime-800 dark:text-lime-300",
     targetProduct: "Pupuk Kompos Kasgot BSF",
     unitOutput: "Kg Pupuk",
@@ -129,7 +129,7 @@ const MATERIALS: MaterialMeta[] = [
     icon: Droplets,
     defaultKg: 15,
     maxKg: 150,
-    colorCls: "text-teal-500",
+    colorCls: "text-teal-700 dark:text-teal-300",
     badgeCls: "border-teal-500/30 bg-teal-500/10 text-teal-800 dark:text-teal-300",
     targetProduct: "Biodiesel Nabati Sirkular",
     unitOutput: "Liter Biodiesel",
@@ -358,7 +358,7 @@ export default function WasteImpactSimulator() {
 
                 {/* 3. Reward Points Earned */}
                 <div className="p-5 sm:p-6 rounded-2xl border border-border/80 bg-card space-y-2">
-                  <div className="flex items-center justify-between text-xs font-mono font-bold text-amber-600 dark:text-amber-400">
+                  <div className="flex items-center justify-between text-xs font-mono font-bold text-amber-800 dark:text-amber-300">
                     <span className="uppercase tracking-wider">Poin Insentif Warga</span>
                     <Coins className="h-4 w-4" />
                   </div>

@@ -113,7 +113,7 @@ export default function LaporPage() {
               </Card>
 
               <Alert className="border-emerald-300 bg-emerald-500/10 text-emerald-950 dark:border-emerald-900/60 dark:text-emerald-200 p-5 rounded-2xl">
-                <Sprout className="h-5 w-5 text-emerald-600 mb-1" />
+                <Sprout className="h-5 w-5 text-emerald-800 dark:text-emerald-300 mb-1" />
                 <AlertDescription className="text-xs sm:text-sm leading-relaxed">
                   <strong className="font-bold block mb-1">Gerakan 1 Setoran 1 Pohon :</strong>
                   Setiap setoran minimal <AnimatedNumber value={2} /> kg botol plastik atau <AnimatedNumber value={5} /> kaleng gas berhak mendapatkan <AnimatedNumber value={1} /> bibit pohon penghijauan binaan CircuLife.</AlertDescription>

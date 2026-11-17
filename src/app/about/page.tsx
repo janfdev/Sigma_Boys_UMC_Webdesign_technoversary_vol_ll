@@ -88,7 +88,7 @@ export default function AboutPage() {
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Reduksi Jejak Karbon
               </span>
-              <span className="text-2xl font-black text-emerald-500 font-mono block mt-1 tabular-nums">
+              <span className="text-2xl font-black text-emerald-700 dark:text-emerald-400 font-mono block mt-1 tabular-nums">
               {CIRCULIFE_INFO.co2eReductionTons}
               </span>
               <span className="text-xs text-muted-foreground mt-0.5 block">CO2e terhindar</span>
@@ -292,9 +292,9 @@ export default function AboutPage() {
             {/* SDG 12 */}
             <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex h-full flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center justify-between">
-                  <div className="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-black font-mono text-lg">
+                  <div className="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-800 dark:text-amber-300 flex items-center justify-center font-black font-mono text-lg">
                     12</div>
-                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-amber-500/30 text-amber-600 dark:text-amber-400">
+                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-amber-500/30 text-amber-800 dark:text-amber-300">
                     Target 12.5
                   </Badge>
                 </div>
@@ -320,7 +320,7 @@ export default function AboutPage() {
                 </div>
 
               <div className="pt-4 border-t border-border/70 flex min-h-[50px] items-center gap-2 text-xs font-semibold text-foreground">
-                <CheckCircle2 className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-amber-800 dark:text-amber-300 shrink-0" />
                 <span>Pencatatan hulu transparan via bank sampah digital</span>
               </div>
             </Card>
@@ -328,9 +328,9 @@ export default function AboutPage() {
             {/* SDG 13 */}
             <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex h-full flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center justify-between">
-                  <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black font-mono text-lg">
+                  <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-black font-mono text-lg">
                     13</div>
-                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
+                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
                     Target 13.3
                   </Badge>
                 </div>
@@ -346,7 +346,7 @@ export default function AboutPage() {
                 <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/70 space-y-2">
                   <div className="flex items-center justify-between text-xs font-mono">
                     <span className="text-muted-foreground font-bold">Reduksi Emisi CO2e :</span>
-                    <span className="font-black text-emerald-600 dark:text-emerald-400"><AnimatedNumber value={68.2} fractionDigits={1} /> Ton</span>
+                    <span className="font-black text-emerald-800 dark:text-emerald-300"><AnimatedNumber value={68.2} fractionDigits={1} /> Ton</span>
                   </div>
                   <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-emerald-500 h-full rounded-full" style={{ width: "85%" }} />
@@ -357,7 +357,7 @@ export default function AboutPage() {
                 </div>
 
               <div className="pt-4 border-t border-border/70 flex min-h-[50px] items-center gap-2 text-xs font-semibold text-foreground">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-800 dark:text-emerald-300 shrink-0" />
                 <span>Kalkulasi otomatis metodologi IPCC emisi karbon</span>
               </div>
             </Card>
@@ -365,9 +365,9 @@ export default function AboutPage() {
             {/* SDG 15 */}
             <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex h-full flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center justify-between">
-                  <div className="h-12 w-12 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black font-mono text-lg">
+                  <div className="h-12 w-12 rounded-2xl bg-blue-500/10 text-blue-700 dark:text-blue-300 flex items-center justify-center font-black font-mono text-lg">
                     15</div>
-                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-blue-500/30 text-blue-600 dark:text-blue-400">
+                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-blue-500/30 text-blue-700 dark:text-blue-300">
                     Target 15.2
                   </Badge>
                 </div>

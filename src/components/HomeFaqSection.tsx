@@ -108,7 +108,7 @@ export default function HomeFaqSection() {
                       className="px-5 sm:px-6 pb-6 pt-0 border-t border-border/40 text-xs sm:text-sm text-muted-foreground leading-relaxed pl-11 sm:pl-14"
                     >
                       <div className="pt-3 flex items-start gap-2.5">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" aria-hidden="true" />
+                        <CheckCircle2 className="h-4 w-4 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5" aria-hidden="true" />
                         <p><NumericText text={faq.answer} /></p>
                       </div>
                     </div>

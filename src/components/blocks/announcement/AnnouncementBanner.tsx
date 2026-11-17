@@ -118,7 +118,7 @@ export function AnnouncementBanner({
                 className={cn(
                   'px-2 py-0.5 font-mono text-[10px] uppercase font-bold tracking-wider',
                   current.category === 'release' && 'bg-primary/10 text-primary border-primary/30',
-                  current.category === 'security' && 'border-warning/30 bg-warning/10 text-warning',
+                  current.category === 'security' && 'border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300',
                   current.category === 'feature' && 'border-primary/40 bg-primary/15 text-primary',
                   current.category === 'maintenance' && 'border-muted-foreground/30 bg-muted/40 text-foreground',
                 )}

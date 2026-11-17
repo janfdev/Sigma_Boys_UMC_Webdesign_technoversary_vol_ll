@@ -105,7 +105,7 @@ export default function ContactPage() {
                 {formSubmitted ? (
                   <Alert className="border-emerald-500/40 bg-emerald-500/10 text-emerald-950 dark:text-emerald-200 rounded-2xl p-6 space-y-3">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                      <CheckCircle2 className="h-6 w-6 text-emerald-800 dark:text-emerald-300" />
                       <span className="font-bold text-base">Pesan Anda Berhasil Terkirim!</span>
                     </div>
                     <AlertDescription className="text-xs sm:text-sm leading-relaxed text-emerald-900 dark:text-emerald-300">
