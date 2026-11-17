@@ -72,6 +72,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/inovasi" className="transition-colors hover:text-primary">
+                  Inovasi Sirkular & Katalog Produk Olahan
+                </Link>
+              </li>
+              <li>
+                <Link href="/insight" className="transition-colors hover:text-primary">
+                  Wawasan Lingkungan & Analisis Lapangan
+                </Link>
+              </li>
+              <li>
                 <Link href="/lapor" className="transition-colors hover:text-primary">
                   Form Setor Sampah & Penukaran Reward
                 </Link>

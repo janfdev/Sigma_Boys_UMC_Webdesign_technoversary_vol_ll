@@ -1,4 +1,3 @@
-
 import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React from "react";
@@ -39,9 +38,13 @@ export default function CampaignActionSection() {
           <Card className="lg:col-span-7 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-xs hover:border-border transition-all overflow-hidden group">
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted border-b border-border/70">
               <img
-                src="/images/gallery/paving-molding.jpg"
+                src="/image-lomba/mesin-press-paving.webp"
                 alt="Proses pencetakan paving block dari lelehan plastik PET daur ulang"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={450}
               />
               <div className="absolute top-3 left-3 right-3">
                 <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-card text-muted-foreground border-border">
@@ -109,9 +112,13 @@ export default function CampaignActionSection() {
           <Card className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-xs hover:border-border transition-all overflow-hidden group">
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted border-b border-border/70">
               <img
-                src="/images/gallery/stove-upcycling.jpg"
+                src="/image-lomba/kaleng-daur-ulang.webp"
                 alt="Tungku biomassa hemat bahan bakar hasil upcycling kaleng gas bekas"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={450}
               />
               <div className="absolute top-3 left-3 right-3">
                 <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-card text-muted-foreground border-border">
@@ -175,9 +182,13 @@ export default function CampaignActionSection() {
             <div className="grid grid-cols-1 md:grid-cols-12 items-center">
               <div className="md:col-span-4 h-56 md:h-full relative overflow-hidden bg-muted border-b md:border-b-0 md:border-r border-border/70 min-h-[220px]">
                 <img
-                  src="/images/gallery/kasgot-harvest.jpg"
+                  src="/image-lomba/larva-bsf.webp"
                   alt="Panen pupuk kasgot hasil biokonversi sampah organik oleh larva maggot BSF"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={400}
                 />
                 <div className="absolute top-3 left-3 right-3">
                   <Badge variant="outline" className="h-auto max-w-full whitespace-normal text-xs font-mono font-medium leading-relaxed tracking-normal px-3 py-1 rounded-md bg-card text-muted-foreground border-border">

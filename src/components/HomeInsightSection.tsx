@@ -148,14 +148,14 @@ export default function HomeInsightSection() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12">
-            <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40 lg:col-span-7">
+            <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40 lg:col-span-7 group">
               <div className="relative">
                 <div className="grid h-[300px] grid-cols-3 grid-rows-2 gap-1.5 sm:h-[360px]">
                   <div className="relative col-span-2 row-span-2 overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       alt={RESEARCH.collage[0].alt}
-                      className="absolute inset-0 size-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                      className="absolute inset-0 size-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 hover:scale-[1.03] hover:grayscale-0"
                       height={480}
                       loading="lazy"
                       src={RESEARCH.collage[0].src}
@@ -167,7 +167,7 @@ export default function HomeInsightSection() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         alt={photo.alt}
-                        className="absolute inset-0 size-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                        className="absolute inset-0 size-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 hover:scale-[1.03] hover:grayscale-0"
                         height={240}
                         loading="lazy"
                         src={photo.src}
@@ -213,28 +213,28 @@ export default function HomeInsightSection() {
             <div className="flex flex-col gap-6 lg:col-span-5">
               {SIDE_ENTRIES.map((entry) => (
                 <article
-                  className="flex flex-1 overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
+                  className="group flex flex-1 flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
                   key={entry.title}
                 >
-                  <div className="relative w-24 shrink-0 overflow-hidden sm:w-32">
+                  <div className="relative h-44 w-full shrink-0 overflow-hidden sm:h-48">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       alt={entry.title}
-                      className="absolute inset-0 size-full object-cover"
+                      className="absolute inset-0 size-full object-cover grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 hover:grayscale-0"
                       height={320}
                       loading="lazy"
                       src={entry.image}
-                      width={256}
+                      width={500}
                     />
                   </div>
-                  <div className="flex flex-1 flex-col p-4">
+                  <div className="flex flex-1 flex-col p-5">
                     <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-primary">
                       [ {entry.header} ] / {entry.readTime}
                     </p>
-                    <h3 className="mt-2 text-sm font-bold uppercase leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-2 text-base font-bold uppercase leading-snug tracking-tight text-foreground">
                       {entry.title}
                     </h3>
-                    <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
                       {entry.summary}
                     </p>
                     <Link
