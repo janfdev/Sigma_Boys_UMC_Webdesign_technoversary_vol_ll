@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "bun@1.4.0",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "> 0.5%",
+    "not dead"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

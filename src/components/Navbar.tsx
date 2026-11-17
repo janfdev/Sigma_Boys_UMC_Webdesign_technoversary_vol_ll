@@ -12,7 +12,6 @@ import {
   Calculator,
   BookOpen,
   Image as ImageIcon,
-  Newspaper,
   Home,
   Layers,
   Users,
@@ -39,7 +38,6 @@ export const NAV_ITEMS = [
   { href: "/konservasi", label: "Produk Olahan" },
   { href: "/pantau", label: "Hitung Dampak" },
   { href: "/edukasi", label: "Panduan" },
-  { href: "/insight", label: "Insight" },
   { href: "/galeri", label: "Dokumentasi" },
   { href: "/about", label: "Tentang Kami" },
   { href: "/contact", label: "Kontak" },
@@ -60,8 +58,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
   const isEcosystemActive =
     activePath === "/pantau" ||
     activePath === "/edukasi" ||
-    activePath === "/galeri" ||
-    activePath.startsWith("/insight");
+    activePath === "/galeri";
 
   // Lock background scroll when mobile menu drawer is open
   useEffect(() => {
@@ -172,22 +169,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <div>
                       <span className="font-bold block text-foreground leading-tight">Panduan &amp; Kuis</span>
                       <span className="text-[11px] text-muted-foreground block mt-0.5">Modul pemilahan zero waste</span>
-                    </div>
-                  </Link>
-                }
-              />
-              <DropdownMenuItem
-                render={
-                  <Link
-                    href="/insight"
-                    className="flex items-center gap-3 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full group/item"
-                  >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors shrink-0">
-                      <Newspaper className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <span className="font-bold block text-foreground leading-tight">Arsip Insight</span>
-                      <span className="text-[11px] text-muted-foreground block mt-0.5">Kajian &amp; riset lapangan</span>
                     </div>
                   </Link>
                 }
@@ -392,25 +373,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 </div>
               </Link>
 
-              <Link
-                href="/insight"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-medium transition-all ${
-                  activePath.startsWith("/insight")
-                    ? "bg-primary/10 border border-primary/30 text-primary font-bold"
-                    : "text-foreground hover:bg-muted/70"
-                }`}
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
-                    <Newspaper className="h-4 w-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <span className="font-bold block text-foreground truncate">Arsip Insight</span>
-                    <span className="text-[11px] text-muted-foreground block truncate">Kajian &amp; riset lapangan</span>
-                  </div>
-                </div>
-              </Link>
 
               <Link
                 href="/galeri"

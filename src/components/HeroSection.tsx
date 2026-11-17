@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { preload } from "react-dom";
 import { Layers, PackageCheck } from "lucide-react";
 import CarouselCards, { type RailItem } from "@/components/kokonutui/carousel-cards";
 import { Typewriter } from "@/components/ui/typewriter";
@@ -21,16 +22,23 @@ const slides: RailItem[] = [
 }));
 
 export default function HeroSection() {
+  preload("/image-lomba/Gunung%20Ciremai.webp", { as: "image", fetchPriority: "high" });
+
   return (
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-[#0b1611] text-white">
-      <img
-        src="/image-lomba/Gunung%20Ciremai.jpg"
-        alt=""
-        width={1920}
-        height={1080}
-        fetchPriority="high"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-      />
+      <picture className="absolute inset-0 -z-20 h-full w-full">
+        <source srcSet="/image-lomba/Gunung%20Ciremai.avif" type="image/avif" />
+        <source srcSet="/image-lomba/Gunung%20Ciremai.webp" type="image/webp" />
+        <img
+          src="/image-lomba/Gunung%20Ciremai.webp"
+          alt=""
+          width={1280}
+          height={800}
+          fetchPriority="high"
+          decoding="async"
+          className="h-full w-full object-cover object-center"
+        />
+      </picture>
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(7,20,14,.82),rgba(7,20,14,.88)_65%,#0b1611)]" />
       <div className="mx-auto max-w-7xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
         <h1 id="hero-heading" className="mx-auto max-w-4xl text-4xl font-black leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">
@@ -55,7 +63,7 @@ export default function HeroSection() {
             Lihat Alur Daur Ulang
           </a>
         </div>
-        <div className="dark mt-10 sm:mt-12">
+        <div className="dark mx-auto mt-10 max-w-4xl overflow-hidden sm:mt-12">
           <CarouselCards
             initialIndex={2}
             items={slides}
