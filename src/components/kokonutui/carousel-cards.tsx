@@ -20,6 +20,7 @@ import {
   type RefObject,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -79,6 +80,8 @@ export interface CarouselCardsProps {
   /** Show the eyebrow/title/counter row. Default true. */
   showHeader?: boolean;
   className?: string;
+  /** Infinite loop: swiping or navigating never hits a dead end. */
+  loop?: boolean;
 }
 
 const DEFAULT_ITEMS: RailItem[] = [
@@ -741,7 +744,7 @@ const RailCard = ({
       style={cardDepth}
     >
       <div className="kokonutui-rail-tilt group/rail-card relative">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-200 ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-[3px] border-white bg-zinc-200 shadow-xl ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
         {item.image ? (
           <div className={cn(LAYER_CLASS, "[--rail-depth:8%]")}>
             {/* biome-ignore lint/performance/noImgElement: a plain img keeps the component free of next/image config */}
@@ -840,10 +843,25 @@ export default function CarouselCards({
   initialIndex = 0,
   showHeader = true,
   className,
+  loop = false,
 }: CarouselCardsProps) {
+  const isLooping = Boolean(loop && items.length > 1);
+  const loopOffset = isLooping ? items.length : 0;
+
+  const displayItems = useMemo(() => {
+    if (!isLooping) {
+      return items.map((it, idx) => ({ ...it, renderKey: it.id, originalIndex: idx }));
+    }
+    return [
+      ...items.map((it, idx) => ({ ...it, renderKey: `${it.id}-buf0-${idx}`, originalIndex: idx })),
+      ...items.map((it, idx) => ({ ...it, renderKey: `${it.id}-mid-${idx}`, originalIndex: idx })),
+      ...items.map((it, idx) => ({ ...it, renderKey: `${it.id}-buf1-${idx}`, originalIndex: idx })),
+    ];
+  }, [items, isLooping]);
+
   const scrollerRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
-  const [active, setActive] = useState(initialIndex);
+  const [active, setActive] = useState(initialIndex + loopOffset);
   const [saved, setSaved] = useState<ReadonlySet<string>>(
     () => new Set(defaultFavorites)
   );
@@ -855,13 +873,15 @@ export default function CarouselCards({
   const [playing, setPlaying] = useState(true);
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const recenterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const activeRef = useRef(active);
   activeRef.current = active;
 
   const move = useCallback(
     (index: number, smooth = true) => {
-      const next = Math.min(Math.max(index, 0), items.length - 1);
+      const maxIndex = displayItems.length - 1;
+      const next = Math.min(Math.max(index, 0), maxIndex);
       setActive(next);
       const scroller = scrollerRef.current;
       const track = trackRef.current;
@@ -878,20 +898,16 @@ export default function CarouselCards({
         scroller.scrollLeft = left;
       }
     },
-    [items.length, reducedMotion]
+    [displayItems.length, reducedMotion]
   );
 
-
-  // The initial card is centered on arrival, not only after the first advance.
   useEffect(() => {
-    move(initialIndex, false);
+    move(initialIndex + loopOffset, false);
     const onResize = () => move(activeRef.current, false);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, [initialIndex, move]);
+  }, [initialIndex, loopOffset, move]);
 
-  // A swipe or a drag lands between cards: follow the scroll and lock to the
-  // card nearest the centre so the depth scale never disagrees with the rail.
   const nearestIndex = useCallback(() => {
     const scroller = scrollerRef.current;
     const track = trackRef.current;
@@ -922,10 +938,17 @@ export default function CarouselCards({
   const dragRef = useRef<{ startX: number; startLeft: number; moved: boolean } | null>(
     null
   );
-  // Survives the pointerup so the click that follows a drag never opens a card.
   const draggedRef = useRef(false);
 
   const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
+    if (recenterTimeoutRef.current) {
+      clearTimeout(recenterTimeoutRef.current);
+      recenterTimeoutRef.current = null;
+      if (isLooping && (activeRef.current < items.length || activeRef.current >= 2 * items.length)) {
+        const mid = ((activeRef.current % items.length) + items.length) % items.length + items.length;
+        move(mid, false);
+      }
+    }
     const scroller = scrollerRef.current;
     if (!scroller) {
       return;
@@ -957,6 +980,15 @@ export default function CarouselCards({
     const nearest = nearestIndex();
     if (drag?.moved && nearest !== null) {
       move(nearest);
+      if (isLooping && (nearest < items.length || nearest >= 2 * items.length)) {
+        const middleTarget = ((nearest % items.length) + items.length) % items.length + items.length;
+        if (recenterTimeoutRef.current) {
+          clearTimeout(recenterTimeoutRef.current);
+        }
+        recenterTimeoutRef.current = setTimeout(() => {
+          move(middleTarget, false);
+        }, 450);
+      }
     }
   };
 
@@ -965,6 +997,14 @@ export default function CarouselCards({
     const sync = () => setReducedMotion(media.matches);
     media.addEventListener?.("change", sync);
     return () => media.removeEventListener?.("change", sync);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (recenterTimeoutRef.current) {
+        clearTimeout(recenterTimeoutRef.current);
+      }
+    };
   }, []);
 
   // Autoplay loops, and never fights a hidden tab or a reduced-motion request.
@@ -977,10 +1017,24 @@ export default function CarouselCards({
       if (document.hidden) {
         return;
       }
-      move((activeRef.current + 1) % items.length);
+      if (isLooping) {
+        const next = activeRef.current + 1;
+        move(next);
+        if (next >= 2 * items.length) {
+          const middleTarget = ((next % items.length) + items.length) % items.length + items.length;
+          if (recenterTimeoutRef.current) {
+            clearTimeout(recenterTimeoutRef.current);
+          }
+          recenterTimeoutRef.current = setTimeout(() => {
+            move(middleTarget, false);
+          }, 450);
+        }
+      } else {
+        move((activeRef.current + 1) % items.length);
+      }
     }, autoplayInterval);
     return () => clearInterval(id);
-  }, [autoplayInterval, canPlay, focused, hovered, items.length, move, playing]);
+  }, [autoplayInterval, canPlay, focused, hovered, isLooping, items.length, move, playing]);
 
   // Arrow keys step one card; Home and End jump to the ends.
   const onKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
@@ -993,19 +1047,28 @@ export default function CarouselCards({
         next = activeRef.current + 1;
         break;
       case "Home":
-        next = 0;
+        next = isLooping ? items.length : 0;
         break;
       case "End":
-        next = items.length - 1;
+        next = isLooping ? 2 * items.length - 1 : items.length - 1;
         break;
       default:
         return;
     }
     event.preventDefault();
     move(next);
+    if (isLooping && (next < items.length || next >= 2 * items.length)) {
+      const middleTarget = ((next % items.length) + items.length) % items.length + items.length;
+      if (recenterTimeoutRef.current) {
+        clearTimeout(recenterTimeoutRef.current);
+      }
+      recenterTimeoutRef.current = setTimeout(() => {
+        move(middleTarget, false);
+      }, 450);
+    }
   };
 
-  const scales = items.map(
+  const scales = displayItems.map(
     (_, index) => CARD_SCALE[Math.min(Math.abs(index - active), CARD_SCALE.length - 1)]
   );
 
@@ -1077,7 +1140,11 @@ export default function CarouselCards({
               className="text-xs text-zinc-500 tabular-nums dark:text-zinc-400"
             >
               <span className="sr-only">Kartu </span>
-              {String(active + 1).padStart(2, "0")}
+              {String(
+                isLooping
+                  ? (((active % items.length) + items.length) % items.length) + 1
+                  : active + 1
+              ).padStart(2, "0")}
               <span aria-hidden="true"> / </span>
               <span className="sr-only"> dari </span>
               {String(items.length).padStart(2, "0")}
@@ -1112,11 +1179,11 @@ export default function CarouselCards({
           className="relative flex w-max items-center gap-0 px-[calc(50cqw-var(--rail-card)/2)]"
           ref={trackRef}
         >
-          {items.map((item, index) => (
+          {displayItems.map((item, index) => (
             <RailCard
               current={index === active}
               item={item}
-              key={item.id}
+              key={item.renderKey}
               marginInlineStart={
                 index === 0 ? undefined : overlapFor(scales[index - 1], scales[index])
               }

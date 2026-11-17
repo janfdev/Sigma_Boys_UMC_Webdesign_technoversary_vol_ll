@@ -110,4 +110,36 @@ describe("hero carousel", () => {
       expect(link).toHaveAttribute("href", "/galeri");
     }
   });
+
+  it("supports infinite loop without hitting boundaries", () => {
+    render(<CarouselCards autoplay={false} items={items} loop={true} title="Galeri" />);
+    // With 3 items and loop=true, 3 sets (9 items) are rendered
+    expect(slides()).toHaveLength(9);
+    // Initial active is middle set (index 3, which corresponds to item 0)
+    expect(current()).toBe(3);
+
+    const rail = screen.getByRole("region", {
+      name: /Galeri, geser atau gunakan tombol panah untuk berpindah/,
+    });
+
+    // Advance right to item 1 and item 2 of middle set
+    fireEvent.keyDown(rail, { key: "ArrowRight" });
+    expect(current()).toBe(4);
+    fireEvent.keyDown(rail, { key: "ArrowRight" });
+    expect(current()).toBe(5);
+
+    // Crossing boundary into buffer triggers seamless re-centering after timeout
+    fireEvent.keyDown(rail, { key: "ArrowRight" });
+    expect(current()).toBe(6);
+    act(() => vi.advanceTimersByTime(500));
+    // Re-centered to middle set counterpart (3)
+    expect(current()).toBe(3);
+
+    // Navigating left crossing backward into preceding buffer
+    fireEvent.keyDown(rail, { key: "ArrowLeft" });
+    expect(current()).toBe(2);
+    act(() => vi.advanceTimersByTime(500));
+    // Re-centered to middle set counterpart (5)
+    expect(current()).toBe(5);
+  });
 });

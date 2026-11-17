@@ -59,6 +59,7 @@ export default function HeroSection() {
           <CarouselCards
             initialIndex={2}
             items={slides}
+            loop={true}
             showHeader={false}
             title="Pemanfaatan sampah menjadi produk bernilai"
           />
