@@ -37,24 +37,21 @@ const Typewriter = React.forwardRef<HTMLSpanElement, TypewriterProps>(
     const list = React.useMemo(() => (Array.isArray(phrases) ? phrases : [phrases]), [phrases])
     const srText = React.useMemo(() => list.join('. '), [list])
 
-    // Starts empty on server AND client first paint; sequencing begins in this
-    // effect only, so SSR markup and hydration output always match.
-    const [text, setText] = React.useState('')
+    // Starts with initial phrase on server and client first paint to eliminate CLS (layout shift)
+    const [text, setText] = React.useState(list[0] ?? '')
     const [reduced, setReduced] = React.useState(false)
 
     React.useEffect(() => {
       const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       setReduced(isReduced)
       if (isReduced) {
-        // Skip the animation entirely: render the phrase in full with a static caret.
-        setText(list[0] ?? '')
         return
       }
 
       let timer: ReturnType<typeof setTimeout> | undefined
       let index = 0
-      let chars = 0
-      let deleting = false
+      let chars = (list[0] ?? '').length
+      let deleting = true
 
       const clear = () => {
         if (timer !== undefined) clearTimeout(timer)
@@ -91,13 +88,12 @@ const Typewriter = React.forwardRef<HTMLSpanElement, TypewriterProps>(
           } else {
             deleting = false
             index = (index + 1) % list.length
-            step()
+            schedule(step, 200)
           }
         }
       }
 
-      if (startDelay > 0) schedule(step, startDelay)
-      else step()
+      schedule(step, pause + startDelay)
 
       return clear
     }, [list, typingSpeed, deletingSpeed, pause, startDelay, loop])

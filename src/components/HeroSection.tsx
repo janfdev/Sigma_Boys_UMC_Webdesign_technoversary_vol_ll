@@ -6,7 +6,6 @@ import { Typewriter } from "@/components/ui/typewriter";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// Photos double as the gallery preview: the rail links every card to /galeri.
 const slides: RailItem[] = [
   { id: "kasgot", alt: "Bibit tanaman diberi pupuk kasgot", file: "bibit-pupuk-kasgot.webp" },
   { id: "kolase", alt: "Proses pengolahan plastik menjadi paving", file: "Kolase Daur Ulang Plastik Menjadi Paving.webp" },
@@ -17,8 +16,6 @@ const slides: RailItem[] = [
   id,
   image: `/image-lomba/${encodeURIComponent(file)}`,
   imageAlt: alt,
-  href: "/galeri",
-  play: true,
 }));
 
 export default function HeroSection() {

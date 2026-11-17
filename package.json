@@ -4,9 +4,10 @@
   "private": true,
   "packageManager": "bun@1.4.0",
   "browserslist": [
-    "defaults",
-    "not IE 11",
-    "> 0.5%",
+    "Chrome >= 92",
+    "Edge >= 92",
+    "Firefox >= 90",
+    "Safari >= 15.4",
     "not dead"
   ],
   "scripts": {

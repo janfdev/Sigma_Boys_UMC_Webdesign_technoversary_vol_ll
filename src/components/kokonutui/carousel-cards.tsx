@@ -719,7 +719,7 @@ const RailCard = ({
     >
       {item.title}
     </a>
-  ) : (
+  ) : onSelect ? (
     <button
       aria-label={item.title ?? item.imageAlt}
       className={cn(STRETCHED, "cursor-pointer text-left")}
@@ -729,7 +729,7 @@ const RailCard = ({
     >
       {item.title}
     </button>
-  );
+  ) : null;
 
   const cardDepth = {
     zIndex: 20 - Math.round((1 - scale) * 40),
