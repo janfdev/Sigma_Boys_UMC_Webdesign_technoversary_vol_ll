@@ -4,10 +4,21 @@ import type { RelatedInsight } from "@/data/articleData";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export default function RelatedArticles({ items }: { items: RelatedInsight[] }) {
+export default function RelatedArticles({
+  items,
+  columns = 3,
+}: {
+  items: RelatedInsight[];
+  columns?: 2 | 3;
+}) {
   return (
     <section aria-labelledby="artikel-terkait-heading" className="mt-20">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div
+        className={cn(
+          "mx-auto w-full px-4 sm:px-6",
+          columns === 2 ? "max-w-4xl" : "max-w-6xl"
+        )}
+      >
         <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary">
@@ -28,7 +39,12 @@ export default function RelatedArticles({ items }: { items: RelatedInsight[] }) 
           </Link>
         </div>
 
-        <ul className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <ul
+          className={cn(
+            "mt-6 grid grid-cols-1 gap-6",
+            columns === 2 ? "md:grid-cols-2" : "md:grid-cols-3"
+          )}
+        >
           {items.map((item) => (
             <li key={item.title}>
               <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40">

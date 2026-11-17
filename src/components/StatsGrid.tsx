@@ -29,6 +29,7 @@ export default function StatsGrid({
         </figcaption>
       </figure>
 
+      {stats.length > 0 ? (
       <dl className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
         {stats.map((stat) => (
           <div className="rounded-xl border border-border bg-card p-4" key={stat.label}>
@@ -42,6 +43,7 @@ export default function StatsGrid({
           </div>
         ))}
       </dl>
+      ) : null}
     </div>
   );
 }

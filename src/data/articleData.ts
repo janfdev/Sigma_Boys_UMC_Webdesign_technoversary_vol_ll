@@ -11,7 +11,8 @@ export type ArticleSection = {
   heading: string;
   paragraphs: string[];
   quote?: { text: string; attribution: string };
-  widget?: "hydrology";
+  widget?: "hydrology" | "material-ratio" | "video";
+  videoId?: string;
 };
 
 export type RelatedInsight = {
@@ -26,6 +27,8 @@ export type RelatedInsight = {
 
 export type ConservationArticle = {
   slug: string;
+  tags?: string[];
+  appreciationBase?: number;
   breadcrumb: string[];
   badge: string;
   location: string;
@@ -124,6 +127,101 @@ export const CIREMAI_ARTICLE: ConservationArticle = {
     },
   ],
 };
+
+export const PAVING_ARTICLE: ConservationArticle = {
+  slug: "paving-block-umc",
+  breadcrumb: ["Beranda", "Insight", "Pengelolaan Sampah"],
+  badge: "Pengelolaan Sampah & Eksplorasi Kebijakan",
+  location: "Cirebon, Jawa Barat",
+  title: "Dari Sampah Menjadi Manfaat: Mahasiswa UMC Membuat Paving Block Berbahan Limbah Plastik",
+  lead:
+    "Inisiatif mahasiswa Kuliah Kerja Nyata (KKN) 33 Universitas Muhammadiyah Cirebon (UMC) mengolah limbah plastik rumah tangga menjadi produk paving block bernilai guna dan ramah lingkungan.",
+  author: "Tim Riset CircuLife & KKN 33 UMC",
+  date: "20 Februari 2026",
+  dateTime: "2026-02-20",
+  readTime: "5 menit baca",
+  topic: "Divisi Investigasi Tapak",
+  image: {
+    src: "/image-lomba/pemasangan-paving.png",
+    alt: "Paving block berbahan limbah plastik dipasang di jalan lingkungan oleh mahasiswa KKN 33 UMC",
+    caption: "Paving block berbahan limbah plastik rumah tangga dipasang di jalan lingkungan kampung.",
+    credit: "DOC: KKN 33 UMC X CIRCULIFE",
+  },
+  stats: [],
+  tags: ["KKN33UMC", "PavingBlockPlastik", "EkonomiSirkular", "InovasiLimbah"],
+  appreciationBase: 48,
+  sections: [
+    {
+      id: "konteks",
+      index: "01",
+      tag: "Urgensi & Latar Belakang",
+      heading: "Urgensi Pengelolaan Sampah dari Hulu dan Beban TPA",
+      paragraphs: [
+        "Penumpukan sampah plastik dimulai dari titik paling dekat dengan kehidupan sehari-hari: dapur rumah tangga, warung kelontong, dan pos ronda rukun tetangga. Kemasan sekali pakai menumpuk setiap hari dalam kantong tercampur, sehingga ketika sampai di tempat pemrosesan akhir (TPA) nilainya sudah hilang: basah, kotor, dan sulit dipisahkan.",
+        "Karena itu pemilahan dari hulu menjadi kunci vital. Sampah terpilah sejak awal mengurangi beban TPA secara berkelanjutan sekaligus menciptakan bahan baku bersih bagi industri daur ulang. Paving block plastik buatan mahasiswa UMC membuktikan rantai ini bekerja: plastik yang dipilah warga menjadi input produksi, bukan residu yang ditimbun.",
+      ],
+    },
+    {
+      id: "formula",
+      index: "02",
+      tag: "Teknologi & Komposisi",
+      heading: "Formula & Rekayasa Termal Paving Block Plastik",
+      paragraphs: [
+        "Cacahan plastik jenis Low-Density Polyethylene (LDPE) dan Polypropylene (PP) dilebur pada suhu terkontrol sebelum dicampur dengan agregat pasir. Suhu peleburan dijaga pada rentang 180 derajat sampai 220 derajat Celsius agar plastik meleleh merata tanpa terbakar, lalu adonan panas dicetak dan dipadatkan dengan mesin press.",
+        "Produk yang dihasilkan tahan air (waterproof), bobotnya lebih ringan dibanding paving konvensional, dan biaya produksinya lebih efisien karena bahan baku utama berasal dari sampah terpilah warga.",
+      ],
+      quote: {
+        text: "Inovasi ini membuktikan bahwa sampah plastik bukan akhir dari siklus materi, melainkan bahan baku bernilai ekonomi tinggi jika dikelola dengan teknologi tepat guna dan kepedulian sosial mandiri.",
+        attribution: "Tim KKN 33 UMC 2026",
+      },
+      widget: "material-ratio",
+    },
+    {
+      id: "dokumentasi",
+      index: "03",
+      tag: "Dokumentasi Lapangan",
+      heading: "Dokumentasi Proses di Lapangan",
+      paragraphs: [
+        "Video di bawah merekam tahapan pencacahan, peleburan, dan pencetakan paving block oleh Mahasiswa KKN 33 UMC bersama warga.",
+      ],
+      widget: "video",
+      videoId: "zvu01_wvbBc",
+    },
+    {
+      id: "sirkularitas",
+      index: "04",
+      tag: "Ekosistem Berkelanjutan",
+      heading: "Skema Sirkularitas dan Poin Bank Sampah",
+      paragraphs: [
+        "Pengumpulan sampah plastik warga diintegrasikan melalui sistem Bank Sampah: setiap setoran tercatat dan dikonversi menjadi insentif poin digital CircuLife. Mekanisme ini mendorong partisipasi aktif masyarakat karena nilai ekonomi sampah terlihat langsung, bukan janji di ujung rantai.",
+        "Plastik terkumpul menjadi bahan baku paving block, paving block dipakai untuk fasilitas umum kampung, dan poin yang kembali ke warga menutup lingkaran insentifnya.",
+      ],
+    },
+  ],
+};
+
+export const PAVING_RELATED: RelatedInsight[] = [
+  {
+    href: "/edukasi",
+    title: "Mulai dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste untuk Masa Depan",
+    excerpt:
+      "Zero waste tidak berarti nol sampah sejak hari pertama. Ia tumbuh dari kebiasaan belanja, memilah, dan menolak kemasan sekali pakai.",
+    category: "Gerakan Komunitas",
+    readTime: "4 menit baca",
+    image: "/image-lomba/gaya-hidup-zero-waste.webp",
+    imageAlt: "Ilustrasi kampanye gaya hidup zero waste dengan tempat sampah terpilah",
+  },
+  {
+    href: "/edukasi",
+    title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna",
+    excerpt:
+      "Botol PET yang biasanya berakhir di TPA bisa menjadi pot gantung, organizer, hingga lentera dengan alat sederhana.",
+    category: "Inovasi Daur Ulang",
+    readTime: "3 menit baca",
+    image: "/image-lomba/kreasi-daur-ulang.png",
+    imageAlt: "Kerajinan pot tanaman dari botol plastik bekas",
+  },
+];
 
 export const RELATED_INSIGHTS: RelatedInsight[] = [
   {

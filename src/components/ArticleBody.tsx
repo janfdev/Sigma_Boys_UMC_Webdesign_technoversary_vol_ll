@@ -1,5 +1,7 @@
 import type { ConservationArticle } from "@/data/articleData";
 import HydrologySimulator from "@/components/HydrologySimulator";
+import MaterialRatioBar from "@/components/MaterialRatioBar";
+import VideoEmbedSection from "@/components/VideoEmbedSection";
 
 export default function ArticleBody({ article }: { article: ConservationArticle }) {
   return (
@@ -43,6 +45,14 @@ export default function ArticleBody({ article }: { article: ConservationArticle 
               <div className="mt-8">
                 <HydrologySimulator />
               </div>
+            ) : null}
+
+            {section.widget === "material-ratio" ? (
+              <MaterialRatioBar />
+            ) : null}
+
+            {section.widget === "video" && section.videoId ? (
+              <VideoEmbedSection videoId={section.videoId} />
             ) : null}
           </section>
         ))}

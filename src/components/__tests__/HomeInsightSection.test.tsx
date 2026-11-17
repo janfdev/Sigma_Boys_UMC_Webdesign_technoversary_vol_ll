@@ -14,7 +14,10 @@ describe("HomeInsightSection", () => {
     render(<HomeInsightSection />);
     expect(screen.getAllByText(/Informasi Terkini untuk Lingkungan/i)).toHaveLength(1);
     expect(screen.getByText(/Paving Block Berbahan Limbah Plastik/i)).toBeTruthy();
-    expect(screen.getByRole("link", { name: /Pelajari Riset/i })).toHaveAttribute("href", "/edukasi");
+    expect(screen.getByRole("link", { name: /Pelajari Riset/i })).toHaveAttribute(
+      "href",
+      "/konservasi/paving-block-umc"
+    );
     expect(screen.getByText(/Zero Waste untuk Masa Depan/i)).toBeTruthy();
     expect(screen.getByText(/Mengubah Botol Plastik Bekas/i)).toBeTruthy();
   });

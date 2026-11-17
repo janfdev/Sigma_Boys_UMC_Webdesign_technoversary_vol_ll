@@ -197,7 +197,7 @@ export default function HomeInsightSection() {
                   </span>
                   <Link
                     className="inline-flex min-h-9 cursor-pointer items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-primary transition-opacity hover:opacity-80"
-                    href="/edukasi"
+                    href="/konservasi/paving-block-umc"
                   >
                     Pelajari Riset
                     <ArrowRight aria-hidden="true" className="size-3.5" />
