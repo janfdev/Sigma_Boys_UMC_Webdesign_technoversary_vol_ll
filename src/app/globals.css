@@ -279,3 +279,20 @@
     animation: none;
   }
 }
+
+
+/* Typewriter Caret Animation */
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-caret-blink {
+  animation: caretBlink 0.9s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-caret-blink {
+    animation: none;
+  }
+}

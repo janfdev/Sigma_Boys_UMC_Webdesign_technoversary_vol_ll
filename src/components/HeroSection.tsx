@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Layers, PackageCheck } from "lucide-react";
 import CarouselCards, { type RailItem } from "@/components/kokonutui/carousel-cards";
+import { Typewriter } from "@/components/ui/typewriter";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +35,12 @@ export default function HeroSection() {
       <div className="mx-auto max-w-7xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
         <h1 id="hero-heading" className="mx-auto max-w-4xl text-4xl font-black leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">
           Sampah Bukan Akhir.
-          <span className="block font-medium">Ini Awal Perubahan</span>
+          <span className="block font-medium mt-1.5 sm:mt-2 text-emerald-300">
+            Ini Awal{' '}
+            <span className="text-emerald-400">
+              <Typewriter phrases={['Perubahan.', 'Nilai Baru.', 'Inovasi Sirkular.', 'Masa Depan Bersih.']} />
+            </span>
+          </span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-emerald-50/90 sm:text-base">
           Bukan sekadar membuang, tetapi memahami, memilah, dan mengolah. Bersama CIRCULIFE, wujudkan perubahan menuju lingkungan yang lebih bersih dan berkelanjutan.
