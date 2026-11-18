@@ -41,7 +41,7 @@ describe("NavbarDarkShadow Component (Aceternity Tactile Dark Shadow)", () => {
 
     // Check header gained compact padding
     const header = container.querySelector("header");
-    expect(header).toHaveClass("pt-2");
+    expect(header).toHaveClass("pt-3");
   });
 
   it("should render mobile menu drawer when mobileMenuOpen is true", () => {

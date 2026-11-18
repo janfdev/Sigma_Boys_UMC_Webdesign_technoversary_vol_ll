@@ -26,7 +26,7 @@ export default function HomePage() {
       <HomeInsightSection />
 
       {/* 1.5 Standalone Anatomy Rig Section: Direct Physical Machine Explainer */}
-      <section className="py-10 sm:py-20 border-b border-border/80 bg-background" id="mesin-ekstrusi">
+      <section className="py-10 sm:py-20 border-b border-border/80 bg-background scroll-mt-20 sm:scroll-mt-24" id="mesin-ekstrusi">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 max-w-3xl space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">

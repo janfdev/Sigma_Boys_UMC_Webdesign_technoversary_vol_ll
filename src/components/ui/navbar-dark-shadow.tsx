@@ -51,7 +51,7 @@ export function NavbarDarkShadow({
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         "bg-background/95 dark:bg-[#0A110E]/95 backdrop-blur-md",
-        isScrolled ? "pt-2 sm:pt-3 pb-1" : "pt-0 pb-0",
+        isScrolled ? "pt-3 sm:pt-3.5 pb-1.5" : "pt-0 pb-0",
         className
       )}
     >

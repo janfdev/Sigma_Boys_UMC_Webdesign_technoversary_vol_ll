@@ -22,7 +22,6 @@ import {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { WasteMachineAnatomy } from "@/components/WasteMachineAnatomy";
 import { cn } from "@/lib/utils";
 
 export default function WasteUtilizationFlow() {
@@ -48,7 +47,7 @@ export default function WasteUtilizationFlow() {
   return (
     <section
       id="alur-sirkular"
-      className="py-16 sm:py-24 border-t border-border/80 bg-background/50 relative overflow-hidden"
+      className="py-16 sm:py-24 border-t border-border/80 bg-background/50 relative overflow-hidden scroll-mt-20 sm:scroll-mt-24"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header Section */}
@@ -207,10 +206,29 @@ export default function WasteUtilizationFlow() {
               <NumericText text={currentStage.description} />
             </p>
 
-            {/* Embedded Anatomy Isometric Technical Rig (Stage 3 Highlight) */}
+            {/* Embedded Stage 3 Highlight Callout */}
             {activeStep === 3 && (
-              <div className="pt-2 pb-2">
-                <WasteMachineAnatomy />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-2xl bg-primary/10 border border-primary/25">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shrink-0 shadow-xs">
+                    <Factory className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <span className="font-bold text-sm text-foreground block">
+                      Spesifikasi Mesin Pres Hidrolik &amp; Ekstrusi K-250
+                    </span>
+                    <span className="text-xs text-muted-foreground block mt-0.5">
+                      Pelajari diagram isometrik, suhu leleh 220°C, dan matriks tekanan 200 Bar pada seksi di atas.
+                    </span>
+                  </div>
+                </div>
+                <a
+                  href="#mesin-ekstrusi"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-colors shrink-0 shadow-xs"
+                >
+                  <span>Buka Anatomi Mesin</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
               </div>
             )}
 
