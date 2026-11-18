@@ -460,7 +460,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       activeCycle === "FEED" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    <AnimatedNumber value={1} />. Masuk</button>
+                    1. Masuk</button>
                   <button
                     type="button"
                     onClick={() => {
@@ -474,7 +474,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       activeCycle === "MELT" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    <AnimatedNumber value={2} />. Lebur</button>
+                    2. Lebur</button>
                   <button
                     type="button"
                     onClick={() => {
@@ -488,7 +488,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       activeCycle === "PRESS" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    <AnimatedNumber value={3} />. Kempa</button>
+                    3. Kempa</button>
                 </div>
               </div>
 
