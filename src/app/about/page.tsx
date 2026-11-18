@@ -1,4 +1,3 @@
-
 import { AnimatedNumber } from "@/components/ui/animated-number";
 import React from "react";
 import Link from "next/link";

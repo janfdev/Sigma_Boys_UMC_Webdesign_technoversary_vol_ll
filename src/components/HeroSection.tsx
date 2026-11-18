@@ -1,24 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { preload } from "react-dom";
 import { Layers, PackageCheck } from "lucide-react";
 import CarouselCards, { type RailItem } from "@/components/kokonutui/carousel-cards";
 import { Typewriter } from "@/components/ui/typewriter";
 import { buttonVariants } from "@/components/ui/button";
+import { HERO_CAROUSEL_DATA } from "@/data/heroCarouselData";
+import HeroDetailModal from "@/components/HeroDetailModal";
 import { cn } from "@/lib/utils";
 
-const slides: RailItem[] = [
-  { id: "kasgot", alt: "Bibit tanaman diberi pupuk kasgot", file: "bibit-pupuk-kasgot.webp" },
-  { id: "kolase", alt: "Proses pengolahan plastik menjadi paving", file: "Kolase Daur Ulang Plastik Menjadi Paving.webp" },
-  { id: "paving", alt: "Pemasangan paving daur ulang di tepi sungai", file: "pemasangan-paving.webp" },
-  { id: "organizer", alt: "Organizer alat tulis dari botol plastik", file: "Organizer Alat Tulis Botol Daur Ulang.webp" },
-  { id: "lentera", alt: "Lentera bunga dari botol PET", file: "Lentera Bunga PET di Senja Hari.webp" },
-].map(({ id, alt, file }) => ({
-  id,
-  image: `/image-lomba/${encodeURIComponent(file)}`,
-  imageAlt: alt,
+const heroSlides: RailItem[] = HERO_CAROUSEL_DATA.map((item) => ({
+  id: String(item.id),
+  image: item.image,
+  imageAlt: item.title,
 }));
 
 export default function HeroSection() {
+  const [selectedModalIndex, setSelectedModalIndex] = useState<number | null>(null);
+
   preload("/image-lomba/Gunung%20Ciremai.webp", {
     as: "image",
     fetchPriority: "high",
@@ -65,14 +66,27 @@ export default function HeroSection() {
         </div>
         <div className="dark mx-auto mt-10 max-w-4xl overflow-hidden sm:mt-12">
           <CarouselCards
-            initialIndex={2}
-            items={slides}
+            initialIndex={0}
+            items={heroSlides}
             loop={true}
             showHeader={false}
-            title="Pemanfaatan sampah menjadi produk bernilai"
+            title="Pemanfaatan sampah dan aksi lingkungan CircuLife"
+            onSelect={(item) => {
+              const idx = HERO_CAROUSEL_DATA.findIndex((d) => String(d.id) === item.id);
+              setSelectedModalIndex(idx >= 0 ? idx : 0);
+            }}
           />
         </div>
       </div>
+
+      <HeroDetailModal
+        open={selectedModalIndex !== null}
+        initialIndex={selectedModalIndex ?? 0}
+        onOpenChange={(open) => {
+          if (!open) setSelectedModalIndex(null);
+        }}
+        items={HERO_CAROUSEL_DATA}
+      />
     </section>
   );
 }

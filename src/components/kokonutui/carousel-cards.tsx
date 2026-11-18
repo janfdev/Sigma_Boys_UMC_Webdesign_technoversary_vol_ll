@@ -745,13 +745,13 @@ const RailCard = ({
       style={cardDepth}
     >
       <div className="kokonutui-rail-tilt group/rail-card relative">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-[3px] border-white bg-zinc-200 shadow-xl ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950">
+      <div className="relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl border-[3px] border-white bg-zinc-200 shadow-xl ring-zinc-900 ring-offset-2 ring-offset-white focus-within:ring-2 dark:bg-zinc-800 dark:ring-zinc-100 dark:ring-offset-zinc-950 transition-all duration-300 group-hover/rail-card:scale-[1.02] group-hover/rail-card:border-emerald-400 group-hover/rail-card:shadow-2xl">
         {item.image ? (
           <div className={cn(LAYER_CLASS, "[--rail-depth:8%]")}>
             {/* biome-ignore lint/performance/noImgElement: a plain img keeps the component free of next/image config */}
             <img
               alt={item.imageAlt ?? ""}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover/rail-card:scale-105"
               decoding="async"
               draggable={false}
               fetchPriority={current ? "auto" : "low"}
