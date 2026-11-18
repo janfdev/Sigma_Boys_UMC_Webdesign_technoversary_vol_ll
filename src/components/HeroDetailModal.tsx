@@ -80,11 +80,11 @@ export default function HeroDetailModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="hero-modal-title"
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
       onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[#0D2118] border-2 border-[#4ADE80] rounded-3xl p-5 sm:p-8 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-4xl max-h-[min(90dvh,820px)] bg-[#0D2118] border-2 border-[#4ADE80] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl overflow-y-auto overscroll-contain animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Tombol Close di Pojok Kanan Atas Modal */}
@@ -92,16 +92,16 @@ export default function HeroDetailModal({
           type="button"
           onClick={handleClose}
           aria-label="Tutup dialog"
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-9 h-9 rounded-full bg-[#163326] hover:bg-[#1E4634] text-[#A7B8B0] hover:text-white flex items-center justify-center transition cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#163326]/90 hover:bg-[#1E4634] text-[#A7B8B0] hover:text-white flex items-center justify-center transition cursor-pointer backdrop-blur-sm shadow-md"
         >
-          <X className="w-5 h-5" aria-hidden="true" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
         </button>
 
-        {/* Layout Grid 2 Kolom */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+        {/* Layout Grid Responsif: 1 Kolom di Mobile, 12 Kolom di Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 md:gap-8 items-center">
           {/* Kolom Kiri: Interactive Image Viewer */}
           <div className="md:col-span-6 w-full">
-            <div className="relative aspect-square sm:aspect-[4/4] w-full rounded-2xl border-[3px] border-[#34D399]/70 overflow-hidden bg-[#0A110E]">
+            <div className="relative aspect-[4/3] sm:aspect-square w-full rounded-xl sm:rounded-2xl border-2 sm:border-[3px] border-[#34D399]/70 overflow-hidden bg-[#0A110E]">
               {/* Gambar aktif */}
               <img
                 src={activeItem.image}
@@ -114,9 +114,9 @@ export default function HeroDetailModal({
                 type="button"
                 onClick={handlePrev}
                 aria-label="Foto sebelumnya"
-                className="absolute top-1/2 -translate-y-1/2 left-3 z-10 w-9 h-9 rounded-full bg-black/55 hover:bg-black/80 text-white flex items-center justify-center transition backdrop-blur-sm cursor-pointer"
+                className="absolute top-1/2 -translate-y-1/2 left-2.5 sm:left-3 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition backdrop-blur-sm cursor-pointer shadow"
               >
-                <ChevronLeft className="w-5 h-5" aria-hidden="true" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </button>
 
               {/* Tombol Navigasi Kanan (Next) */}
@@ -124,15 +124,15 @@ export default function HeroDetailModal({
                 type="button"
                 onClick={handleNext}
                 aria-label="Foto berikutnya"
-                className="absolute top-1/2 -translate-y-1/2 right-3 z-10 w-9 h-9 rounded-full bg-black/55 hover:bg-black/80 text-white flex items-center justify-center transition backdrop-blur-sm cursor-pointer"
+                className="absolute top-1/2 -translate-y-1/2 right-2.5 sm:right-3 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition backdrop-blur-sm cursor-pointer shadow"
               >
-                <ChevronRight className="w-5 h-5" aria-hidden="true" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </button>
 
               {/* Slide Counter Pill */}
               <div
                 data-testid="hero-modal-counter"
-                className="absolute bottom-3 left-3 z-10 bg-black/65 backdrop-blur-md text-white font-mono text-xs font-semibold px-3 py-1 rounded-full tracking-wider pointer-events-none"
+                className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 z-10 bg-black/70 backdrop-blur-md text-white font-mono text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full tracking-wider pointer-events-none"
               >
                 {counterText}
               </div>
@@ -140,10 +140,10 @@ export default function HeroDetailModal({
           </div>
 
           {/* Kolom Kanan: Konten Edukasi & Dampak Lingkungan */}
-          <div className="md:col-span-6 flex flex-col justify-center">
+          <div className="md:col-span-6 flex flex-col justify-center mt-1 sm:mt-0">
             {/* Category Pill Badge */}
-            <div className="mb-4">
-              <span className="inline-flex items-center gap-1.5 bg-[#4ADE80] text-[#062415] font-bold text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full">
+            <div className="mb-3 sm:mb-4">
+              <span className="inline-flex items-center gap-1.5 bg-[#4ADE80] text-[#062415] font-bold text-[11px] sm:text-xs uppercase tracking-wider px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full">
                 <Recycle className="w-3.5 h-3.5" aria-hidden="true" />
                 {activeItem.badge}
               </span>
@@ -152,21 +152,21 @@ export default function HeroDetailModal({
             {/* Judul Utama */}
             <h2
               id="hero-modal-title"
-              className="text-2xl sm:text-3xl font-extrabold text-white leading-tight tracking-tight mb-3"
+              className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-tight tracking-tight mb-2 sm:mb-3"
             >
               {activeItem.title}
             </h2>
 
             {/* Paragraf Deskripsi Utama */}
-            <p className="text-sm sm:text-[15px] text-[#CBD5E1] leading-relaxed mb-6">
+            <p className="text-xs sm:text-sm md:text-[15px] text-[#CBD5E1] leading-relaxed mb-4 sm:mb-6">
               {activeItem.description}
             </p>
 
             {/* Callout Box: Dampak Lingkungan */}
-            <div className="bg-[#091912] border border-[#1E4634] rounded-2xl p-4 sm:p-5">
-              <div className="flex items-center gap-2.5 mb-2">
-                <Leaf className="w-5 h-5 text-[#4ADE80] shrink-0" aria-hidden="true" />
-                <h3 className="text-[#4ADE80] font-bold text-base">
+            <div className="bg-[#091912] border border-[#1E4634] rounded-xl sm:rounded-2xl p-3.5 sm:p-5">
+              <div className="flex items-center gap-2 sm:gap-2.5 mb-1.5 sm:mb-2">
+                <Leaf className="w-4 h-4 sm:w-5 sm:h-5 text-[#4ADE80] shrink-0" aria-hidden="true" />
+                <h3 className="text-sm sm:text-base text-[#4ADE80] font-bold">
                   {activeItem.impactTitle || "Dampak Lingkungan"}
                 </h3>
               </div>
