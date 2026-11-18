@@ -38,7 +38,7 @@ export default function Footer() {
               href="/contact"
               className={cn(
                 buttonVariants({ variant: "outline", size: "sm" }),
-                "h-8 px-3.5 gap-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-full border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground shadow-xs"
+                "h-8 px-3.5 gap-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-full border-primary/30 text-primary dark:bg-secondary dark:hover:bg-primary hover:bg-secondary hover:text-white dark:hover:text-secondary shadow-xs"
               )}
             >
               <PhoneCall className="h-3.5 w-3.5" aria-hidden="true" />
@@ -78,7 +78,7 @@ export default function Footer() {
             <div className="space-y-2 pt-1 font-mono text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                <span>Kuningan &amp; Cirebon, Jawa Barat, Indonesia</span>
+                <span>Cirebon, Jawa Barat, Indonesia</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
@@ -193,7 +193,7 @@ export default function Footer() {
         {/* 3. Bottom Bar: Copyright & Competition info */}
         <div className="flex flex-col items-center justify-between gap-4 text-xs text-muted-foreground sm:flex-row font-mono">
           <p className="tabular-nums text-center sm:text-left">
-            &copy; 2026 CIRCULIFE / EcoDigital for Environment Web Design Competition.
+            &copy; 2026 CIRCULIFE
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2 font-medium text-foreground text-[11px]">
             <span>Mewujudkan Indonesia Minim Sampah</span>

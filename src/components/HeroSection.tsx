@@ -19,44 +19,34 @@ const slides: RailItem[] = [
 }));
 
 export default function HeroSection() {
-  preload("/image-lomba/Gunung%20Ciremai-mobile.webp", {
-    as: "image",
-    fetchPriority: "high",
-    media: "(max-width: 640px)",
-  });
   preload("/image-lomba/Gunung%20Ciremai.webp", {
     as: "image",
     fetchPriority: "high",
-    media: "(min-width: 641px)",
   });
 
   return (
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-[#0b1611] text-white">
-      <picture className="absolute inset-0 -z-20 h-full w-full">
-        <source
-          media="(max-width: 640px)"
-          srcSet="/image-lomba/Gunung%20Ciremai-mobile.webp"
-          type="image/webp"
-        />
-        <source srcSet="/image-lomba/Gunung%20Ciremai.webp" type="image/webp" />
+      <div className="absolute inset-0 -z-20 h-full w-full">
         <img
           src="/image-lomba/Gunung%20Ciremai.webp"
-          alt=""
+          alt="Panorama Gunung Ciremai"
           width={1280}
           height={800}
           fetchPriority="high"
           decoding="async"
           className="h-full w-full object-cover object-center"
         />
-      </picture>
+      </div>
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(7,20,14,.82),rgba(7,20,14,.88)_65%,#0b1611)]" />
       <div className="mx-auto max-w-7xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
-        <h1 id="hero-heading" className="mx-auto max-w-4xl text-4xl font-black leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 id="hero-heading" className="mx-auto max-w-5xl text-3xl font-black leading-[1.15] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
           Sampah Bukan Akhir.
-          <span className="block font-medium mt-1.5 sm:mt-2 text-emerald-300">
-            Ini Awal{' '}
-            <span className="text-emerald-400">
-              <Typewriter phrases={['Perubahan.', 'Nilai Baru.', 'Inovasi Sirkular.', 'Masa Depan Bersih.']} />
+          <span className="block font-medium mt-2 sm:mt-3 text-emerald-300 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+            <span className="inline-flex items-center justify-center whitespace-nowrap">
+              Ini Awal{' '}
+              <span className="text-emerald-400 ml-2">
+                <Typewriter phrases={['Perubahan.', 'Nilai Baru.', 'Inovasi Sirkular.', 'Masa Depan Bersih.']} />
+              </span>
             </span>
           </span>
         </h1>

@@ -25,6 +25,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "@/components/ui/toast-stack";
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -56,11 +64,17 @@ export default function ContactPage() {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      toast.error("Formulir Belum Lengkap", {
+        description: "Mohon periksa kolom yang bertanda merah sebelum mengirim.",
+      });
       return;
     }
 
     setErrors({});
     setFormSubmitted(true);
+    toast.success("Pesan Kemitraan Berhasil Dikirim!", {
+      description: `Terima kasih ${formData.name}, tim CircuLife akan menghubungi Anda dalam 1x24 jam.`,
+    });
   };
 
   return (
@@ -174,7 +188,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
+                      <div className="space-y-1.5 min-w-0">
                         <label htmlFor="contact-phone" className="text-xs font-bold uppercase tracking-wider text-foreground">
                           No. WhatsApp / Telepon
                         </label>
@@ -183,25 +197,41 @@ export default function ContactPage() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="0812-XXXX-XXXX"
-                          className="rounded-xl h-11"
+                          className="rounded-xl h-11 tabular-nums focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500"
                         />
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="space-y-1.5 min-w-0">
                         <label htmlFor="contact-category" className="text-xs font-bold uppercase tracking-wider text-foreground">
                           Kategori Inisiatif
                         </label>
-                        <select
-                          id="contact-category"
+                        <Select
                           value={formData.category}
-                          onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                          className="w-full h-11 rounded-xl border border-input bg-background px-3 text-xs font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                          onValueChange={(val) => setFormData({ ...formData, category: val })}
                         >
-                          <option value="BANK_SAMPAH">Kemitraan Bank Sampah / KSM</option>
-                          <option value="SEKOLAH">Program Sekolah Adiwiyata</option>
-                          <option value="PROPERTI">Pemesanan Paving Block Proyek</option>
-                          <option value="INDIVIDU">Pertanyaan Warga / Drop-Point</option>
-                        </select>
+                          <SelectTrigger
+                            id="contact-category"
+                            aria-label="Kategori Inisiatif"
+                            size="lg"
+                            className="w-full rounded-xl border-input bg-card text-foreground focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500"
+                          >
+                            <SelectValue placeholder="Pilih Kategori Inisiatif" />
+                          </SelectTrigger>
+                          <SelectContent className="rounded-xl border border-border bg-popover text-popover-foreground shadow-xl">
+                            <SelectItem value="BANK_SAMPAH" className="rounded-lg py-2.5 cursor-pointer">
+                              Kemitraan Bank Sampah / KSM
+                            </SelectItem>
+                            <SelectItem value="SEKOLAH" className="rounded-lg py-2.5 cursor-pointer">
+                              Program Sekolah Adiwiyata
+                            </SelectItem>
+                            <SelectItem value="PROPERTI" className="rounded-lg py-2.5 cursor-pointer">
+                              Pemesanan Paving Block Proyek
+                            </SelectItem>
+                            <SelectItem value="INDIVIDU" className="rounded-lg py-2.5 cursor-pointer">
+                              Pertanyaan Warga / Drop-Point
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
 
