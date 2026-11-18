@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { WasteDropReport, TrailId, WasteCategory, CircularTargetProduct } from "@/types";
 import { validateReportInput, generateReportId, calculateWasteImpact } from "@/lib/reportUtils";
-import { TRAIL_SEEDS } from "@/lib/constants";
 import {
   Recycle,
   PackageCheck,
@@ -21,6 +20,7 @@ import {
   Award,
   Clock,
   PlusCircle,
+  Users,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -44,6 +44,21 @@ interface ReportFormProps {
   initialTrail?: TrailId;
   onReportSubmitted?: (report: WasteDropReport) => void;
 }
+
+export const getCommunityHubName = (trailId: string): string => {
+  switch (trailId) {
+    case "PALUTUNGAN":
+      return "Workshop Eco-Paving Desa (Kuningan)";
+    case "APUY":
+      return "Sentra Biokonversi Maggot BSF (Majalengka)";
+    case "LINGGARJATI":
+      return "Bank Sampah Unit Mitra Warga";
+    case "SADAREHE":
+      return "Drop-Box Titik Kumpul Relawan Aksi";
+    default:
+      return "Layanan Penjemputan / Komunitas";
+  }
+};
 
 export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmitted }: ReportFormProps) {
   const [formData, setFormData] = useState({
@@ -154,7 +169,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
       description: formData.description.trim(),
       timestamp: new Date().toISOString(),
       status: "VERIFIED",
-      adminNote: "Setoran sampah telah diverifikasi di pos registrasi. Dialokasikan ke unit daur ulang sirkular desa penyangga TNGC.",
+      adminNote: `Setoran sampah terverifikasi untuk disalurkan ke ${getCommunityHubName(formData.trail)}. Diolah oleh komunitas sirkular CircuLife.`,
     };
 
     // Save to LocalStorage
@@ -171,7 +186,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
     setIsSubmitting(false);
 
     toast.success("Setoran Sampah Berhasil Diverifikasi!", {
-      description: `Tiket digital ${reportId} telah diterbitkan untuk posko drop-point.`,
+      description: `Tiket digital ${reportId} diterbitkan untuk ${getCommunityHubName(formData.trail)}.`,
       duration: 6000,
     });
 
@@ -185,7 +200,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
     navigator.clipboard.writeText(submittedReport.id);
     setCopiedTicket(true);
     toast.info("Tiket Berhasil Disalin", {
-      description: `Nomor tiket ${submittedReport.id} siap dibagikan ke petugas posko.`,
+      description: `Nomor tiket ${submittedReport.id} siap dibagikan ke relawan komunitas.`,
     });
     setTimeout(() => setCopiedTicket(false), 2000);
   };
@@ -225,12 +240,14 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               <div>
                 <div className="flex items-center gap-2">
                   <Badge variant="outline" className="border-emerald-400/40 bg-emerald-500/20 text-emerald-200 text-[10px] font-mono font-bold uppercase tracking-wider">
-                    TNGC Verified Pass
+                    CircuLife Community Verified
                   </Badge>
-                  <span className="text-[11px] text-emerald-300 font-mono">Posko {submittedReport.trail}</span>
+                  <span className="text-[11px] text-emerald-300 font-mono truncate max-w-[200px] sm:max-w-none">
+                    {getCommunityHubName(submittedReport.trail)}
+                  </span>
                 </div>
                 <h2 className="text-lg sm:text-xl font-bold tracking-tight text-white mt-0.5">
-                  Setoran Sampah Berhasil Diverifikasi
+                  Setoran Sampah Berhasil Diverifikasi Komunitas
                 </h2>
               </div>
             </div>
@@ -275,7 +292,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/70 pb-4">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block font-mono">
-                  Kode Registrasi Setoran Sirkular
+                  Nomor Tiket Penyetoran Komunitas
                 </span>
                 <span className="text-2xl sm:text-3xl font-black text-foreground tabular-nums tracking-wider font-mono">
                   {submittedReport.id}
@@ -297,15 +314,19 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
               <div className="p-3 rounded-xl bg-card border border-border/60">
-                <span className="text-[10px] text-muted-foreground block uppercase font-bold">Penyetor / Pendaki</span>
+                <span className="text-[10px] text-muted-foreground block uppercase font-bold">Penyetor / Kontributor</span>
                 <span className="font-semibold text-foreground text-sm block mt-0.5 truncate">{submittedReport.reporterName}</span>
                 <span className="text-[10px] text-muted-foreground">{submittedReport.reporterContact}</span>
               </div>
 
               <div className="p-3 rounded-xl bg-card border border-border/60">
-                <span className="text-[10px] text-muted-foreground block uppercase font-bold">Posko Drop-Point</span>
-                <span className="font-semibold text-foreground text-sm block mt-0.5">Posko {submittedReport.trail}</span>
-                <span className="text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold">{submittedReport.locationDetail || "Kawasan Rimba TNGC"}</span>
+                <span className="text-[10px] text-muted-foreground block uppercase font-bold">Hub Komunitas Tujuan</span>
+                <span className="font-semibold text-foreground text-sm block mt-0.5 truncate">
+                  {getCommunityHubName(submittedReport.trail)}
+                </span>
+                <span className="text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold truncate block">
+                  {submittedReport.locationDetail || "Kawasan Lereng Ciremai"}
+                </span>
               </div>
 
               <div className="p-3 rounded-xl bg-card border border-border/60">
@@ -317,7 +338,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               </div>
 
               <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                <span className="text-[10px] text-emerald-800 dark:text-emerald-300 block uppercase font-bold">Reward Diterima</span>
+                <span className="text-[10px] text-emerald-800 dark:text-emerald-300 block uppercase font-bold">Reward Komunitas</span>
                 <span className="font-bold text-foreground text-sm flex items-center gap-1 mt-0.5">
                   <Sprout className="h-4 w-4 text-emerald-800 dark:text-emerald-300 shrink-0" />
                   <span className="truncate">
@@ -328,7 +349,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                       : "E-Sertifikat Ciremai"}
                   </span>
                 </span>
-                <span className="text-[10px] text-muted-foreground">Siap diambil di posko</span>
+                <span className="text-[10px] text-muted-foreground">Siap diambil di hub mitra</span>
               </div>
             </div>
 
@@ -344,7 +365,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
             <p className="text-xs text-muted-foreground text-center sm:text-left">
-              Tunjukkan nomor tiket ini ke posko resmi TNGC untuk klaim bibit pohon atau validasi poin sirkular.
+              Tunjukkan nomor tiket ini ke relawan atau pengurus hub komunitas CircuLife untuk penyerahan sampah &amp; klaim bibit pohon.
             </p>
             <Button
               type="button"
@@ -376,47 +397,47 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
   return (
     <Card className="overflow-hidden border border-border/80 bg-card shadow-sm rounded-3xl">
-      {/* Ciremai Themed Header */}
+      {/* Community Themed Header */}
       <div className="relative isolate overflow-hidden bg-gradient-to-br from-emerald-950 via-[#0b1b13] to-card px-6 py-7 sm:px-8 text-white border-b border-emerald-500/20">
         <div aria-hidden="true" className="absolute -right-8 -top-8 h-48 w-48 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
         <div className="flex items-center gap-2 mb-2">
           <Badge variant="outline" className="border-emerald-400/40 bg-emerald-500/20 text-emerald-200 text-[10px] font-mono font-bold uppercase tracking-wider gap-1.5">
-            <Mountain className="h-3 w-3" />
-            <span>Kawasan TN Gunung Ciremai</span>
+            <Users className="h-3 w-3" />
+            <span>Komunitas Sirkular CircuLife</span>
           </Badge>
-          <span className="text-[11px] text-emerald-300/80 font-mono">Posko Drop-Point Terpadu</span>
+          <span className="text-[11px] text-emerald-300/80 font-mono">Pusat Aksi Warga &amp; Relawan</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
-          Formulir Setor &amp; Valuasi Sampah Sirkular
+          Formulir Penyetoran Sampah Komunitas
         </h2>
         <p className="mt-1 text-xs sm:text-sm text-emerald-100/80 max-w-2xl leading-relaxed">
-          Catat sampah terpilah yang Anda bawa turun dari jalur pendakian Gunung Ciremai untuk dikonversikan menjadi Eco-Paving Block, Kompos Kasgot, atau Bibit Pohon Saninten.
+          Salurkan sampah terpilah anorganik dan organik Anda ke jejaring workshop komunitas CircuLife untuk dikonversi menjadi Eco-Paving Block, Kompos Kasgot, atau Bibit Pohon Saninten.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-7">
-        {/* Section 1: Identitas Pelapor & Posko */}
+        {/* Section 1: Identitas Kontributor & Hub Komunitas */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 pb-1 border-b border-border/60">
             <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 font-mono text-xs font-bold">
               01
             </div>
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">
-              Identitas Pendaki &amp; Posko Drop-Point
+              Identitas Kontributor &amp; Hub Komunitas Tujuan
             </h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="reporterName" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-                Nama Pelapor / Pendaki <span className="text-destructive">*</span>
+                Nama Pelapor / Kontributor <span className="text-destructive">*</span>
               </label>
               <Input
                 id="reporterName"
                 type="text"
                 value={formData.reporterName}
                 onChange={(e) => setFormData({ ...formData, reporterName: e.target.value })}
-                placeholder="Contoh: Rian Pratama"
+                placeholder="Contoh: Rian Pratama / Komunitas Hijau"
                 aria-invalid={!!errors.reporterName}
                 aria-describedby={errors.reporterName ? "reporterName-error" : undefined}
                 className={cn("h-11 rounded-xl transition-all focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500", errors.reporterName && "border-destructive")}
@@ -455,7 +476,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="trail" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-                Jalur Pendakian / Posko Drop-Point <span className="text-destructive">*</span>
+                Tujuan Penyaluran / Hub Komunitas <span className="text-destructive">*</span>
               </label>
               <Select
                 value={formData.trail}
@@ -463,27 +484,43 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               >
                 <SelectTrigger
                   id="trail"
-                  aria-label="Jalur Pendakian / Posko Drop-Point"
+                  aria-label="Tujuan Penyaluran / Hub Komunitas"
                   size="lg"
                   className="w-full rounded-xl border-input bg-card text-foreground focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500"
                 >
-                  <SelectValue placeholder="Pilih Posko Drop-Point" />
+                  <SelectValue placeholder="Pilih Hub Komunitas Sirkular" />
                 </SelectTrigger>
                 <SelectContent className="rounded-xl border border-border bg-popover text-popover-foreground shadow-xl">
                   <SelectGroup>
                     <SelectLabel className="text-[10px] font-mono uppercase text-muted-foreground px-2 py-1.5">
-                      Posko Drop-Point Resmi TNGC
+                      Jejaring Hub &amp; Workshop Komunitas CircuLife
                     </SelectLabel>
-                    {TRAIL_SEEDS.map((t) => (
-                      <SelectItem key={t.id} value={t.id} className="rounded-lg py-2 cursor-pointer">
-                        <div className="flex items-center justify-between w-full gap-2">
-                          <span className="font-semibold">{t.name.replace(/^Jalur\s+/i, "")}</span>
-                          <span className="text-[11px] text-muted-foreground">Kab. {t.regency}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
+                    <SelectItem value="PALUTUNGAN" className="rounded-lg py-2 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-2">
+                        <span className="font-semibold">Workshop Eco-Paving Desa</span>
+                        <span className="text-[11px] text-muted-foreground">Kuningan</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="APUY" className="rounded-lg py-2 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-2">
+                        <span className="font-semibold">Sentra Biokonversi Maggot BSF</span>
+                        <span className="text-[11px] text-muted-foreground">Majalengka</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="LINGGARJATI" className="rounded-lg py-2 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-2">
+                        <span className="font-semibold">Bank Sampah Unit Mitra Warga</span>
+                        <span className="text-[11px] text-muted-foreground">Desa Penyangga</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="SADAREHE" className="rounded-lg py-2 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-2">
+                        <span className="font-semibold">Drop-Box Titik Kumpul Relawan Aksi</span>
+                        <span className="text-[11px] text-muted-foreground">Basecamp Relawan</span>
+                      </div>
+                    </SelectItem>
                     <SelectItem value="NON_TRAIL" className="rounded-lg py-2 cursor-pointer">
-                      <span className="text-muted-foreground">Kawasan Rimba Lain / Luar Jalur Resmi</span>
+                      <span className="text-muted-foreground">Layanan Penjemputan Mandiri / Event Komunitas</span>
                     </SelectItem>
                   </SelectGroup>
                 </SelectContent>
@@ -499,7 +536,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 type="text"
                 value={formData.locationDetail}
                 onChange={(e) => setFormData({ ...formData, locationDetail: e.target.value })}
-                placeholder="Contoh: Shelter Pos 3 Arban / Pos 4"
+                placeholder="Contoh: Pemukiman Desa Cisantana / Area Camp Lereng / Basecamp Komunitas"
                 aria-invalid={!!errors.locationDetail}
                 aria-describedby={errors.locationDetail ? "locationDetail-error" : undefined}
                 className={cn("h-11 rounded-xl transition-all focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500", errors.locationDetail && "border-destructive")}
@@ -521,7 +558,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               02
             </div>
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">
-              Timbangan &amp; Klasifikasi Sampah
+              Timbangan &amp; Klasifikasi Sampah Terpilah
             </h3>
           </div>
 
@@ -609,7 +646,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 <span>Simulasi Dampak Sirkular Terpadu (Live HUD)</span>
               </span>
               <Badge variant="outline" className="text-[10px] font-mono border-emerald-500/30 text-emerald-800 dark:text-emerald-300 bg-emerald-500/10">
-                Eco-Valuation
+                Community Eco-Impact
               </Badge>
             </div>
 
@@ -633,7 +670,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 </span>
               </div>
               <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 shadow-xs">
-                <span className="block text-[10px] font-mono text-emerald-800 dark:text-emerald-300 uppercase font-bold">Poin Hijau TNGC</span>
+                <span className="block text-[10px] font-mono text-emerald-800 dark:text-emerald-300 uppercase font-bold">Poin Komunitas</span>
                 <span className="text-base sm:text-lg font-black text-emerald-800 dark:text-emerald-300 font-mono tabular-nums">
                   +<AnimatedNumber value={liveImpact.seedlingPoints} /> <span className="text-[10px] font-normal text-muted-foreground">pts</span>
                 </span>
@@ -649,7 +686,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               03
             </div>
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">
-              Alokasi Pemanfaatan &amp; Pilihan Reward
+              Alokasi Pemanfaatan &amp; Pilihan Reward Komunitas
             </h3>
           </div>
 
@@ -695,7 +732,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 {[
                   { id: "SEEDLING", label: "Bibit Pohon", desc: "Saninten Ciremai", icon: Sprout },
                   { id: "COMMUNITY_POINTS", label: "Poin Komunitas", desc: "Katalog Sirkular", icon: Sparkles },
-                  { id: "BADGE_CERTIFICATE", label: "E-Sertifikat", desc: "Konservasi TNGC", icon: Award },
+                  { id: "BADGE_CERTIFICATE", label: "E-Sertifikat", desc: "Kontributor Hijau", icon: Award },
                 ].map((r) => {
                   const Icon = r.icon;
                   const isSelected = formData.rewardChoice === r.id;
@@ -827,7 +864,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             )}
           </Button>
           <p className="text-[11px] text-muted-foreground text-center mt-2.5">
-            Data setoran akan langsung tercatat dan dapat ditukarkan di posko drop-point resmi Taman Nasional Gunung Ciremai.
+            Data setoran akan langsung tercatat di sistem sirkularitas komunitas CircuLife dan siap diserahkan ke hub pengolahan warga.
           </p>
         </div>
       </form>

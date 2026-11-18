@@ -4,6 +4,7 @@ import { AnimatedNumber } from "@/components/ui/animated-number";
 
 import React, { useState } from "react";
 import { WasteDropReport } from "@/types";
+import { getCommunityHubName } from "@/components/ReportForm";
 import { MapPin, Clock, Search, ShieldCheck, FileText, Recycle, Layers, Sprout, Flame } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -191,7 +192,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                   <div className="flex items-center gap-1.5 text-xs font-bold text-foreground mb-1">
                     <MapPin className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
                     <span>
-                      {report.locationDetail} (Pos Jalur {report.trail})
+                      {report.locationDetail} · <span className="text-primary font-mono">{getCommunityHubName(report.trail)}</span>
                     </span>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
@@ -203,7 +204,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                   <div className="rounded-xl bg-muted/50 p-3 border border-border/60 text-xs">
                     <span className="font-bold text-foreground mb-0.5 flex items-center gap-1 font-mono text-[11px] uppercase">
                       <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                      <span>Verifikasi Posko Registrasi :</span>
+                      <span>Verifikasi Komunitas :</span>
                     </span>
                     <p className="text-muted-foreground leading-normal"><NumericText text={report.adminNote} /></p>
                   </div>

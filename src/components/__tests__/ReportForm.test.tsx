@@ -9,7 +9,7 @@ describe("ReportForm Component", () => {
 
     expect(screen.getByLabelText(/nama pelapor/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/nomor kontak/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/jalur pendakian/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/tujuan penyaluran|hub komunitas/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/patokan lokasi/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/rincian sampah/i)).toBeInTheDocument();
   });

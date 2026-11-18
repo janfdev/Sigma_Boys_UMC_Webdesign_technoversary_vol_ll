@@ -5,9 +5,9 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ReportForm from "@/components/ReportForm";
 import RecentReportsList from "@/components/RecentReportsList";
-import { INITIAL_REPORTS, TRAIL_SEEDS } from "@/lib/constants";
+import { INITIAL_REPORTS } from "@/lib/constants";
 import { WasteDropReport } from "@/types";
-import { Recycle, PackageCheck, ListFilter, PlusCircle, PhoneCall, Sprout, ArrowRight, MapPin } from "lucide-react";
+import { Recycle, PackageCheck, ListFilter, PlusCircle, PhoneCall, Sprout, ArrowRight, Users, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -45,13 +45,13 @@ export default function LaporPage() {
           <div className="space-y-3">
             <Badge variant="outline" className="max-w-full h-auto whitespace-normal gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
               <Recycle className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Sistem Penyetoran &amp; Verifikasi Sirkular (TITO)</span>
+              <span>Aksi Sirkular Berbasis Komunitas (Citizen Science &amp; Eco-Action)</span>
             </Badge>
             <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground leading-[1.15]">
-              Setor Sampah Terpilah &amp; Klaim Reward Lingkungan
+              Setor Sampah Terpilah &amp; Klaim Reward Komunitas
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-              Catat sampah anorganik dan organik bawaan Anda untuk disetorkan ke drop-point terdekat. Dapatkan tiket verifikasi digital untuk ditukar bibit pohon atau poin komunitas.
+              Salurkan sampah anorganik dan organik Anda ke jejaring workshop komunitas CircuLife. Ubah sampah menjadi paving block desa, pupuk kompos kasgot, dan bibit pohon penghijauan lereng Ciremai.
             </p>
           </div>
 
@@ -102,11 +102,11 @@ export default function LaporPage() {
                     </li>
                     <li className="flex items-start gap-2.5">
                       <span className="font-bold font-mono text-primary shrink-0 mt-0.5">2.</span>
-                      <span>Timbang kantong sampah di timbangan digital posko registrasi jalur turun Anda.</span>
+                      <span>Timbang kantong sampah Anda secara mandiri atau di titik kumpul relawan terdekat.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <span className="font-bold font-mono text-primary shrink-0 mt-0.5">3.</span>
-                      <span>Tunjukkan tiket digital formulir ini kepada petugas drop-point untuk menukar poin atau mengambil bibit pohon siap tanam.</span>
+                      <span>Tunjukkan tiket digital formulir ini kepada relawan atau pengurus hub komunitas untuk klaim bibit pohon atau poin sirkular.</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -116,36 +116,58 @@ export default function LaporPage() {
                 <Sprout className="h-5 w-5 text-emerald-800 dark:text-emerald-300 mb-1" />
                 <AlertDescription className="text-xs sm:text-sm leading-relaxed">
                   <strong className="font-bold block mb-1">Gerakan 1 Setoran 1 Pohon :</strong>
-                  Setiap setoran minimal 2 kg botol plastik atau 5 kaleng gas berhak mendapatkan 1 bibit pohon penghijauan binaan CircuLife.</AlertDescription>
+                  Setiap setoran minimal 2 kg botol plastik atau 5 kaleng gas berhak mendapatkan 1 bibit pohon penghijauan binaan komunitas CircuLife.</AlertDescription>
               </Alert>
 
-              {/* Drop-Point Hub Quick Reference */}
+              {/* Community Circular Hubs Reference */}
               <Card className="p-5 shadow-sm space-y-3.5 rounded-2xl border-border bg-card">
                 <CardHeader className="p-0">
                   <CardTitle className="text-xs font-bold text-foreground uppercase tracking-wider flex items-center justify-between font-mono">
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                      <span>Posko Drop-Point Terdekat</span>
+                      <Users className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                      <span>Jejaring Hub Komunitas</span>
                     </span>
-                    <Link href="/pantau" className="text-[11px] text-primary hover:underline font-mono">
-                      Pantau Status
-                    </Link>
+                    <span className="text-[10px] font-mono font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                      Sirkular Aktif
+                    </span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-0 space-y-2 pt-1 font-mono text-xs">
-                  {TRAIL_SEEDS.map((t) => (
-                    <div key={t.id} className="flex items-center justify-between p-2.5 rounded-xl bg-muted/30 border border-border/60 hover:border-emerald-500/40 transition-colors">
-                      <div>
-                        <span className="font-bold text-foreground block text-xs tracking-tight">
-                          {t.name.replace(/^Jalur\s+/i, "")}
-                        </span>
-                        <span className="text-[10px] text-muted-foreground font-sans">Kab. {t.regency}</span>
-                      </div>
+                <CardContent className="p-0 space-y-2.5 pt-1 text-xs">
+                  <div className="p-2.5 rounded-xl bg-muted/30 border border-border/60 hover:border-emerald-500/40 transition-colors">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-bold text-foreground text-xs">Workshop Eco-Paving Desa</span>
                       <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-bold uppercase rounded-full">
-                        {t.dropPointStatus === "SIAP_TERIMA" ? "Siap Terima" : "Distribusi"}
+                        Kuningan
                       </Badge>
                     </div>
-                  ))}
+                    <p className="text-[11px] text-muted-foreground leading-relaxed">
+                      Pusat pencacahan &amp; pencetakan paving block ramah lingkungan dari botol PET dan sachet warga.
+                    </p>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-muted/30 border border-border/60 hover:border-emerald-500/40 transition-colors">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-bold text-foreground text-xs">Sentra Biokonversi Maggot BSF</span>
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-bold uppercase rounded-full">
+                        Majalengka
+                      </Badge>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground leading-relaxed">
+                      Pengolahan sisa makanan logistik menjadi pupuk kasgot bermutu tinggi bagi kelompok tani lereng.
+                    </p>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-muted/30 border border-border/60 hover:border-emerald-500/40 transition-colors">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-bold text-foreground text-xs">Jaringan Bank Sampah Warga</span>
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-bold uppercase rounded-full">
+                        Desa Penyangga
+                      </Badge>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground leading-relaxed">
+                      Kemitraan pemilahan dengan RT/RW dan komunitas penggerak lingkungan di sekitar kawasan.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
