@@ -70,7 +70,7 @@ export const CIREMAI_ARTICLE: ConservationArticle = {
   readTime: "6 menit baca",
   topic: "Fokus Keberlanjutan Riset",
   image: {
-    src: "/image-lomba/Gunung%20Ciremai.webp",
+    src: "/images/gallery/gunung-ciremai.webp",
     alt: "Panorama Gunung Ciremai dengan hamparan sawah terasering di lerengnya",
     caption:
       "Panorama Gunung Ciremai (3.078 mdpl) merangkul wilayah pertanian Jawa Barat dan sekitarnya.",
@@ -154,7 +154,7 @@ export const PAVING_ARTICLE: ConservationArticle = {
   readTime: "5 menit baca",
   topic: "Divisi Investigasi Tapak",
   image: {
-    src: "/image-lomba/pemasangan-paving.webp",
+    src: "/images/gallery/pemasangan-paving.webp",
     alt: "Paving block berbahan limbah plastik dipasang di jalan lingkungan oleh mahasiswa KKN 33 UMC",
     caption: "Paving block berbahan limbah plastik rumah tangga dipasang di jalan lingkungan kampung.",
     credit: "DOC: KKN 33 UMC X CIRCULIFE",
@@ -226,7 +226,7 @@ const ZERO_WASTE_ARTICLE: ConservationArticle = {
   readTime: "4 menit baca",
   topic: "Divisi Kampanye & Komunitas",
   image: {
-    src: "/image-lomba/zero-waste-lifestyle.jpg",
+    src: "/images/gallery/zero-waste-lifestyle.jpg",
     alt: "Ilustrasi grafis bertuliskan ZERO WASTE LIFESTYLE dengan kolase ikon daur ulang berbentuk hati",
     caption:
       "Kampanye gaya hidup zero waste: perubahan kecil yang dijaga konsisten menggeser kebiasaan konsumsi harian.",
@@ -299,7 +299,7 @@ const UPCYCLING_ARTICLE: ConservationArticle = {
   readTime: "3 menit baca",
   topic: "Divisi Edukasi & Inovasi Sirkular",
   image: {
-    src: "/image-lomba/kreasi-daur-ulang.webp",
+    src: "/images/gallery/kreasi-daur-ulang.webp",
     alt: "Ragam kreasi kerajinan dari botol plastik bekas termasuk pot tanaman gantung dan celengan karakter",
     caption:
       "Ragam kreasi upcycling botol plastik bekas menjadi produk dekoratif dan fungsional rumah tangga.",

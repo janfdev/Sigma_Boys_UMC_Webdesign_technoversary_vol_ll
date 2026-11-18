@@ -3,14 +3,14 @@ import Image from "next/image";
 
 export const GALLERY_ITEMS = [
   {
-    image: "/image-lomba/Organizer%20Alat%20Tulis%20Botol%20Daur%20Ulang.webp",
+    image: "/images/gallery/organizer-alat-tulis-botol.webp",
     alt: "Wadah alat tulis meja dari potongan botol plastik bekas yang dicat warna-warni",
     category: "KATEGORI: ALAT TULIS",
     caption:
       "Potongan bagian bawah botol yang dihaluskan tepinya menggunakan panas setrika dan dicat motif geometris menjadi wadah pulpen yang kokoh.",
   },
   {
-    image: "/image-lomba/Lentera%20Bunga%20PET%20di%20Senja%20Hari.webp",
+    image: "/images/gallery/lentera-bunga-pet.webp",
     alt: "Kap lampu gantung berbentuk kelopak bunga dari dasar botol plastik menyala saat senja",
     category: "KATEGORI: PENCAHAYAAN",
     caption:

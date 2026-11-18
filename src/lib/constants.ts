@@ -689,7 +689,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "Kajian Lapangan 2026",
     summary: "Mengenal pentingnya pelestarian sabuk hutan lindung, perlindungan keanekaragaman hayati endemik macan tutul Jawa, dan keterlibatan komunitas tapak dalam menjaga kawasan tangkapan air bagi tiga kabupaten penyangga.",
     content: "Kawasan Taman Nasional Gunung Ciremai di Jawa Barat bagian timur menjadi tumpuan hidrologis bagi jutaan warga di Kuningan, Cirebon, dan Majalengka. Sabuk hijau di lerengnya menyerap jutaan meter kubik air hujan setiap tahunnya, sekaligus menjadi habitat alami bagi Macan Tutul Jawa dan Elang Jawa.",
-    imageUrl: "/image-lomba/Gunung Ciremai.webp",
+    imageUrl: "/images/gallery/gunung-ciremai.webp",
   },
   {
     id: "art-2",
@@ -701,7 +701,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "Februari 2026",
     summary: "Uji mekanik paving block komposit limbah plastik PET dan pasir dengan rasio 40:60, menghasilkan kuat tekan standar mutu K-250 yang ramah lingkungan dan menyerap timbulan sampah plastik perkotaan.",
     content: "Riset terapan mahasiswa Universitas Muhammadiyah Cirebon (UMC) berhasil mengintegrasikan lelehan cacahan botol plastik polimer PET dengan pasir silika sungai. Formulasi ini tidak membutuhkan semen tambahan dan menghasilkan material perkerasan pekarangan yang tahan rembesan air dan awet hingga belasan tahun.",
-    imageUrl: "/image-lomba/Kolase Daur Ulang Plastik Menjadi Paving.webp",
+    imageUrl: "/images/gallery/kolase-daur-ulang-paving.webp",
   },
   {
     id: "art-3",
@@ -713,7 +713,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "November 2026",
     summary: "Panduan aplikatif memulai pemilahan sampah dari dapur rumah tangga melalui prinsip 5R (Refuse, Reduce, Reuse, Repurpose, Rot) untuk mencegah beban timbulan ke TPA secara berkelanjutan.",
     content: "Zero waste bukan sekadar gaya hidup ekstrem tanpa sampah, melainkan komitmen bertahap untuk menolak plastik sekali pakai, memilah organik dan anorganik di tempat asal, serta memanfaatkan sisa makanan menjadi kompos atau pakan biokonversi maggot BSF.",
-    imageUrl: "/image-lomba/gaya-hidup-zero-waste.webp",
+    imageUrl: "/images/gallery/gaya-hidup-zero-waste.webp",
   },
   {
     id: "art-4",
@@ -725,7 +725,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "Oktober 2026",
     summary: "Tutorial praktis mengubah botol plastik PET menjadi pot hidroponik vertikal, wadah organizer alat tulis, dan lentera estetik yang aman, fungsional, dan memiliki nilai jual ekonomi.",
     content: "Limbah botol air mineral plastik PET memiliki elastisitas dan ketahanan cuaca yang sangat baik. Melalui pemotongan presisi dan perakitan kreatif, botol bekas dapat disulap menjadi media tanam hidroponik bertingkat yang mempercantik dinding rumah dan menghemat lahan.",
-    imageUrl: "/image-lomba/kreasi-daur-ulang.webp",
+    imageUrl: "/images/gallery/kreasi-daur-ulang.webp",
   },
 ];
 
@@ -734,7 +734,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-1",
     title: "Pencetakan Presisi Eco-Paving Block K-250",
     category: "TRANSFORMASI",
-    imageUrl: "/image-lomba/mesin-press-paving.webp",
+    imageUrl: "/images/gallery/mesin-press-paving.webp",
     description: `Pemanfaatan cacahan limbah plastik anorganik yang
     dilelehkan pada suhu terkontrol dan dicetak dengan mesin
     hidrolik presisi menjadi balok paving berkekuatan tinggi.`,
@@ -745,7 +745,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     title: `Biokonversi Sampah Organik
     Menggunakan Maggot BSF`,
     category: "BIOKONVERSI",
-    imageUrl: "/image-lomba/larva-bsf.webp",
+    imageUrl: "/images/gallery/larva-bsf.webp",
     description: `Pemanfaatan larva Black Soldier Fly (BSF) untuk
     menguraikan sampah organik, seperti sisa sayuran dan
     buah, menjadi biomassa berprotein dan kasgot bernutrisi.`,
@@ -755,7 +755,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-3",
     title: "Perakitan Tungku Ultralight dari Kaleng Bekas",
     category: "UPCYCLING",
-    imageUrl: "/image-lomba/kaleng-daur-ulang.webp",
+    imageUrl: "/images/gallery/kaleng-daur-ulang.webp",
     description: `Pemanfaatan limbah kaleng logam bekas menjadi kompor
     biomassa mini (wood gasifier) portabel hemat bahan bakar
     untuk kebutuhan lapangan dan kegiatan luar ruangan.`,
@@ -765,7 +765,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-4",
     title: "Sistem Pemilahan dan Penimbangan Sampah di Drop Point",
     category: "LOGISTIK",
-    imageUrl: "/image-lomba/penimbangan-sampah.webp",
+    imageUrl: "/images/gallery/penimbangan-sampah.webp",
     description: `Penimbangan presisi sampah anorganik terpilah di posko
     drop-point berbasis pencatatan digital dan scan QR code
     untuk transparansi data insentif warga.`,
@@ -775,7 +775,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-5",
     title: "Pemanfaatan Paving Block Daur Ulang untuk Infrastruktur Lingkungan",
     category: "DAMPAK",
-    imageUrl: "/image-lomba/pemasangan-paving.webp",
+    imageUrl: "/images/gallery/pemasangan-paving.webp",
     description: `Aplikasi paving block hasil daur ulang plastik untuk
     perkerasan jalan setapak warga dan jalur konservasi ramah
     resapan air.`,
@@ -785,7 +785,7 @@ export const CIRCULIFE_GALLERY: GalleryItem[] = [
     id: "gal-6",
     title: "Pemanfaatan Kasgot sebagai Pupuk Organik untuk Pembibitan Tanaman",
     category: "BIOKONVERSI",
-    imageUrl: "/image-lomba/bibit-pupuk-kasgot.webp",
+    imageUrl: "/images/gallery/bibit-pupuk-kasgot.webp",
     description: `Hasil pengolahan sisa media budidaya maggot BSF
     dimanfaatkan sebagai pupuk organik kaya hara untuk
     mendukung pembibitan pohon dan penghijauan desa.`,

@@ -22,9 +22,9 @@ const RESEARCH = {
     "Inovasi mahasiswa Universitas Muhammadiyah Cirebon memformulasi limbah plastik PET dan pasir sungai dengan rasio 40:60 menjadi eco-paving block mutu K-250 tahan cuaca ekstrem untuk pedestrian ramah lingkungan.",
   // Three frames of the same field activity: sorted plastic, the press, the finished paving.
   collage: [
-    { src: "/image-lomba/Kolase Daur Ulang Plastik Menjadi Paving.webp", alt: "Pemilahan limbah plastik sebelum dicacah" },
-    { src: "/image-lomba/mesin-press-paving.webp", alt: "Mesin press mencetak paving block" },
-    { src: "/image-lomba/pemasangan-paving.webp", alt: "Paving block hasil daur ulang dipasang" },
+    { src: "/images/gallery/kolase-daur-ulang-paving.webp", alt: "Pemilahan limbah plastik sebelum dicacah" },
+    { src: "/images/gallery/mesin-press-paving.webp", alt: "Mesin press mencetak paving block" },
+    { src: "/images/gallery/pemasangan-paving.webp", alt: "Paving block hasil daur ulang dipasang" },
   ],
 };
 
@@ -36,7 +36,7 @@ const SIDE_ENTRIES = [
     title: "Mulai dari Kebiasaan Kecil, Mengenal Gaya Hidup Zero Waste untuk Masa Depan",
     summary:
       "Zero waste bukan sekadar gaya hidup tanpa sampah, melainkan komitmen mengurangi timbulan dari hulu melalui prinsip 5R (Refuse, Reduce, Reuse, Repurpose, Rot) di kehidupan sehari-hari.",
-    image: "/image-lomba/gaya-hidup-zero-waste.webp",
+    image: "/images/gallery/gaya-hidup-zero-waste.webp",
     cta: "Baca Artikel",
   },
   {
@@ -46,7 +46,7 @@ const SIDE_ENTRIES = [
     title: "Mengubah Botol Plastik Bekas Menjadi Produk Kreatif Bernilai Guna",
     summary:
       "Langkah terpadu mengubah limbah botol PET menjadi pot hidroponik vertikal, wadah organizer alat tulis, dan lentera estetik yang memiliki nilai fungsi dan nilai ekonomi sirkular.",
-    image: "/image-lomba/kreasi-daur-ulang.webp",
+    image: "/images/gallery/kreasi-daur-ulang.webp",
     cta: "Baca Panduan",
   },
 ];

@@ -117,7 +117,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/image-lomba/Gunung%20Ciremai.webp"
+          href="/images/gallery/gunung-ciremai.webp"
           type="image/webp"
           fetchPriority="high"
         />

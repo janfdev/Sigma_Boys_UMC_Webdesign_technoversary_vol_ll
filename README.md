@@ -26,8 +26,8 @@ Sebelum menjalankan proyek, pastikan perangkat Anda telah terpasang:
 
 ### 1. Kloning Repositori
 ```bash
-git clone https://github.com/janfdev/circulife.git
-cd circulife
+git clone https://github.com/janfdev/Sigma_Boys_UMC_WebDesignTechnoversary_vol_II.git
+cd Sigma_Boys_UMC_WebDesignTechnoversary_vol_II
 ```
 
 ### 2. Pasang Dependensi

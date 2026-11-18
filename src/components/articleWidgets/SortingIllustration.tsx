@@ -38,7 +38,7 @@ export default function SortingIllustration() {
       {/* Banner Image */}
       <div className="relative aspect-[16/9] w-full bg-background sm:aspect-[2/1]">
         <Image
-          src="/image-lomba/gaya-hidup-zero-waste.webp"
+          src="/images/gallery/gaya-hidup-zero-waste.webp"
           alt="Ilustrasi pemilahan sampah ke dalam 4 tempat sampah berbeda warna bertuliskan ZERO WASTE dan BRING YOUR OWN CUP"
           fill
           className="object-contain p-2 sm:p-4"

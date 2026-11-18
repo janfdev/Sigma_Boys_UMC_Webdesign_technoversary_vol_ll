@@ -1,6 +1,6 @@
 export interface HeroCarouselItem {
   id: number;
-  image: string; // Path mengarah ke file asli di folder carousel-hero
+  image: string; // Path mengarah ke file asli di folder images/hero
   badge: string; // Misal: "UPCYCLE", "EDUKASI", "KONSERVASI", "DAUR ULANG"
   title: string;
   description: string;
@@ -11,7 +11,7 @@ export interface HeroCarouselItem {
 export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   {
     id: 1,
-    image: "/carousel-hero/Gambar1.webp",
+    image: "/images/hero/Gambar1.webp",
     badge: "PENCEMARAN SUNGAI",
     title: "Pencemaran Sungai oleh Sampah Plastik",
     description:
@@ -22,7 +22,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 2,
-    image: "/carousel-hero/Gambar2.webp",
+    image: "/images/hero/Gambar2.webp",
     badge: "KRISIS TPA",
     title: "Menumpuknya Sampah di Tempat Pembuangan Akhir",
     description:
@@ -33,7 +33,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 3,
-    image: "/carousel-hero/Gambar3.webp",
+    image: "/images/hero/Gambar3.webp",
     badge: "AKSI BERSIH",
     title: "Bersama Bergerak Membersihkan Lingkungan",
     description:
@@ -44,7 +44,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 4,
-    image: "/carousel-hero/Gambar4.webp",
+    image: "/images/hero/Gambar4.webp",
     badge: "PEMILAHAN SUMBER",
     title: "Mengubah Limbah Plastik Menjadi Material Baru",
     description:
@@ -55,7 +55,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 5,
-    image: "/carousel-hero/Gambar5.webp",
+    image: "/images/hero/Gambar5.webp",
     badge: "UPCYCLE",
     title: "Pemilahan Sampah Berdasarkan Jenis",
     description:
@@ -66,7 +66,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 6,
-    image: "/carousel-hero/Gambar6.webp",
+    image: "/images/hero/Gambar6.webp",
     badge: "UPCYCLE PAVING",
     title: "Inovasi Kreatif Mengubah Sampah Menjadi Produk Bernilai",
     description:
@@ -77,7 +77,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 7,
-    image: "/carousel-hero/Gambar7.webp",
+    image: "/images/hero/Gambar7.webp",
     badge: "ZERO WASTE",
     title: "Penerapan Zero-Waste Lifestyle",
     description:
@@ -88,7 +88,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 8,
-    image: "/carousel-hero/Gambar8.webp",
+    image: "/images/hero/Gambar8.webp",
     badge: "BIOKONVERSI ORGANIK",
     title: "Pengolahan Sampah Organik Menjadi Kompos",
     description:
@@ -99,7 +99,7 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
   },
   {
     id: 9,
-    image: "/carousel-hero/Gambar9.webp",
+    image: "/images/hero/Gambar9.webp",
     badge: "RESTORASI EKOSISTEM",
     title: "Mewujudkan Masa Depan Lingkungan yang Lebih Hijau",
     description:

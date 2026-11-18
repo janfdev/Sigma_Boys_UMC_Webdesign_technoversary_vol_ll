@@ -20,7 +20,7 @@ const heroSlides: RailItem[] = HERO_CAROUSEL_DATA.map((item) => ({
 export default function HeroSection() {
   const [selectedModalIndex, setSelectedModalIndex] = useState<number | null>(null);
 
-  preload("/image-lomba/Gunung%20Ciremai.webp", {
+  preload("/images/gallery/gunung-ciremai.webp", {
     as: "image",
     fetchPriority: "high",
   });
@@ -29,7 +29,7 @@ export default function HeroSection() {
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-[#0b1611] text-white">
       <div className="absolute inset-0 -z-20 h-full w-full">
         <img
-          src="/image-lomba/Gunung%20Ciremai.webp"
+          src="/images/gallery/gunung-ciremai.webp"
           alt="Panorama Gunung Ciremai"
           width={1280}
           height={800}
