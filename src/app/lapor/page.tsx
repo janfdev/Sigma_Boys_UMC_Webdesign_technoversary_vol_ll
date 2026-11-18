@@ -120,7 +120,7 @@ export default function LaporPage() {
               </Alert>
 
               {/* Drop-Point Hub Quick Reference */}
-              <Card className="p-5 shadow-sm space-y-3 rounded-2xl border-border bg-card">
+              <Card className="p-5 shadow-sm space-y-3.5 rounded-2xl border-border bg-card">
                 <CardHeader className="p-0">
                   <CardTitle className="text-xs font-bold text-foreground uppercase tracking-wider flex items-center justify-between font-mono">
                     <span className="flex items-center gap-1.5">
@@ -134,12 +134,14 @@ export default function LaporPage() {
                 </CardHeader>
                 <CardContent className="p-0 space-y-2 pt-1 font-mono text-xs">
                   {TRAIL_SEEDS.map((t) => (
-                    <div key={t.id} className="flex items-center justify-between p-2 rounded-lg bg-muted/40 border border-border/50">
+                    <div key={t.id} className="flex items-center justify-between p-2.5 rounded-xl bg-muted/30 border border-border/60 hover:border-emerald-500/40 transition-colors">
                       <div>
-                        <span className="font-bold text-foreground block text-[11px]">{t.name}</span>
-                        <span className="text-[10px] text-muted-foreground">{t.regency}</span>
+                        <span className="font-bold text-foreground block text-xs tracking-tight">
+                          {t.name.replace(/^Jalur\s+/i, "")}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground font-sans">Kab. {t.regency}</span>
                       </div>
-                      <Badge variant="outline" className="text-[9px] px-1.5 py-0.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-bold uppercase">
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-bold uppercase rounded-full">
                         {t.dropPointStatus === "SIAP_TERIMA" ? "Siap Terima" : "Distribusi"}
                       </Badge>
                     </div>
