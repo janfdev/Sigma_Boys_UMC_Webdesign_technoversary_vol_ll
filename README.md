@@ -4,6 +4,15 @@ Platform terpadu pengelolaan dan valuasi limbah berbasis ekonomi sirkular dan ge
 
 ---
 
+## Tim Pengembang : Sigma Boys
+
+Karya ini dikembangkan oleh **Tim Sigma Boys** dalam ajang **EcoDigital For Environment: Web Design Competition**:
+
+* **Rizqi Noor Fauzan**
+* **Mohammad Hafiz Naufal**
+
+---
+
 ## Prasyarat Sistem
 
 Sebelum menjalankan proyek, pastikan perangkat Anda telah terpasang:
@@ -45,7 +54,7 @@ bun run dev
 Buka peramban dan akses [http://localhost:3000](http://localhost:3000).
 
 ### 5. Menjalankan Seluruh Pengujian (Automated Tests)
-Seluruh pengujian unit otomatis menggunakan **Vitest** dan **React Testing Library** (113 tests di 31 test suites), mencakup pengujian fungsional komponen, simulator hidrologi, kalkulator valuasi dampak, dan audit kepatuhan Anti-Slop R-02:
+Seluruh pengujian unit otomatis menggunakan **Vitest** dan **React Testing Library** (126 tests di 34 test suites), mencakup pengujian fungsional komponen, simulator hidrologi, kalkulator valuasi dampak, dan audit kepatuhan Anti-Slop R-02:
 ```bash
 bun run test
 # atau: npm test
@@ -134,7 +143,7 @@ Pusat literasi dan artikel ilmiah populer yang bersumber terpadu dari `src/data/
   * **Hairline UI**: Toast Stack notification dengan animasi continuous squircle & spring interaction.
   * **Kokonut UI**: Infinite loop Carousel Cards pada hero section.
   * **Lucide React**: Ikonografi vektor yang konsisten dan ringan.
-* **Pengujian (Testing)**: Vitest v2.1.8, Testing Library React, JSDOM (113 tests passed).
+* **Pengujian (Testing)**: Vitest v2.1.8, Testing Library React, JSDOM (126 tests passed across 34 test suites).
 
 ---
 
@@ -145,6 +154,15 @@ Pusat literasi dan artikel ilmiah populer yang bersumber terpadu dari `src/data/
 | `bun run dev` (atau `npm run dev`) | Menjalankan server pengembangan Next.js di `localhost:3000` |
 | `bun run build` (atau `npm run build`) | Memeriksa tipe TypeScript dan mengompilasi build produksi statis |
 | `bun run start` (atau `npm run start`) | Menjalankan server produksi lokal (setelah build) |
-| `bun run test` (atau `npm test`) | Menjalankan seluruh test suite Vitest (113 tests) |
+| `bun run test` (atau `npm test`) | Menjalankan seluruh test suite Vitest (126 tests) |
 | `bunx tsc --noEmit` | Memeriksa validitas tipe TypeScript tanpa kompilasi build |
+
+---
+
+## Tim Pengembang
+
+**Sigma Boys** (EcoDigital For Environment: Web Design Competition):
+* **Rizqi Noor Fauzan**
+* **Mohammad Hafiz Naufal**
+
 
