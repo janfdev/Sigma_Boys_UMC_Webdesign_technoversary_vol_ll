@@ -26,8 +26,8 @@ Sebelum menjalankan proyek, pastikan perangkat Anda telah terpasang:
 
 ### 1. Kloning Repositori
 ```bash
-git clone https://github.com/janfdev/Sigma_Boys_UMC_WebDesignTechnoversary_vol_II.git
-cd Sigma_Boys_UMC_WebDesignTechnoversary_vol_II
+git clone https://github.com/janfdev/Sigma_Boys_UMC_Webdesign_technoversary_vol_ll.git
+cd Sigma_Boys_UMC_Webdesign_technoversary_vol_ll
 ```
 
 ### 2. Pasang Dependensi
