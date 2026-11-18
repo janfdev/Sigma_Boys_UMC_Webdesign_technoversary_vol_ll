@@ -14,98 +14,113 @@ export const HERO_CAROUSEL_DATA: HeroCarouselItem[] = [
     image: "/carousel-hero/Gambar1.webp",
     badge: "PENCEMARAN SUNGAI",
     title: "Pencemaran Sungai oleh Sampah Plastik",
-    description:
-      "Sampah plastik yang dibuang sembarangan terbawa aliran air dan menumpuk di sungai. Kondisi ini mengancam ekosistem perairan, merusak habitat ikan, serta menurunkan kualitas air bersih bagi masyarakat sekitar.",
+    description: "Sampah plastik yang dibuang sembarangan dapat terbawa aliran air dan menumpuk di sungai. Kondisi ini mengancam ekosistem perairan, mengganggu kehidupan biota, serta menurunkan kualitas lingkungan.",
     impactTitle: "Dampak Lingkungan",
-    impactDescription:
-      "Merusak ekosistem sungai, mengancam kehidupan biota air, dan meningkatkan risiko penyumbatan aliran air pemicu banjir bandang.",
+    impactDescription: `Merusak ekosistem sungai, mengancam biota
+      air, dan meningkatkan risiko penyumbatan
+      aliran air.`,
   },
   {
     id: 2,
     image: "/carousel-hero/Gambar2.webp",
     badge: "KRISIS TPA",
-    title: "Krisis Penumpukan di Tempat Pembuangan Akhir",
+    title: "Menumpuknya Sampah di Tempat Pembuangan Akhir",
     description:
-      "Gunungan sampah campuran tanpa pemilahan terus menggunung hingga melampaui kapasitas tampung TPA. Gas metana yang terperangkap memicu potensi kebakaran dan pencemaran air tanah akibat rembesan air lindi beracun.",
+      "Meningkatnya volume sampah rumah tangga dan plastik menyebabkan tempat pembuangan akhir semakin terbebani. Tanpa pengelolaan yang tepat, tumpukan sampah dapat menimbulkan pencemaran tanah, air, dan udara.",
     impactTitle: "Dampak Lingkungan",
     impactDescription:
-      "Pelepasan gas rumah kaca metana berdaya rusak tinggi, pencemaran air lindi ke air tanah warga, dan hilangnya ruang terbuka hijau.",
+      `Memicu pencemaran lingkungan, bau tidak
+       sedap, serta peningkatan emisi gas dari
+      timbunan sampah.`,
   },
   {
     id: 3,
     image: "/carousel-hero/Gambar3.webp",
     badge: "AKSI BERSIH",
-    title: "Aksi Relawan Bersih Pantai & Pesisir",
+    title: "Bersama Bergerak Membersihkan Lingkungan",
     description:
-      "Inisiatif pembersihan pantai oleh relawan komunitas CircuLife untuk mencegah sampah plastik terbawa ombak ke laut lepas. Setiap botol dan kemasan yang dipungut langsung disalurkan ke fasilitas pemilahan sirkular.",
-    impactTitle: "Dampak Lingkungan",
+      "Aksi bersih lingkungan merupakan bentuk kepedulian masyarakat dalam menjaga kebersihan alam. Melalui kegiatan gotong royong, relawan mengumpulkan sampah plastik dan limbah lainnya agar lingkungan kembali bersih dan sehat.",
+    impactTitle: "Dampak Positif",
     impactDescription:
-      "Mencegah mikroplastik masuk ke rantai makanan laut dan menyelamatkan satwa pesisir dari bahaya terjerat limbah anorganik.",
-  },
+      `Meningkatkan kesadaran masyarakat, menjaga
+       kebersihan lingkungan, dan membangun
+      budaya gotong royong.`,
   {
     id: 4,
     image: "/carousel-hero/Gambar4.webp",
     badge: "PEMILAHAN SUMBER",
-    title: "Pemilahan Sampah dari Rumah Tangga",
+    title: "Mengubah Limbah Plastik Menjadi Material Baru",
     description:
-      "Langkah mendasar circular economy dimulai dari pemilahan di tingkat rumah tangga: memisahkan botol plastik PET bersih, kardus, dan limbah organik agar memiliki nilai daur ulang maksimal sebelum diangkut.",
-    impactTitle: "Dampak Lingkungan",
+      "Sampah plastik yang telah dikumpulkan dan dipilah dapat melalui proses pencucian, pencacahan, hingga pengolahan menjadi bahan baku baru. Proses ini membantu memperpanjang siklus penggunaan material plastik.",
+    impactTitle: "Manfaat Daur Ulang",
     impactDescription:
-      "Meningkatkan efisiensi daur ulang material hingga 85% dan mengurangi beban residu yang harus dikirim ke tempat pembuangan akhir.",
+      `Mengurangi kebutuhan bahan baku baru,
+      menekan volume sampah, dan mendukung
+      ekonomi sirkular.`,
   },
   {
     id: 5,
     image: "/carousel-hero/Gambar5.webp",
-    badge: "TEKNOLOGI SIRKULAR",
-    title: "Fasilitas Pemilahan Otomatis Berbasis Sensor",
+    badge: "UPCYCLE",
+    title: "Pemilahan Sampah Berdasarkan Jenis",
     description:
-      "Konveyor otomatis dan sensor optik memisahkan jenis plastik berdasarkan polimer PET, HDPE, dan PP dengan presisi tinggi. Teknologi ini memastikan bahan baku cacahan plastik bebas kontaminan untuk proses manufaktur.",
-    impactTitle: "Dampak Lingkungan",
+      "Pemilahan sampah merupakan langkah awal dalam pengelolaan limbah yang bertanggung jawab. Dengan memisahkan sampah organik, anorganik, dan bahan berbahaya, proses pengolahan serta daur ulang dapat dilakukan dengan lebih efektif.",
+    impactTitle: "Manfaat Pemilahan",
     impactDescription:
-      "Menghasilkan bahan baku daur ulang berkualitas tinggi, menekan konsumsi energi pengolahan, dan mempercepat siklus ekonomi sirkular.",
+      `Mempermudah proses daur ulang, mengurangi
+      pencampuran limbah, dan meningkatkan nilai
+       guna sampah.`,
   },
   {
     id: 6,
     image: "/carousel-hero/Gambar6.webp",
     badge: "UPCYCLE PAVING",
-    title: "Inovasi Eco-Paving Block Kuat Tekan K-250",
+    title: "Inovasi Kreatif Mengubah Sampah Menjadi Produk Bernilai",
     description:
-      "Pemanfaatan cacahan limbah plastik kemasan dan kresek yang dilebur bersama pasir silika menghasilkan paving block berstandar kuat tekan K-250 untuk infrastruktur jalan setapak desa dan trotoar perkotaan.",
-    impactTitle: "Dampak Lingkungan",
+      "Limbah plastik dapat dimanfaatkan menjadi berbagai produk inovatif seperti ecobrick, paving block berbahan plastik daur ulang, hingga kerajinan kreatif. Inovasi ini menunjukkan bahwa sampah memiliki potensi untuk dikembangkan menjadi sesuatu yang bernilai guna.",
+    impactTitle: "Dampak Positif",
     impactDescription:
-      "Menyerap 2,5 kg limbah plastik per unit paving, mencegah pembakaran sampah liar, serta menyediakan material konstruksi ramah lingkungan.",
+      `Mendorong kreativitas, membuka peluang
+      usaha, dan meningkatkan nilai ekonomi dari
+      limbah plastik.`,
   },
   {
     id: 7,
     image: "/carousel-hero/Gambar7.webp",
     badge: "ZERO WASTE",
-    title: "Gaya Hidup Zero Waste Mandiri",
+    title: "Penerapan Zero-Waste Lifestyle",
     description:
-      "Membiasakan penggunaan perlengkapan guna ulang seperti kantong belanja kain, tumbler tahan panas, alat makan kayu, dan beeswax wrap untuk menggantikan plastik sekali pakai dalam rutinitas harian.",
-    impactTitle: "Dampak Lingkungan",
+      "Zero-waste lifestyle merupakan gaya hidup yang berupaya meminimalkan produksi sampah melalui kebiasaan sederhana. Menggunakan tas belanja kain, botol minum pakai ulang, dan peralatan makan pribadi menjadi langkah nyata menjaga lingkungan.",
+    impactTitle: "Dampak Positif",
     impactDescription:
-      "Mengurangi timbulan sampah plastik harian per kapita hingga 70% dan membentuk budaya konsumsi yang bertanggung jawab.",
+      `Mengurangi penggunaan plastik sekali pakai,
+      menghemat sumber daya, dan membentuk
+      kebiasaan konsumsi berkelanjutan.`,
   },
   {
     id: 8,
     image: "/carousel-hero/Gambar8.webp",
     badge: "BIOKONVERSI ORGANIK",
-    title: "Komposter Organik Rumah Tangga & Kasgot",
+    title: "Pengolahan Sampah Organik Menjadi Kompos",
     description:
-      "Pengolahan sisa makanan, kulit buah, dan sampah dapur menggunakan komposter aerob atau biokonversi larva Maggot BSF menghasilkan pupuk kasgot kaya hara untuk persemaian bibit pohon penghijauan.",
-    impactTitle: "Dampak Lingkungan",
+      "Sampah organik seperti sisa makanan, kulit buah, dan dedaunan dapat diolah melalui proses pengomposan. Hasilnya berupa pupuk alami yang dapat dimanfaatkan untuk menyuburkan tanah dan mendukung pertumbuhan tanaman.",
+    impactTitle: "Dampak Positif",
     impactDescription:
-      "Menghentikan pembentukan gas metana di TPA dari sampah organik yang membusuk, serta menyuburkan tanah secara alami tanpa bahan kimia sintetis.",
+      `Mengurangi timbunan sampah organik,
+      meningkatkan kesuburan tanah, dan
+      mendukung pertanian berkelanjutan.`,
   },
   {
     id: 9,
     image: "/carousel-hero/Gambar9.webp",
     badge: "RESTORASI EKOSISTEM",
-    title: "Restorasi Ekosistem Sungai dan Sabuk Hijau",
+    title: "Mewujudkan Masa Depan Lingkungan yang Lebih Hijau",
     description:
-      "Hasil nyata dari penghentian pembuangan sampah sembarangan dan pemulihan sabuk hijau: aliran sungai kembali jernih, keanekaragaman hayati pulih, dan ruang hijau menjadi oase berkelanjutan bagi generasi mendatang.",
-    impactTitle: "Dampak Lingkungan",
+      "Lingkungan yang bersih dan lestari merupakan hasil dari kepedulian serta tindakan berkelanjutan. Dengan mengurangi sampah, menerapkan daur ulang, dan menjaga alam, kita dapat menciptakan masa depan yang lebih sehat bagi generasi mendatang.",
+    impactTitle: "Dampak Positif",
     impactDescription:
-      "Menjaga kualitas sumber air tawar alami, merehabilitasi habitat flora-fauna endemik, serta menciptakan lingkungan hidup yang asri dan tangguh iklim.",
+      `Menjaga keseimbangan ekosistem,
+      meningkatkan kualitas hidup, dan mewariskan
+      lingkungan yang lebih baik.`,
   },
 ];
