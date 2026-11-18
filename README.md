@@ -135,11 +135,6 @@ Pusat literasi dan artikel ilmiah populer yang bersumber terpadu dari `src/data/
   * **Kokonut UI**: Infinite loop Carousel Cards pada hero section.
   * **Lucide React**: Ikonografi vektor yang konsisten dan ringan.
 * **Pengujian (Testing)**: Vitest v2.1.8, Testing Library React, JSDOM (113 tests passed).
-* **Tipografi**: Plus Jakarta Sans (Headings & Body) dan JetBrains Mono (Telemetri, Kode, & Label).
-* **Optimasi Gambar & Performa**:
-  * Kompresi WebP High-Fidelity via Sharp (menghemat >2.9 MB transfer data tanpa penurunan resolusi HD).
-  * Responsive Viewport Preloading (`media="(max-width: 640px)"` vs `media="(min-width: 641px)"`).
-  * Skor Lighthouse audit: **Accessibility: 100**, **Best Practices: 100**, **SEO: 100**.
 
 ---
 
@@ -153,9 +148,3 @@ Pusat literasi dan artikel ilmiah populer yang bersumber terpadu dari `src/data/
 | `bun run test` (atau `npm test`) | Menjalankan seluruh test suite Vitest (113 tests) |
 | `bunx tsc --noEmit` | Memeriksa validitas tipe TypeScript tanpa kompilasi build |
 
----
-
-## Lisensi & Hak Cipta
-
-Dikembangkan oleh **Tim CircuLife** untuk **EcoDigital For Environment Web Design Competition 2026**.
-Seluruh konten, desain antarmuka, dan kode sumber dilindungi hak cipta.
