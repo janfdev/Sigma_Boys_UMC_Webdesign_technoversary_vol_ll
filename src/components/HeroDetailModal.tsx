@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, Leaf, Recycle, X } from "lucide-react";
 import type { HeroCarouselItem } from "@/data/heroCarouselData";
 
@@ -17,7 +18,12 @@ export default function HeroDetailModal({
   initialIndex = 0,
   items,
 }: HeroDetailModalProps) {
+  const [mounted, setMounted] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(initialIndex);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
     if (open && initialIndex >= 0 && initialIndex < items.length) {
@@ -68,23 +74,23 @@ export default function HeroDetailModal({
     };
   }, [open]);
 
-  if (!open || items.length === 0) {
+  if (!open || !mounted || items.length === 0) {
     return null;
   }
 
   const activeItem = items[activeIndex] || items[0];
   const counterText = `${String(activeIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
 
-  return (
+  const modalContent = (
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="hero-modal-title"
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
       onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[min(90dvh,820px)] bg-[#0D2118] border-2 border-[#4ADE80] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl overflow-y-auto overscroll-contain animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-sm sm:max-w-md md:max-w-4xl max-h-[min(90dvh,820px)] bg-[#0D2118] border-2 border-[#4ADE80] rounded-2xl sm:rounded-3xl p-3 sm:p-5 md:p-8 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Tombol Close di Pojok Kanan Atas Modal */}
@@ -92,16 +98,16 @@ export default function HeroDetailModal({
           type="button"
           onClick={handleClose}
           aria-label="Tutup dialog"
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#163326]/90 hover:bg-[#1E4634] text-[#A7B8B0] hover:text-white flex items-center justify-center transition cursor-pointer backdrop-blur-sm shadow-md"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-5 md:right-5 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#163326]/90 hover:bg-[#1E4634] text-[#A7B8B0] hover:text-white flex items-center justify-center transition cursor-pointer backdrop-blur-sm shadow-md"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
         </button>
 
-        {/* Layout Grid Responsif: 1 Kolom di Mobile, 12 Kolom di Desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 md:gap-8 items-center">
+        {/* Layout Grid: 1 Kolom (Gambar saja) di Mobile, 12 Kolom (Gambar + Detail) di Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-8 items-center">
           {/* Kolom Kiri: Interactive Image Viewer */}
-          <div className="md:col-span-6 w-full">
-            <div className="relative aspect-[4/3] sm:aspect-square w-full rounded-xl sm:rounded-2xl border-2 sm:border-[3px] border-[#34D399]/70 overflow-hidden bg-[#0A110E]">
+          <div className="w-full md:col-span-6">
+            <div className="relative aspect-square w-full rounded-xl sm:rounded-2xl border-2 sm:border-[3px] border-[#34D399]/70 overflow-hidden bg-[#0A110E]">
               {/* Gambar aktif */}
               <img
                 src={activeItem.image}
@@ -139,8 +145,11 @@ export default function HeroDetailModal({
             </div>
           </div>
 
-          {/* Kolom Kanan: Konten Edukasi & Dampak Lingkungan */}
-          <div className="md:col-span-6 flex flex-col justify-center mt-1 sm:mt-0">
+          {/* Kolom Kanan: Konten Edukasi & Dampak Lingkungan (Khusus Layar Desktop md ke atas) */}
+          <div
+            data-testid="hero-modal-details"
+            className="hidden md:flex md:col-span-6 flex-col justify-center"
+          >
             {/* Category Pill Badge */}
             <div className="mb-3 sm:mb-4">
               <span className="inline-flex items-center gap-1.5 bg-[#4ADE80] text-[#062415] font-bold text-[11px] sm:text-xs uppercase tracking-wider px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full">
@@ -179,4 +188,6 @@ export default function HeroDetailModal({
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }

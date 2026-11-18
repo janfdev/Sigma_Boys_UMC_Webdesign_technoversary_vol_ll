@@ -28,7 +28,12 @@ describe("HeroDetailModal Component", () => {
       />
     );
 
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toBeInTheDocument();
+    // Verify portal directly in document.body
+    expect(document.body.contains(dialog)).toBe(true);
+    expect(dialog).toHaveClass("z-[100]");
+
     expect(
       screen.getByRole("heading", { name: HERO_CAROUSEL_DATA[0].title, level: 2 })
     ).toBeInTheDocument();
@@ -36,6 +41,22 @@ describe("HeroDetailModal Component", () => {
     expect(screen.getByText(HERO_CAROUSEL_DATA[0].description)).toBeInTheDocument();
     expect(screen.getByText(HERO_CAROUSEL_DATA[0].impactDescription)).toBeInTheDocument();
     expect(screen.getByTestId("hero-modal-counter")).toHaveTextContent("01 / 09");
+  });
+
+  it("configures details column with responsive classes to hide explanation on mobile", () => {
+    const onOpenChange = vi.fn();
+    render(
+      <HeroDetailModal
+        open={true}
+        initialIndex={0}
+        onOpenChange={onOpenChange}
+        items={HERO_CAROUSEL_DATA}
+      />
+    );
+
+    const detailsCol = screen.getByTestId("hero-modal-details");
+    expect(detailsCol).toHaveClass("hidden");
+    expect(detailsCol).toHaveClass("md:flex");
   });
 
   it("navigates forward and loops back using next button", () => {
