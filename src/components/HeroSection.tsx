@@ -19,7 +19,16 @@ const slides: RailItem[] = [
 }));
 
 export default function HeroSection() {
-  preload("/image-lomba/Gunung%20Ciremai-mobile.webp", { as: "image", fetchPriority: "high" });
+  preload("/image-lomba/Gunung%20Ciremai-mobile.webp", {
+    as: "image",
+    fetchPriority: "high",
+    media: "(max-width: 640px)",
+  });
+  preload("/image-lomba/Gunung%20Ciremai.webp", {
+    as: "image",
+    fetchPriority: "high",
+    media: "(min-width: 641px)",
+  });
 
   return (
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-[#0b1611] text-white">
