@@ -81,12 +81,12 @@ export default function LaporPage() {
         {/* Tab Content */}
         {activeTab === "FORM" ? (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 min-w-0">
               <ReportForm onReportSubmitted={handleReportSubmitted} />
             </div>
 
             {/* Sidebar Guide */}
-            <div className="lg:col-span-4 space-y-6">
+            <div className="lg:col-span-4 min-w-0 space-y-6">
               <Card className="p-6 shadow-sm space-y-4 rounded-2xl border-border bg-card">
                 <CardHeader className="p-0">
                   <CardTitle className="text-sm font-bold text-foreground uppercase tracking-wider flex items-center gap-2 font-mono">

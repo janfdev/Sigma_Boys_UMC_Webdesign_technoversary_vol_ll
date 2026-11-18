@@ -427,8 +427,8 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="min-w-0">
               <label htmlFor="reporterName" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Nama Pelapor / Kontributor <span className="text-destructive">*</span>
               </label>
@@ -450,7 +450,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               )}
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label htmlFor="reporterContact" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Nomor Kontak WhatsApp / Telp <span className="text-destructive">*</span>
               </label>
@@ -473,7 +473,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-4">
             <div>
               <label htmlFor="trail" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Tujuan Penyaluran / Hub Komunitas <span className="text-destructive">*</span>
@@ -495,32 +495,35 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                     <SelectLabel className="text-[10px] font-mono uppercase text-muted-foreground px-2 py-1.5">
                       Jejaring Hub &amp; Workshop Komunitas CircuLife
                     </SelectLabel>
-                    <SelectItem value="PALUTUNGAN" className="rounded-lg py-2 cursor-pointer">
-                      <div className="flex items-center justify-between w-full gap-2">
-                        <span className="font-semibold">Workshop Eco-Paving Desa</span>
-                        <span className="text-[11px] text-muted-foreground">Kuningan</span>
+                    <SelectItem value="PALUTUNGAN" className="rounded-lg py-2.5 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-3">
+                        <span className="font-semibold text-foreground">Workshop Eco-Paving Desa</span>
+                        <span className="text-xs text-muted-foreground shrink-0 font-mono">Kuningan</span>
                       </div>
                     </SelectItem>
-                    <SelectItem value="APUY" className="rounded-lg py-2 cursor-pointer">
-                      <div className="flex items-center justify-between w-full gap-2">
-                        <span className="font-semibold">Sentra Biokonversi Maggot BSF</span>
-                        <span className="text-[11px] text-muted-foreground">Majalengka</span>
+                    <SelectItem value="APUY" className="rounded-lg py-2.5 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-3">
+                        <span className="font-semibold text-foreground">Sentra Biokonversi Maggot BSF</span>
+                        <span className="text-xs text-muted-foreground shrink-0 font-mono">Majalengka</span>
                       </div>
                     </SelectItem>
-                    <SelectItem value="LINGGARJATI" className="rounded-lg py-2 cursor-pointer">
-                      <div className="flex items-center justify-between w-full gap-2">
-                        <span className="font-semibold">Bank Sampah Unit Mitra Warga</span>
-                        <span className="text-[11px] text-muted-foreground">Desa Penyangga</span>
+                    <SelectItem value="LINGGARJATI" className="rounded-lg py-2.5 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-3">
+                        <span className="font-semibold text-foreground">Bank Sampah Unit Mitra Warga</span>
+                        <span className="text-xs text-muted-foreground shrink-0 font-mono">Desa Penyangga</span>
                       </div>
                     </SelectItem>
-                    <SelectItem value="SADAREHE" className="rounded-lg py-2 cursor-pointer">
-                      <div className="flex items-center justify-between w-full gap-2">
-                        <span className="font-semibold">Drop-Box Titik Kumpul Relawan Aksi</span>
-                        <span className="text-[11px] text-muted-foreground">Basecamp Relawan</span>
+                    <SelectItem value="SADAREHE" className="rounded-lg py-2.5 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-3">
+                        <span className="font-semibold text-foreground">Drop-Box Titik Kumpul Relawan Aksi</span>
+                        <span className="text-xs text-muted-foreground shrink-0 font-mono">Basecamp Relawan</span>
                       </div>
                     </SelectItem>
-                    <SelectItem value="NON_TRAIL" className="rounded-lg py-2 cursor-pointer">
-                      <span className="text-muted-foreground">Layanan Penjemputan Mandiri / Event Komunitas</span>
+                    <SelectItem value="NON_TRAIL" className="rounded-lg py-2.5 cursor-pointer">
+                      <div className="flex items-center justify-between w-full gap-3">
+                        <span className="font-semibold text-foreground">Layanan Penjemputan Mandiri</span>
+                        <span className="text-xs text-muted-foreground shrink-0 font-mono">Event Komunitas</span>
+                      </div>
                     </SelectItem>
                   </SelectGroup>
                 </SelectContent>
@@ -536,7 +539,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 type="text"
                 value={formData.locationDetail}
                 onChange={(e) => setFormData({ ...formData, locationDetail: e.target.value })}
-                placeholder="Contoh: Pemukiman Desa Cisantana / Area Camp Lereng / Basecamp Komunitas"
+                placeholder="Contoh: Pemukiman Desa Cisantana / Camp Lereng Ciremai"
                 aria-invalid={!!errors.locationDetail}
                 aria-describedby={errors.locationDetail ? "locationDetail-error" : undefined}
                 className={cn("h-11 rounded-xl transition-all focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500", errors.locationDetail && "border-destructive")}
@@ -562,41 +565,41 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="sm:col-span-1">
-              <label htmlFor="wasteCategory" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-                Kategori Sampah Terpilah
-              </label>
-              <Select
-                value={formData.wasteCategory}
-                onValueChange={(val) => setFormData({ ...formData, wasteCategory: val as WasteCategory })}
+          <div>
+            <label htmlFor="wasteCategory" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
+              Kategori Sampah Terpilah
+            </label>
+            <Select
+              value={formData.wasteCategory}
+              onValueChange={(val) => setFormData({ ...formData, wasteCategory: val as WasteCategory })}
+            >
+              <SelectTrigger
+                id="wasteCategory"
+                aria-label="Kategori Sampah Terpilah"
+                size="lg"
+                className="w-full rounded-xl border-input bg-card text-foreground focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500"
               >
-                <SelectTrigger
-                  id="wasteCategory"
-                  aria-label="Kategori Sampah Terpilah"
-                  size="lg"
-                  className="w-full rounded-xl border-input bg-card text-foreground focus-visible:ring-emerald-500/30 focus-visible:border-emerald-500"
-                >
-                  <SelectValue placeholder="Pilih Kategori Sampah" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl border border-border bg-popover text-popover-foreground shadow-xl">
-                  <SelectItem value="PLASTIC_PET" className="rounded-lg py-2 cursor-pointer">
-                    Botol Plastik PET &amp; Sachet
-                  </SelectItem>
-                  <SelectItem value="GAS_CANISTER" className="rounded-lg py-2 cursor-pointer">
-                    Kaleng Gas Portabel Bekas (Metal)
-                  </SelectItem>
-                  <SelectItem value="ORGANIC" className="rounded-lg py-2 cursor-pointer">
-                    Sampah Organik Logistik (Kasgot)
-                  </SelectItem>
-                  <SelectItem value="MIXED_ANORGANIC" className="rounded-lg py-2 cursor-pointer">
-                    Limbah Anorganik Campuran
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                <SelectValue placeholder="Pilih Kategori Sampah" />
+              </SelectTrigger>
+              <SelectContent className="rounded-xl border border-border bg-popover text-popover-foreground shadow-xl">
+                <SelectItem value="PLASTIC_PET" className="rounded-lg py-2.5 cursor-pointer">
+                  Botol Plastik PET &amp; Sachet
+                </SelectItem>
+                <SelectItem value="GAS_CANISTER" className="rounded-lg py-2.5 cursor-pointer">
+                  Kaleng Gas Portabel Bekas (Metal)
+                </SelectItem>
+                <SelectItem value="ORGANIC" className="rounded-lg py-2.5 cursor-pointer">
+                  Sampah Organik Logistik (Kasgot)
+                </SelectItem>
+                <SelectItem value="MIXED_ANORGANIC" className="rounded-lg py-2.5 cursor-pointer">
+                  Limbah Anorganik Campuran
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="min-w-0">
               <label htmlFor="weightKg" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Estimasi Berat Sampah (kg)
               </label>
@@ -617,7 +620,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               </div>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label htmlFor="canisterCount" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Jumlah Kaleng Gas (Unit)
               </label>
@@ -690,7 +693,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-4">
             <div>
               <label htmlFor="targetProduct" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Target Pemanfaatan Daur Ulang
@@ -708,16 +711,16 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                   <SelectValue placeholder="Pilih Pemanfaatan Daur Ulang" />
                 </SelectTrigger>
                 <SelectContent className="rounded-xl border border-border bg-popover text-popover-foreground shadow-xl">
-                  <SelectItem value="PAVING_BLOCK" className="rounded-lg py-2 cursor-pointer">
+                  <SelectItem value="PAVING_BLOCK" className="rounded-lg py-2.5 cursor-pointer">
                     Eco-Paving Block Jalan Setapak Desa (K-250)
                   </SelectItem>
-                  <SelectItem value="UPCYCLED_METAL" className="rounded-lg py-2 cursor-pointer">
+                  <SelectItem value="UPCYCLED_METAL" className="rounded-lg py-2.5 cursor-pointer">
                     Tungku Ultralight &amp; Asbak Logam Kaleng Gas
                   </SelectItem>
-                  <SelectItem value="COMPOST" className="rounded-lg py-2 cursor-pointer">
+                  <SelectItem value="COMPOST" className="rounded-lg py-2.5 cursor-pointer">
                     Kompos Kasgot Persemaian Bibit Pohon
                   </SelectItem>
-                  <SelectItem value="ECO_SOUVENIR" className="rounded-lg py-2 cursor-pointer">
+                  <SelectItem value="ECO_SOUVENIR" className="rounded-lg py-2.5 cursor-pointer">
                     Tas Etnik Anyaman Sachet Ramah Lingkungan
                   </SelectItem>
                 </SelectContent>
@@ -728,7 +731,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               <label className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
                 Pilihan Reward Lingkungan
               </label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
                   { id: "SEEDLING", label: "Bibit Pohon", desc: "Saninten Ciremai", icon: Sprout },
                   { id: "COMMUNITY_POINTS", label: "Poin Komunitas", desc: "Katalog Sirkular", icon: Sparkles },
@@ -742,18 +745,23 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                       type="button"
                       onClick={() => setFormData({ ...formData, rewardChoice: r.id as any })}
                       className={cn(
-                        "p-2.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between h-20",
+                        "p-3 rounded-xl border text-left transition-all cursor-pointer flex items-center sm:flex-col sm:items-start justify-between sm:justify-between gap-3 min-h-[68px] sm:min-h-[84px]",
                         isSelected
                           ? "border-emerald-500 bg-emerald-500/10 text-foreground ring-1 ring-emerald-500/30"
                           : "border-border/80 bg-card hover:bg-muted/40 text-muted-foreground"
                       )}
                     >
-                      <Icon className={cn("h-4 w-4", isSelected ? "text-emerald-800 dark:text-emerald-300" : "text-muted-foreground")} />
-                      <div>
-                        <span className={cn("block text-[11px] font-bold leading-tight", isSelected && "text-foreground")}>
+                      <div className="flex items-center gap-2.5 sm:w-full sm:justify-between">
+                        <Icon className={cn("h-4 w-4 shrink-0", isSelected ? "text-emerald-800 dark:text-emerald-300" : "text-muted-foreground")} />
+                        {isSelected && (
+                          <span className="hidden sm:inline-flex h-2 w-2 rounded-full bg-emerald-800 dark:bg-emerald-400" />
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <span className={cn("block text-xs font-bold leading-tight", isSelected && "text-foreground")}>
                           {r.label}
                         </span>
-                        <span className="text-[9px] text-muted-foreground block truncate">{r.desc}</span>
+                        <span className="text-[11px] text-muted-foreground block truncate">{r.desc}</span>
                       </div>
                     </button>
                   );
